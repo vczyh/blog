@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "push": "node scripts/push.js"
+  },
+  "devDependencies": {
+    "shelljs": "^0.8.3",
+    "vuepress": "^1.4.0",
+    "vuepress-theme-something": "^1.0.13"
+  }
+}
