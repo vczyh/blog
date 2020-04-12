@@ -45,8 +45,8 @@ module.exports = {
       "qq": "2939531323"
     },
     gitalk: {
-      clientID: "4c3b9314385d0c9adc9f",
-      clientSecret: "aa2dde4a033860c093f8c214fc0657af9eb264f9",
+      clientID: "5269191d56174e6d88aa",
+      clientSecret: "d5a1dac48f31bba2bcd99a3478bb74caa493247c",
       repo: "gitalk",
       owner: "vczyh",
     }
