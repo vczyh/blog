@@ -3,7 +3,7 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
-    "push": "node scripts/push.js"
+    "push": "node scripts/push.js & node scripts/push_docs.js"
   },
   "devDependencies": {
     "shelljs": "^0.8.3",
