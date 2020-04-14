@@ -45,11 +45,24 @@ module.exports = {
       "mail": "2939531323@qq.com",
       "qq": "2939531323"
     },
-    gitalk: {
-      clientID: "5269191d56174e6d88aa",
-      clientSecret: "d5a1dac48f31bba2bcd99a3478bb74caa493247c",
-      repo: "gitalk",
-      owner: "vczyh",
-    }
+    // gitalk: {
+    //   clientID: "5269191d56174e6d88aa",
+    //   clientSecret: "d5a1dac48f31bba2bcd99a3478bb74caa493247c",
+    //   repo: "gitalk",
+    //   owner: "vczyh",
+    // },
+    valine: {
+      appId: "ivCnDnNXmMhLWTntPwhk5t8t-gzGzoHsz",
+      appKey: "xcPENOlumU1AtsDlhWcohIXM",
+      placeholder: "欢迎留言与我分享您的想法...",
+      avatar: "robohash",
+      meta: [],
+      pageSize: 10,
+      visitor: true,
+      highlight: true,
+      avatarForce: false,
+      recordIP: false,
+      serverURLs: ""
+    },
   }
 }
