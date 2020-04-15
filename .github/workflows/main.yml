@@ -21,20 +21,23 @@ jobs:
     steps:
       - name: print 测试
         run: echo Hello, world!
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        
       - name: Checkout
         uses: actions/checkout@v2
         with:
           ref: vuepress-something
 
-      #- name: Use Node.js 12
-       # uses: actions/setup-node@v2 # 配置脚本来自 https://github.com/actions/setup-node
-       # with:
-        #  node-version: 12
+      - name: Use Node.js 12
+        uses: actions/setup-node@v2 # 配置脚本来自 https://github.com/actions/setup-node
+        with:
+          node-version: 12
+
       - name: NPM build
         run : |
+          npm -v
           npm install
           npm run build
+          node -v
 
       # Runs a set of commands using the runners shell
       - name: Build and Deploy
