@@ -56,13 +56,9 @@ module.exports = {
       appKey: "xcPENOlumU1AtsDlhWcohIXM",
       placeholder: "欢迎留言与我分享您的想法...",
       avatar: "robohash",
-      meta: [],
-      pageSize: 10,
+      pageSize: 5,
       visitor: true,
-      highlight: true,
-      avatarForce: false,
-      recordIP: false,
-      serverURLs: ""
+      recordIP: true
     },
   }
 }
