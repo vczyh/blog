@@ -40,12 +40,21 @@ jobs:
           yarn install
           yarn run build
 
+      # - name: Deploy
+      #   uses: JamesIves/github-pages-deploy-action@releases/v3
+      #   with:
+      #     ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      #     REPOSITORY_NAME: vczyh/vczyh.github.io
+      #     BASE_BRANCH: vuepress-something
+      #     # COMMIT_MESSAGE: 'auto deploy'
+      #     BRANCH: master # The branch the action should deploy to.
+      #     FOLDER: docs/.vuepress/dist # The folder the action should deploy.
+
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: crazy-max/ghaction-github-pages@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          REPOSITORY_NAME: vczyh/vczyh.github.io
-          BASE_BRANCH: vuepress-something
-          # COMMIT_MESSAGE: 'auto deploy'
-          BRANCH: master # The branch the action should deploy to.
-          FOLDER: docs/.vuepress/dist # The folder the action should deploy.
+          repo: vczyh/vczyh.github.io
+          target_branch: master # The branch the action should deploy to.
+          build_dir: docs/.vuepress/dist # The folder the action should deploy.
