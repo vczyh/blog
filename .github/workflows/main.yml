@@ -21,14 +21,14 @@ jobs:
     steps:
       - name: print 测试
         run: echo Hello, world!
-        
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
           ref: vuepress-something
 
       - name: Use Node.js 12
-        uses: actions/setup-node@v2 # 配置脚本来自 https://github.com/actions/setup-node
+        uses: actions/setup-node@v1 # 配置脚本来自 https://github.com/actions/setup-node
         with:
           node-version: 12
 
