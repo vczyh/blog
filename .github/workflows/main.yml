@@ -28,12 +28,12 @@ jobs:
           ref: vuepress-something
 
       - name: Use Node.js 12
-        uses: actions/setup-node@v1 # 配置脚本来自 https://github.com/actions/setup-node
+        uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: '12.x'
 
       - name: NPM build
-        run : |
+        run: |
           npm -v
           npm install
           npm run build
