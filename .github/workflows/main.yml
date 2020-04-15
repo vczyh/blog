@@ -36,6 +36,7 @@ jobs:
         run: |
           npm -v
           node -v
+          yarn --version
 
       # Runs a set of commands using the runners shell
       - name: Build and Deploy
