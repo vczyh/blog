@@ -32,7 +32,9 @@ jobs:
        # with:
         #  node-version: 12
       - name: NPM build
-        run : npm -v
+        run : |
+          npm install
+          npm run build
 
       # Runs a set of commands using the runners shell
       - name: Build and Deploy
