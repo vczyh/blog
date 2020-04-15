@@ -1,6 +1,5 @@
 ---
 home: true
-heroImage: /avatar.jpg
 heroText: VuePress Theme Something
 tagline: 支持文章列表、标签、归档、图片瀑布流
 actionText: 快速上手 →
