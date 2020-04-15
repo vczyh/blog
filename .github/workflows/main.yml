@@ -23,10 +23,14 @@ jobs:
         with:
           ref: vuepress-something
 
-      - name: Use Node.js 12
-        uses: actions/setup-node@v2 # 配置脚本来自 https://github.com/actions/setup-node
-        with:
-          node-version: 12
+      #- name: Use Node.js 12
+       # uses: actions/setup-node@v2 # 配置脚本来自 https://github.com/actions/setup-node
+       # with:
+        #  node-version: 12
+      - name: NPM build
+        run : |
+          npm install
+          npm run build
 
       # Runs a set of commands using the runners shell
       - name: Build and Deploy
