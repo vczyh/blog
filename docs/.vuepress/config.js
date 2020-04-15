@@ -33,13 +33,13 @@ module.exports = {
 
     // official
     // logo: '/avatar.jpg',
-    repo: 'https://github.com/vczyh/vuepress-theme-something',
+    // repo: 'https://github.com/vczyh/vuepress-theme-something',
 
     nextLinks: true,
     prevLinks: true,
     smoothScroll: true,
-    docsRepo: 'vczyh/docs',
-    docsDir: 'docs/',
+    docsRepo: 'vczyh/blog',
+    docsDir: 'docs',
     docsBranch: 'vuepress-something',
     editLinks: true,
     editLinkText: '在 GitHub 上编辑此页',
@@ -70,12 +70,12 @@ module.exports = {
       { text: '博客', link: '/blog/' },
       { text: '标签', link: '/tags/' },
       { text: '归档', link: '/archive/' },
-      {
-        text: '照片墙',
-        items: [
-          { text: '科比', link: '/waterfall/kobe/' },
-        ]
-      },
+      // {
+      //   text: '照片墙',
+      //   items: [
+      //     { text: '科比', link: '/waterfall/kobe/' },
+      //   ]
+      // },
       { text: 'Github', link: 'https://github.com/vczyh/vuepress-theme-something', target: '_blank' }
     ]
   }
