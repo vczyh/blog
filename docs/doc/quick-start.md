@@ -2,17 +2,26 @@
 title: 快速上手
 date: 2020-4-5 00:47:12
 tags:
+  - vuepress
   - vuepress-theme-something
 ---
 
-## 安装
+## Quick Start
 
 ```bash
-npm install vuepress-theme-something --save-dev
+npm install -g @vuepress-something/cli
 ```
 
-通过 `config.js` 使用主题
+```bash
+vps init
+```
 
+如果你想在现有的项目里使用，可以这么做：
+```bash
+npm install vuepress vuepress-theme-something --save-dev
+```
+
+通过 `config.js` 使用主题：
 ```js
 module.exports = {
   theme: 'vuepress-theme-something'
@@ -32,7 +41,7 @@ module.exports = {
 
 ### PostsLayout
 
-使用 `PostsLayout` 的页面会显示为博客列表页，先根据官方文档配置导航栏，例如 `/blog/`，然后创建 `docs/blog/index.md` ，那么列表的内容就是 `blog` 文件夹下的所有文章
+使用 `PostsLayout` 的页面会显示为博客列表页，先根据官方文档配置导航栏，例如 `/blog/`，然后创建 `docs/blog/README.md` ，那么列表的内容就是 `blog` 文件夹下的所有文章
 
 ```
 ---
@@ -62,10 +71,10 @@ layout: ArchiveLayout
 
 ```
 ---
-layout: ArchiveLayout
+layout: WaterfallLayout
 pictures:
   - src: http://p.vczyh.com/blog/IMG_1096(20200128-152110).JPG
-  	info: 科比绝杀
+    info: 科比绝杀
   - src: http://p.vczyh.com/blog/IMG_1097(20200128-153100).JPG
   - src: http://p.vczyh.com/blog/IMG_1102.GIF
 ---
@@ -76,5 +85,6 @@ pictures:
 | pictures | 表示图片数组       |
 | src      | 图片链接           |
 | info     | 图片描述，**可选** |
+
 
 

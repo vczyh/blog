@@ -18,10 +18,10 @@ module.exports = {
 
   themeConfig: {
     // custom
-    author: 'zhangyuheng',
+    author: 'vczyh',
     contact: {
       "github": "https://github.com/vczyh/vuepress-theme-something",
-      "mail": "2939531323@qq.com",
+      "mail": "zhangeek@qq.com",
       "qq": "2939531323"
     },
     gitalk: {
@@ -31,7 +31,6 @@ module.exports = {
       owner: "vczyh",
     },
 
-    // official
     // logo: '/avatar.jpg',
     // repo: 'https://github.com/vczyh/vuepress-theme-something',
 
