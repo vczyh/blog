@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-something-blog",
-  "author": "zhangyuheng",
+  "author": "vczyh",
   "scripts": {
     "dev": "vuepress dev docs",
     "build": "vuepress build docs",
