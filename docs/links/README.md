@@ -3,54 +3,19 @@ layout: LinksLayout
 sidebar: false
 post: false
 links:
+  我:
+    - title: vczyh
+      desc: 没啥本事，就是喜欢Coding
+      avatar: http://p.vczyh.com/blog/TIM图片20200321204313.jpg
+      url: http://zhangeek.com
+    - title: VuePress Theme Something
+      desc: 一款简约的博客主题
+      avatar: http://p.vczyh.com/blog/TIM图片20200321204313.jpg
+      url: https://vczyh.github.io
+
   同学圈:
-    - title: Zhang
-      desc: 不会写诗 但志在远方
-      avatar: http://p.vczyh.com/blog/TIM图片20200321204313.jpg
-      url: https://baidu.com
-    - title: Zhang Yuheng's
-      desc: 不会写诗 但志在远方
-      avatar: http://p.vczyh.com/blog/TIM图片20200321204313.jpg
-      url: https://baidu.com
-    - title: Zhang Yuheng's g
-      desc: 不会写诗 但志在远方
-      avatar: http://p.vczyh.com/blog/TIM图片20200321204313.jpg
-      url: https://baidu.com
-    - title: Zeng' Blog
-      desc: 不会写诗 但志在远方
-      avatar: http://p.vczyh.com/blog/TIM图片20200321204313.jpg
-      url: https://baidu.com
-    - title: Zhang Yuheng's Blog
-      desc: 不会写诗 但志在远方
-      avatar: http://p.vczyh.com/blog/TIM图片20200321204313.jpg
-      url: https://baidu.com
-    - title: Zhang Yuheng's Blog
-      desc: 不会写诗 但志在远方
-      avatar: http://p.vczyh.com/blog/TIM图片20200321204313.jpg
-      url: https://baidu.com
-  线上小伙伴:
-    - title: Zhang Yg's Blog
-      desc: 不会写诗 但志在远方
-      avatar: http://p.vczyh.com/blog/TIM图片20200321204313.jpg
-      url: https://baidu.com
-    - title: 南方姑娘
-      desc: 不会写诗 但志在远方
-      avatar: http://p.vczyh.com/blog/TIM图片20200321204313.jpg
-      url: https://baidu.com
-    - title: Zhang Yuheng's Blog
-      desc: 不会写诗 但志在远方
-      avatar: http://p.vczyh.com/blog/TIM图片20200321204313.jpg
-      url: https://baidu.com
-    - title: ZhannBlog
-      desc: 不会写诗 但志在远方
-      avatar: http://p.vczyh.com/blog/TIM图片20200321204313.jpg
-      url: https://baidu.com
-    - title: 小可爱
-      desc: 不会写诗 但志在远方
-      avatar: http://p.vczyh.com/blog/TIM图片20200321204313.jpg
-      url: https://baidu.com
-    - title: Zhan's Blog
-      desc: 不会写诗 但志在远方
-      avatar: http://p.vczyh.com/blog/TIM图片20200321204313.jpg
-      url: https://baidu.com
+    - title: Pushy
+      desc: 大学实验室的小伙伴
+      avatar: https://gravatar.loli.net/avatar/cbef12326760284fc24374e956d35ad3?d=robohash&v=1.4.4
+      url: https://pushy.site/
 ---
