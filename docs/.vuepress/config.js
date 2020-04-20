@@ -28,6 +28,7 @@ module.exports = {
       },
       { text: '学习笔记', link: '/note/' },
       { text: '留言区', link: '/leave/' },
+      { text: '友链', link: '/links/' },
       { text: '博客主题', link: 'https://vczyh.github.io/doc/' }
     ],
     sidebar: 'auto',
