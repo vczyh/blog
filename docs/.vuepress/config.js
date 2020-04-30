@@ -55,8 +55,8 @@ module.exports = {
     valine: {
       appId: "ivCnDnNXmMhLWTntPwhk5t8t-gzGzoHsz",
       appKey: "xcPENOlumU1AtsDlhWcohIXM",
-      placeholder: "欢迎留言与我分享您的想法...",
-      avatar: "robohash",
+      placeholder: "Say what you want to say to me",
+      avatar: "mp",
       pageSize: 5,
       visitor: true,
       recordIP: true
