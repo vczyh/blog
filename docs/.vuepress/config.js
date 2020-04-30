@@ -55,7 +55,7 @@ module.exports = {
     valine: {
       appId: "ivCnDnNXmMhLWTntPwhk5t8t-gzGzoHsz",
       appKey: "xcPENOlumU1AtsDlhWcohIXM",
-      placeholder: "Say what you want to say to me",
+      placeholder: "......",
       avatar: "mp",
       pageSize: 5,
       visitor: true,
