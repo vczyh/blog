@@ -1,17 +1,17 @@
 module.exports = {
   theme: 'vuepress-theme-something',
   port: 9000,
-  title: "Zhang Yuheng's Blog",
+  title: "Vczyh's Blog",
   description: 'Just playing around',
   head: [
     // gitter
-    ['script', { type: 'text/javascript' }, "((window.gitter = {}).chat = {}).options = { room: 'zhangyuhengspace/community'};"],
-    ['script', { type: 'text/javascript', src: 'https://sidecar.gitter.im/dist/sidecar.v1.js' }],
+    // ['script', { type: 'text/javascript' }, "((window.gitter = {}).chat = {}).options = { room: 'zhangyuhengspace/community'};"],
+    // ['script', { type: 'text/javascript', src: 'https://sidecar.gitter.im/dist/sidecar.v1.js' }],
     // favicon
     ['link', { rel: 'icon', href: '/avatar.jpg' }],
   ],
   themeConfig: {
-    author: '张语亨',
+    author: 'vczyh',
     logo: '/avatar.jpg',
     nav: [
       // { text: '首页', link: '/', icon: 'iconshouye', to: '/blog/' },
@@ -41,11 +41,7 @@ module.exports = {
     editLinks: true,
     editLinkText: '在 GitHub 上编辑此页',
     lastUpdated: 'Last Updated',
-    contact: {
-      "github": "https://github.com/vczyh",
-      "mail": "2939531323@qq.com",
-      "qq": "2939531323"
-    },
+
     // gitalk: {
     //   clientID: "5269191d56174e6d88aa",
     //   clientSecret: "d5a1dac48f31bba2bcd99a3478bb74caa493247c",
