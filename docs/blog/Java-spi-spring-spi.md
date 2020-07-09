@@ -72,7 +72,7 @@ Hello, I am Phone
 
 ------
 
-### ServiceLoader源码
+### ServiceLoader 源码
 
 ```java
 // 扫描路径
@@ -267,7 +267,7 @@ public Iterator<S> iterator() {
 
 ------
 
-### ServiceLoader流程
+### ServiceLoader 流程
 
 1. 读取所有jar包里路径为 `META-INF/services/service.getName()` 的文件。
 2. 遍历文件获取每个文件中配置的实现类。
@@ -277,7 +277,7 @@ public Iterator<S> iterator() {
 
 ------
 
-### Java SPI 在JDBC中的应用
+### Java SPI 在 JDBC 中的应用
 
 Java 提供了驱动标准接口 `java.sql.Driver`，驱动的具体实现的一个例子如下：
 
@@ -335,7 +335,7 @@ public void connect() throws SQLException {
 
 `DriverManager` 做了以下工作：
 
-1. 获取驱动
+1. 获取所有驱动。
 2. 依次调用驱动的 `connect()`方法，获取连接成功的驱动。
 
 加载 `DriverManager` 时会执行 static 代码块：
