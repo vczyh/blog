@@ -19,13 +19,13 @@ module.exports = {
       { text: '生活', link: '/life/' },
       { text: '标签', link: '/tags/' },
       { text: '归档', link: '/archive/' },
-      {
-        text: '照片墙',
-        items: [
-          { text: 'kobe', link: '/waterfall/kobe' },
-          { text: '个人', link: '/waterfall/mine' }
-        ]
-      },
+      // {
+      //   text: '照片墙',
+      //   items: [
+      //     { text: 'kobe', link: '/waterfall/kobe' },
+      //     { text: '个人', link: '/waterfall/mine' }
+      //   ]
+      // },
       { text: '学习笔记', link: '/note/' },
       { text: '留言区', link: '/leave/' },
       { text: '友链', link: '/links/' },
