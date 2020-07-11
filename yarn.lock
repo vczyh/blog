@@ -7984,11 +7984,6 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue-waterfall-easy@^2.4.4:
-  version "2.4.4"
-  resolved "https://registry.npmjs.org/vue-waterfall-easy/-/vue-waterfall-easy-2.4.4.tgz#a990ef3f7f7eb88dedc5ef40e064c4e68908e84c"
-  integrity sha512-5OkpT2FPNC3rHBy858zk/nmJxqdPaGmj/KVbmA6dgcvtsovKMa+zuf/Z7F+S2NnObeavpIBztTWgcH3S42ZD+g==
-
 vue@^2.6.10:
   version "2.6.11"
   resolved "https://registry.npmjs.org/vue/-/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"
@@ -8021,16 +8016,15 @@ vuepress-plugin-smooth-scroll@^0.0.3:
   dependencies:
     smoothscroll-polyfill "^0.4.3"
 
-vuepress-theme-something@^1.0.34:
-  version "1.0.34"
-  resolved "https://registry.npmjs.org/vuepress-theme-something/-/vuepress-theme-something-1.0.34.tgz#4d3598b46374296a3da40fc8670cf3fc13f1e6f6"
-  integrity sha512-lAHVaJzbZiszRg+en7+ueBjzFpVXpvWkcoDiJowj35WPZVuhgY56uSEWhOInOXFNCJePhLDC3SUHFqxT9pz45Q==
+vuepress-theme-something@^1.0.37:
+  version "1.0.37"
+  resolved "https://registry.npmjs.org/vuepress-theme-something/-/vuepress-theme-something-1.0.37.tgz#e16364c5539bb0165c39636ca0fc2ba5b4daa0c1"
+  integrity sha512-pEanuJY3JyhnoAAiTZnbY081EooF22sgNZUMMRsSosY9YwtnyCo8SYoQF2FC7gOUOmN1VY/KyZi4yNxnntqI6g==
   dependencies:
     "@vuepress/plugin-medium-zoom" "^1.4.1"
     blueimp-md5 "^2.13.0"
     gitalk "^1.6.2"
     valine "^1.4.14"
-    vue-waterfall-easy "^2.4.4"
 
 vuepress@^1.4.1:
   version "1.4.1"

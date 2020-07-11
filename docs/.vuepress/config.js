@@ -15,21 +15,30 @@ module.exports = {
     logo: '/avatar.jpg',
     nav: [
       // { text: '首页', link: '/', icon: 'iconshouye', to: '/blog/' },
-      { text: '博客', link: '/blog/', home: true },
-      { text: '生活', link: '/life/' },
+      // { text: '博客', link: '/blog/', home: true },
+      // { text: '生活', link: '/life/' },
+      {
+        text: '分类',
+        items: [
+          { text: '博客', link: '/blog/', home: true },
+          { text: '生活', link: '/life/' },
+        ]
+      },
       { text: '标签', link: '/tags/' },
       { text: '归档', link: '/archive/' },
-      // {
-      //   text: '照片墙',
-      //   items: [
-      //     { text: 'kobe', link: '/waterfall/kobe' },
-      //     { text: '个人', link: '/waterfall/mine' }
-      //   ]
-      // },
-      { text: '学习笔记', link: '/note/' },
+      { text: '笔记', link: '/note/' },
       { text: '留言区', link: '/leave/' },
-      { text: '友链', link: '/links/' },
-      { text: '博客主题', link: 'https://vczyh.github.io/doc/' }
+      { text: '友链', link: '/friend/' },
+      {
+        text: '联系我',
+        items: [
+          { text: 'Github', link: 'https://github.com/vczyh', icon: 'icongithub2' },
+          { text: 'WeChat', link: '/contact/wechat/', icon: 'icongongzhonghao' },
+          { text: 'Telegram', link: 'https://t.me/vczyh', icon: 'icontelegram' },
+          { text: 'QQ', link: 'http://wpa.qq.com/msgrd?v=3&uin=2939531323&site=qq&menu=yes', icon: 'iconQQ' }
+        ]
+      },
+      { text: '博客主题', link: 'https://vczyh.github.io/doc/' },
     ],
     sidebar: 'auto',
     nextLinks: true,
@@ -41,7 +50,6 @@ module.exports = {
     editLinks: true,
     editLinkText: '在 GitHub 上编辑此页',
     lastUpdated: 'Last Updated',
-
     // gitalk: {
     //   clientID: "5269191d56174e6d88aa",
     //   clientSecret: "d5a1dac48f31bba2bcd99a3478bb74caa493247c",
