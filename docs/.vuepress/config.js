@@ -1,6 +1,5 @@
 module.exports = {
   theme: 'vuepress-theme-something',
-  // plugins: ['dplayer'],
   plugins: ['@vuepress-something/vuepress-plugin-dplayer'],
   port: 9000,
   title: "Vczyh's Blog",
