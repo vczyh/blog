@@ -60,7 +60,7 @@ module.exports = {
     valine: {
       appId: "ivCnDnNXmMhLWTntPwhk5t8t-gzGzoHsz",
       appKey: "xcPENOlumU1AtsDlhWcohIXM",
-      placeholder: "......",
+      placeholder: "Just playing around",
       avatar: "mp",
       pageSize: 5,
       visitor: true,
