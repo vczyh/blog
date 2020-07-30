@@ -1,9 +1,8 @@
 module.exports = {
   theme: 'vuepress-theme-something',
-  plugins: ['@vuepress-something/vuepress-plugin-dplayer'],
   port: 9000,
   title: "Vczyh's Blog",
-  description: 'Just playing around',
+  description: '不会写诗，但志在远方。',
   head: [
     // gitter
     // ['script', { type: 'text/javascript' }, "((window.gitter = {}).chat = {}).options = { room: 'zhangyuhengspace/community'};"],
@@ -61,7 +60,7 @@ module.exports = {
       appId: "ivCnDnNXmMhLWTntPwhk5t8t-gzGzoHsz",
       appKey: "xcPENOlumU1AtsDlhWcohIXM",
       placeholder: "Just playing around",
-      avatar: "mp",
+      avatar: "retro",
       pageSize: 5,
       visitor: true,
       recordIP: true
