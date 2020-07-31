@@ -2,6 +2,7 @@
   "name": "my-blog",
   "author": "vczyh",
   "description": "my blog",
+  "license": "MIT",
   "scripts": {
     "dev": "vuepress dev docs --debug",
     "build": "vuepress build docs",
@@ -10,6 +11,6 @@
   "devDependencies": {
     "shelljs": "^0.8.3",
     "vuepress": "^1.4.1",
-    "vuepress-theme-something": "^1.0.39"
+    "vuepress-theme-something": "^1.0.40"
   }
 }

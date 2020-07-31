@@ -1025,6 +1025,11 @@
   optionalDependencies:
     prettier "^1.18.2"
 
+"@vuepress-something/vuepress-plugin-components@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@vuepress-something/vuepress-plugin-components/-/vuepress-plugin-components-1.0.1.tgz#4371239c88b0cdcbb3e4a080d7e5a64936959599"
+  integrity sha512-PAKQ4xcBtYvdRibGYnpGvNMvTBxrbyEE+5FavYwzMu0no1+XbGIs4RY8opRUs2fSXWFav2LySIKW71S/9OZVUw==
+
 "@vuepress-something/vuepress-plugin-dplayer@^1.0.1":
   version "1.0.1"
   resolved "https://registry.npmjs.org/@vuepress-something/vuepress-plugin-dplayer/-/vuepress-plugin-dplayer-1.0.1.tgz#fead6ab2294d49420b921f1cfee2f1a41d7507d9"
@@ -7919,11 +7924,12 @@ vuepress-plugin-smooth-scroll@^0.0.3:
   dependencies:
     smoothscroll-polyfill "^0.4.3"
 
-vuepress-theme-something@^1.0.39:
-  version "1.0.39"
-  resolved "https://registry.npmjs.org/vuepress-theme-something/-/vuepress-theme-something-1.0.39.tgz#f6a05c304fc6ccbf4f0a69f1d8caf0614d6f60bf"
-  integrity sha512-LJJ7LKlEx9iMKr240sbTjchiZgiIhmyqXSYMtKSvgctvLZMjY8m1NR9cL22xs/ocZTSz050U0oU4bQB2NNSUeA==
+vuepress-theme-something@^1.0.40:
+  version "1.0.40"
+  resolved "https://registry.npmjs.org/vuepress-theme-something/-/vuepress-theme-something-1.0.40.tgz#4cd5a09e201a96dee95a2b4fc6a52fe51799d469"
+  integrity sha512-WL/bj7dEX4mb8xKUesttB46BfijCC8uuV0v3DNUVkbFzawKJzQq1h8hpn3Dqm0MCeBWObSPNanCGNA75/IqcIQ==
   dependencies:
+    "@vuepress-something/vuepress-plugin-components" "^1.0.1"
     "@vuepress-something/vuepress-plugin-dplayer" "^1.0.1"
     "@vuepress-something/vuepress-plugin-valine" "^1.0.1"
     "@vuepress/plugin-medium-zoom" "^1.4.1"
