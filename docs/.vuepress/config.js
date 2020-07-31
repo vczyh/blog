@@ -50,12 +50,6 @@ module.exports = {
     editLinks: true,
     editLinkText: '在 GitHub 上编辑此页',
     lastUpdated: 'Last Updated',
-    // gitalk: {
-    //   clientID: "5269191d56174e6d88aa",
-    //   clientSecret: "d5a1dac48f31bba2bcd99a3478bb74caa493247c",
-    //   repo: "gitalk",
-    //   owner: "vczyh",
-    // },
     valine: {
       appId: "ivCnDnNXmMhLWTntPwhk5t8t-gzGzoHsz",
       appKey: "xcPENOlumU1AtsDlhWcohIXM",
