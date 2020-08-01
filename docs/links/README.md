@@ -1,5 +1,4 @@
 ---
-layout: LinksLayout
 sidebar: false
 post: false
 links:
