@@ -2,8 +2,7 @@
 title: Java内存区域与内存溢出异常
 date: 2020-2-18 14:29:08
 tags: 
-  - JAVA
-  - JVM学习笔记
+  - Java
   - JVM
 ---
 
