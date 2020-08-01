@@ -40,7 +40,45 @@ module.exports = {
       },
       { text: '博客主题', link: 'https://vczyh.github.io/doc/' },
     ],
-    sidebar: 'auto',
+    sidebar: {
+      '/note/': [
+        '',
+        {
+          title: 'Java 虚拟机',
+          collapsable: false,
+          children: [
+            'jvm/jvm-memory-and-exception',
+            'jvm/jvm-class-file-structure'
+          ]
+        }
+      ],
+    },
+    // sidebar: [
+    //   '',
+    //   '/note/jvm/jvm-memory-and-exception',
+    //   '/note/jvm/jvm-class-file-structuret'
+    // ],
+
+    // sidebar: {
+    //   '/doc/': [
+    //     {
+    //       title: '基础',
+    //       collapsable: false,
+    //       children: [
+    //         '',
+    //         'quick-start'
+    //       ]
+    //     },
+    //     {
+    //       title: 'Markdown',
+    //       collapsable: false,
+    //       children: [
+    //         'markdown-basic-test',
+    //         'markdown-extend-test'
+    //       ]
+    //     }
+    //   ]
+    // },
     nextLinks: true,
     prevLinks: true,
     smoothScroll: true,
