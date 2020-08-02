@@ -7929,10 +7929,10 @@ vuepress-plugin-smooth-scroll@^0.0.3:
   dependencies:
     smoothscroll-polyfill "^0.4.3"
 
-vuepress-theme-something@^1.0.42:
-  version "1.0.42"
-  resolved "https://registry.npmjs.org/vuepress-theme-something/-/vuepress-theme-something-1.0.42.tgz#44254ef91e362fa6068178ae71e50871c4313ba9"
-  integrity sha512-cQpvca6sXUFNcESE8SzJzUrv6ZmYfPWcDNWkRyBQJTW0aTgeNmsmZLKW+o927h4jG9/hAuOvUcYXT7UR2jUuKA==
+vuepress-theme-something@^1.0.43:
+  version "1.0.43"
+  resolved "https://registry.npmjs.org/vuepress-theme-something/-/vuepress-theme-something-1.0.43.tgz#41304a2f41d87139440c62c7709e300ea9e1383b"
+  integrity sha512-guDJKMCkorihANMZ3eW2aSuEByLz8lMS1r1ptZSzS6RoSfV8KrZf1IYgBVjyn8JlQE15AxNKrVhfsWXHLB4tIg==
   dependencies:
     "@vuepress-something/vuepress-plugin-components" "^1.0.1"
     "@vuepress-something/vuepress-plugin-dplayer" "^1.0.1"

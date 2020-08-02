@@ -1,5 +1,14 @@
 module.exports = {
   theme: 'vuepress-theme-something',
+  plugins: [
+    ['@vuepress/last-updated', {
+      transformer: (timestamp, lang) => {
+        const moment = require('moment')
+        moment.locale(lang)
+        return moment(timestamp).fromNow()
+      }
+    }]
+  ],
   port: 9000,
   title: "Vczyh's Blog",
   description: '不会写诗，但志在远方。',
