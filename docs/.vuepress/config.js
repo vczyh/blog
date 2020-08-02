@@ -23,9 +23,6 @@ module.exports = {
     author: 'vczyh',
     logo: '/avatar.jpg',
     nav: [
-      // { text: '首页', link: '/', icon: 'iconshouye', to: '/blog/' },
-      // { text: '博客', link: '/blog/', home: true },
-      // { text: '生活', link: '/life/' },
       {
         text: '分类',
         items: [
