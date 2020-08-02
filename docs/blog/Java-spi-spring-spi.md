@@ -1,6 +1,7 @@
 ---
 title: Java SPI
 date: 2020-7-9 12:25:58
+sidebar: auto
 tags:
   - Java
   - SPI

@@ -1,6 +1,7 @@
 ---
 title: 树莓派安装系统
 date: 2020-7-27 00:40:43
+sidebar: auto
 tags: 
   - Raspberry Pi
   - Ubuntu

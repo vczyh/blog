@@ -1,6 +1,7 @@
 ---
 title: Electron + Vue 开发桌面应用
 date: 2020-5-1 02:25:53
+sidebar: auto
 tags:
   - Vue
   - Electron

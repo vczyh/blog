@@ -11,6 +11,6 @@
   "devDependencies": {
     "shelljs": "^0.8.3",
     "vuepress": "^1.4.1",
-    "vuepress-theme-something": "^1.0.41"
+    "vuepress-theme-something": "^1.0.42"
   }
 }

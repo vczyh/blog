@@ -1,6 +1,7 @@
 ---
 title: Java 设计模式：简单工厂模式-工厂模式-抽象工厂模式
 date: 2020-2-6 22:32:02
+sidebar: auto
 tags:
   - Java
   - 设计模式

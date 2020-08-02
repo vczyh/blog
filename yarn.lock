@@ -5225,6 +5225,11 @@ mkdirp@^0.5.1, mkdirp@^0.5.3, mkdirp@~0.5.1, mkdirp@~0.5.x:
   dependencies:
     minimist "^1.2.5"
 
+moment@^2.27.0:
+  version "2.27.0"
+  resolved "https://registry.npmjs.org/moment/-/moment-2.27.0.tgz#8bff4e3e26a236220dfe3e36de756b6ebaa0105d"
+  integrity sha512-al0MUK7cpIcglMv3YF13qSgdAIqxHTO7brRtaz3DlSULbqfazqkc5kEjNrLDOM7fsjshoFIihnU8snrP7zUvhQ==
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -7924,15 +7929,16 @@ vuepress-plugin-smooth-scroll@^0.0.3:
   dependencies:
     smoothscroll-polyfill "^0.4.3"
 
-vuepress-theme-something@^1.0.41:
-  version "1.0.41"
-  resolved "https://registry.npmjs.org/vuepress-theme-something/-/vuepress-theme-something-1.0.41.tgz#32b3599d6e2e5a5ba9fa8ad840c58dada1e30315"
-  integrity sha512-rUwZAUGEGeWgRHmCFhe3xWewryDN7zTr09lItJtIvy+O4baBa0HSGMO/hrAmDXIm9Dy7HpOlf+6Sd/fapldstQ==
+vuepress-theme-something@^1.0.42:
+  version "1.0.42"
+  resolved "https://registry.npmjs.org/vuepress-theme-something/-/vuepress-theme-something-1.0.42.tgz#44254ef91e362fa6068178ae71e50871c4313ba9"
+  integrity sha512-cQpvca6sXUFNcESE8SzJzUrv6ZmYfPWcDNWkRyBQJTW0aTgeNmsmZLKW+o927h4jG9/hAuOvUcYXT7UR2jUuKA==
   dependencies:
     "@vuepress-something/vuepress-plugin-components" "^1.0.1"
     "@vuepress-something/vuepress-plugin-dplayer" "^1.0.1"
     "@vuepress-something/vuepress-plugin-valine" "^1.0.1"
     "@vuepress/plugin-medium-zoom" "^1.4.1"
+    moment "^2.27.0"
 
 vuepress@^1.4.1:
   version "1.4.1"

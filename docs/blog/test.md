@@ -1,6 +1,7 @@
 ---
 title: 功能展示
 date: 2020-7-27 18:09:41
+sidebar: auto
 ---
 
 ## Link 组件

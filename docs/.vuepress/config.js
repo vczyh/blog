@@ -53,32 +53,6 @@ module.exports = {
         }
       ],
     },
-    // sidebar: [
-    //   '',
-    //   '/note/jvm/jvm-memory-and-exception',
-    //   '/note/jvm/jvm-class-file-structuret'
-    // ],
-
-    // sidebar: {
-    //   '/doc/': [
-    //     {
-    //       title: '基础',
-    //       collapsable: false,
-    //       children: [
-    //         '',
-    //         'quick-start'
-    //       ]
-    //     },
-    //     {
-    //       title: 'Markdown',
-    //       collapsable: false,
-    //       children: [
-    //         'markdown-basic-test',
-    //         'markdown-extend-test'
-    //       ]
-    //     }
-    //   ]
-    // },
     nextLinks: true,
     prevLinks: true,
     smoothScroll: true,
@@ -87,7 +61,7 @@ module.exports = {
     docsBranch: 'master',
     editLinks: true,
     editLinkText: '在 GitHub 上编辑此页',
-    lastUpdated: 'Last Updated',
+    lastUpdated: '上次更新',
     valine: {
       appId: "ivCnDnNXmMhLWTntPwhk5t8t-gzGzoHsz",
       appKey: "xcPENOlumU1AtsDlhWcohIXM",
