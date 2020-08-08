@@ -1,0 +1,19 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "personal blog",
+  "author": "vczyh",
+  "scripts": {
+    "dev": "vuepress dev .",
+    "build": "vuepress build .",
+    "push": "node push.js"
+  },
+  "devDependencies": {
+    "shelljs": "^0.8.4",
+    "vuepress": "1.5.0",
+    "vuepress-theme-reco": "1.5.5"
+  },
+  "dependencies": {
+    "vue-class-component": "^7.2.3"
+  }
+}
