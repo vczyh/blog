@@ -1,6 +1,6 @@
 ---
 title: Java 设计模式：原型模式与拷贝
-date: 2020-2-4
+date: 2020-02-04
 categories:
   - 技术
 sidebar: auto

@@ -49,7 +49,16 @@ module.exports = {
           collapsable: true,
           children: [
             'jvm/jvm-memory-and-exception',
-            'jvm/jvm-class-file-structure'
+            'jvm/jvm-class-file-structure',
+            'jvm/jvm-class-loading-mechanism',
+            'jvm/jvm-byte-code-execution-engine'
+          ]
+        },
+		{
+          title: 'Docker',
+          collapsable: true,
+          children: [
+            'docker/docker-learning-note'
           ]
         }
       ]

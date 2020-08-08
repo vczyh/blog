@@ -1,6 +1,6 @@
 ---
 title: 关于 one motion 和  two motion 投篮
-date: 2020-8-8
+date: 2020-08-08
 categories:
   - 篮球
 ---

@@ -1,6 +1,6 @@
 ---
 title: 树莓派安装系统
-date: 2020-7-27
+date: 2020-07-27
 categories:
   - 技术
 sidebar: auto

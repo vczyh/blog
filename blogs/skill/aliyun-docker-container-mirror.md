@@ -1,6 +1,6 @@
 ---
 title: 阿里云容器镜像服务的基本使用
-date: 2020-7-27
+date: 2020-07-27
 categories:
   - 技术
 sidebar: false
@@ -25,10 +25,10 @@ https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 Login Succeeded
 
 ```
-  | 参数                             | 说明                           |
-  | -------------------------------- | ------------------------------ |
-  | Username | 阿里云账号 |
-  | Password | 第一步注册的密码，不是阿里云登录密码 |
+| 参数                             | 说明                           |
+| -------------------------------- | ------------------------------ |
+| Username | 阿里云账号 |
+| Password | 第一步注册的密码，不是阿里云登录密码 |
 
 可以查看`~/.docker/config.json `
 
@@ -60,12 +60,12 @@ Login Succeeded
 
 push之前需要给镜像打标签，让镜像的格式符合push格式：`registry.cn-hangzhou.aliyuncs.com/acs/agent:0.8`
 
-  | 参数                             | 说明                           |
-  | -------------------------------- | ------------------------------ |
-  | registry.cn-hangzhou.aliyuncs.com | Registry的域名 |
-  | acs | 使用的命名空间名称 |
-  | agent | 使用的仓库名称 |
-  | 0.8 | 镜像标签（Tag）。非必须，默认为latest |
+| 参数                             | 说明                           |
+| -------------------------------- | ------------------------------ |
+| registry.cn-hangzhou.aliyuncs.com | Registry的域名 |
+| acs | 使用的命名空间名称 |
+| agent | 使用的仓库名称 |
+| 0.8 | 镜像标签（Tag）。非必须，默认为latest |
 
 将这几个完全独立的概念组合一下，`registry.cn-hangzhou.aliyuncs.com/acs/agent` 称为仓库坐标，`acs/agent` 称为仓库全名（通常在API中使用）。
 

@@ -1,6 +1,6 @@
 ---
 title: Java SPI
-date: 2020-7-9
+date: 2020-07-09
 categories:
   - 技术
 sidebar: auto
