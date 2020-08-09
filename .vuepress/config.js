@@ -66,7 +66,7 @@ module.exports = {
     valineConfig: {
       appId: 'nyg0CDsOOCj49d0xMPCHVT2f-gzGzoHsz',
       appKey: 'WheqHsnQq7Oa5G7E96GRc68s',
-      placeholder: "Just playing around",
+      placeholder: "Just playing around.",
       avatar: "retro",
       pageSize: 5,
       visitor: true
