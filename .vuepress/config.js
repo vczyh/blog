@@ -1,47 +1,47 @@
 module.exports = {
-  "title": "VCZYH",
-  "description": "Just playing around.",
-  "dest": "public",
-  "head": [
+  title: "VCZYH",
+  description: "Just playing around.",
+  dest: "public",
+  head: [
     [
       "link",
       {
-        "rel": "icon",
-        "href": "avatar.jpg"
+        rel: "icon",
+        href: "avatar.jpg"
       }
     ],
     [
       "meta",
       {
-        "name": "viewport",
-        "content": "width=device-width,initial-scale=1,user-scalable=no"
+        name: "viewport",
+        content: "width=device-width,initial-scale=1,user-scalable=no"
       }
     ]
   ],
-  "theme": "reco",
-  "themeConfig": {
-    "nav": [
+  theme: "reco",
+  themeConfig: {
+    nav: [
       {
-        "text": "首页",
-        "link": "/",
-        "icon": "reco-home"
+        text: "首页",
+        link: "/",
+        icon: "reco-home"
       },
       {
-        "text": "归档",
-        "link": "/timeline/",
-        "icon": "reco-date"
+        text: "归档",
+        link: "/timeline/",
+        icon: "reco-date"
       },
       {
-        "text": "笔记",
-        "icon": "reco-message",
-        "link": "/note/"
+        text: "笔记",
+        icon: "reco-message",
+        link: "/note/"
       },
       {
-        "text": "关于",
-        "link": "/about/"
+        text: "关于",
+        link: "/about/"
       },
     ],
-    "sidebar": {
+    sidebar: {
       '/note/': [
         '',
         {
@@ -71,18 +71,18 @@ module.exports = {
       pageSize: 5,
       visitor: true
     },
-    "type": "blog",
-    "blogConfig": {
-      "category": {
-        "location": 2,
-        "text": "分类"
+    type: "blog",
+    blogConfig: {
+      category: {
+        location: 2,
+        text: "分类"
       },
-      "tag": {
-        "location": 3,
-        "text": "标签云"
+      tag: {
+        location: 3,
+        text: "标签云"
       }
     },
-    "friendLink": [
+    friendLink: [
       // {
       //   "title": "vuepress-theme-reco",
       //   "desc": "A simple and beautiful vuepress Blog & Doc theme.",
@@ -90,16 +90,16 @@ module.exports = {
       //   "link": "https://vuepress-theme-reco.recoluan.com"
       // }
     ],
-    "logo": "/avatar.jpg",
-    "search": true,
-    "searchMaxSuggestions": 10,
-    "lastUpdated": "Last Updated",
-    "author": "vczyh",
-    "authorAvatar": "/avatar.jpg",
-    "record": "冀ICP备18009676号-4",
-    "startYear": "2019"
+    logo: "/avatar.jpg",
+    search: true,
+    searchMaxSuggestions: 10,
+    lastUpdated: "Last Updated",
+    author: "vczyh",
+    authorAvatar: "/avatar.jpg",
+    record: "冀ICP备18009676号-4",
+    startYear: "2019"
   },
-  "markdown": {
-    "lineNumbers": false
+  markdown: {
+    lineNumbers: false
   }
 }

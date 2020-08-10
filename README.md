@@ -13,8 +13,9 @@ tagline: null
 # }
 bgImage: /back.jpg
 bgImageStyle: {
-  height: '700px',
-  color: '#fff'
+  height: 700px,
+  color: '#fff',
+  font-weight: 500,
 }
 isShowTitleInHome: false
 actionText: Guide
