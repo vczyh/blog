@@ -38,7 +38,7 @@ jobs:
       #     yarn
       #     yarn build
       
-      - name: Deploy
+      - name: Add KEY
         shell: bash
         env: 
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -47,4 +47,8 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           echo "StrictHostKeyChecking no" > ~/.ssh/config
           chmod 700 ~/.ssh -R
-          # ssh -T git@github.com
+
+      - name: Deploy
+        run: |
+          pwd
+        
