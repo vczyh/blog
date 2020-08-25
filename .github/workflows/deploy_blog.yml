@@ -39,6 +39,7 @@ jobs:
       #     yarn build
       
       - name: Deploy
+        shell: bash
         env: 
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
