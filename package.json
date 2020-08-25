@@ -4,9 +4,10 @@
   "description": "personal blog",
   "author": "vczyh",
   "scripts": {
-    "dev": "vuepress dev .",
-    "build": "vuepress build .",
-    "push": "node push.js"
+    "dev": "vuepress dev posts",
+    "build": "vuepress build posts",
+    "push": "node scripts/push.js",
+    "deploy": "node scripts/deploy.js"
   },
   "devDependencies": {
     "shelljs": "^0.8.4",
