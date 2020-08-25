@@ -44,7 +44,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           mkdir ~/.ssh
-          echo -e $SSH_PRIVATE_KEY > ~/.ssh/id_rsa
+          echo -n "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           echo "StrictHostKeyChecking no" > ~/.ssh/config
           chmod 700 ~/.ssh -R
           ls ~/.ssh -l
