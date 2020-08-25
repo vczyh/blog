@@ -46,5 +46,6 @@ jobs:
           mkdir ~/.ssh
           echo $SSH_PRIVATE_KEY > ~/.ssh/id_rsa
           echo "StrictHostKeyChecking no" > ~/.ssh/config
+          chmod 700 ~/.ssh -R
           ssh -T git@github.com
           ssh -T git@gitee.com 
