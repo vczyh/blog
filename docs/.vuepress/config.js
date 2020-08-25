@@ -12,7 +12,6 @@ module.exports = {
     // iconfont
     // ['link', { type: 'text/css', rel: 'stylesheet', href: '//at.alicdn.com/t/font_1695296_4p3x0p9b7s.css' }],
 
-    // favicon
     ['link', { rel: 'icon', href: '/avatar.jpg' }],
   ],
 
