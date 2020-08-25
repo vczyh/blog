@@ -47,6 +47,8 @@ jobs:
           pwd
           ls -l
           cd public
+          git config --global user.email "zhangeek@qq.com"
+          git config --global user.name "vczyh"
           git init
           git add -A
           git commit -m deploy
