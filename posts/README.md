@@ -13,7 +13,7 @@ tagline: null
 # }
 bgImage: /bg.jpg
 bgImageStyle: {
-  height: 700px,
+  height: 750px,
   color: '#fff',
   font-weight: 500,
 }
