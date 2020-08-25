@@ -7,7 +7,7 @@ module.exports = {
       "link",
       {
         rel: "icon",
-        href: "avatar.jpg"
+        href: "favicon.ico"
       }
     ],
     [
@@ -96,7 +96,7 @@ module.exports = {
     lastUpdated: "Last Updated",
     author: "vczyh",
     authorAvatar: "/avatar.jpg",
-    record: "冀ICP备18009676号-4",
+    record: "冀ICP备18009676号",
     startYear: "2019"
   },
   markdown: {

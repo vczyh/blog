@@ -11,7 +11,7 @@ tagline: null
 #   background: '#fff',
 #   borderRadius: '1rem',
 # }
-bgImage: /back.jpg
+bgImage: /bg.jpg
 bgImageStyle: {
   height: 700px,
   color: '#fff',
