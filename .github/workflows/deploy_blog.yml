@@ -43,6 +43,6 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         run: |
           mkdir .ssh
-          echo $env:SSH_PRIVATE_KEY > .ssh/id_rsa
+          echo $SSH_PRIVATE_KEY > .ssh/id_rsa
           ssh -T git@github.com
           ssh -T git@gitee.com 
