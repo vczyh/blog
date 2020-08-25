@@ -32,8 +32,16 @@ jobs:
           node -v
           npm -v
           yarn -v
-      - name: NPM build
+
+      - name: Build
         run: |
           yarn
           yarn build
-          echo 1111
+      
+      - name: Deploy
+        env: 
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        run: |
+          echo "$env:SSH_PRIVATE_KEY" > id_rsa
+          ssh -T git@github.com
+          ssh -T git@gitee.com 
