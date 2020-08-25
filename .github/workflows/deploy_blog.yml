@@ -48,5 +48,5 @@ jobs:
           echo "StrictHostKeyChecking no" > ~/.ssh/config
           chmod 700 ~/.ssh -R
           cat ~/.ssh/id_rsa
-          ssh -T git@github.com
-          ssh -T git@gitee.com 
+          # ssh -T git@github.com
+          # ssh -T git@gitee.com 
