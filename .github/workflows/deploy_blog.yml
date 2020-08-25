@@ -44,14 +44,14 @@ jobs:
 
       - name: Deploy
         run: |
-          pwd
-          ls -l
           cd public
           git config --global user.email "zhangeek@qq.com"
           git config --global user.name "vczyh"
           git init
           git add -A
           git commit -m deploy
-          # Gitee
+          # Gitee Pages
           git push -f git@gitee.com:vczyh/vczyh.git master:blog
+          # Github Pages
+          git push -f git@github.com:vczyh/vczyh.github.io.git master:blog
         
