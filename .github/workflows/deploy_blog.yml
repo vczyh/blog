@@ -51,7 +51,7 @@ jobs:
           git config --global user.name "vczyh"
           git init
           git add -A
-          git commit -m deploy
+          git commit -m 'Deploy From Git Action'
           # Gitee Pages
           git push -f git@gitee.com:vczyh/vczyh.git master:blog
           # Github Pages
