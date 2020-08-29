@@ -27,7 +27,7 @@ module.exports = {
         icon: "reco-home"
       },
       {
-        text: "归档",
+        text: "时间轴",
         link: "/timeline/",
         icon: "reco-date"
       },
@@ -37,7 +37,7 @@ module.exports = {
         link: "/note/"
       },
       {
-        text: "关于",
+        text: "About",
         link: "/about/"
       },
     ],
