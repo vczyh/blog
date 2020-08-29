@@ -55,5 +55,6 @@ jobs:
           # Gitee Pages
           git push -f git@gitee.com:vczyh/vczyh.git master:blog
           # Github Pages
+          echo "blog.zhangeek.com" > CNAME
           git push -f git@github.com:vczyh/vczyh.github.io.git master:blog
         
