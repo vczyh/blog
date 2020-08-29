@@ -61,8 +61,8 @@ jobs:
           git push -f git@github.com:vczyh/vczyh.github.io.git master:blog
       
       - name: Build Gitee Pages
-      uses: yanglbme/gitee-pages-action@master
-      with:
+        uses: yanglbme/gitee-pages-action@master
+        with:
           # 注意替换为你的 Gitee 用户名
           gitee-username: vczyh
           # 注意在 Settings->Secrets 配置 GITEE_PASSWORD
