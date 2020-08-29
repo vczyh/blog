@@ -3,13 +3,13 @@ module.exports = {
   description: "Just playing around.",
   dest: "public",
   head: [
-    [
-      "link",
-      {
-        rel: "icon",
-        href: "favicon.ico"
-      }
-    ],
+    // [
+    //   "link",
+    //   {
+    //     rel: "icon",
+    //     href: "favicon.ico"
+    //   }
+    // ],
     [
       "meta",
       {
