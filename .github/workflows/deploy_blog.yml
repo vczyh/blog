@@ -60,7 +60,7 @@ jobs:
           git commit -m 'deploy from blog(blog) repository by Git Action'
           git push -f git@github.com:vczyh/vczyh.github.io.git master:blog
       
-      - name: Build Gitee Pages
+      - name: Gitee Pages Auto Build
         uses: yanglbme/gitee-pages-action@master
         with:
           # 注意替换为你的 Gitee 用户名
