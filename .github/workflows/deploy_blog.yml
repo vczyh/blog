@@ -51,10 +51,12 @@ jobs:
           git config --global user.name "vczyh"
           git init
           git add -A
-          git commit -m 'Deploy From Git Action'
+          git commit -m 'deploy from blog(blog) repository by Git Action'
           # Gitee Pages
           git push -f git@gitee.com:vczyh/vczyh.git master:blog
           # Github Pages
           echo "blog.zhangeek.com" > CNAME
+          git add -A
+          git commit -m 'deploy from blog(blog) repository by Git Action'
           git push -f git@github.com:vczyh/vczyh.github.io.git master:blog
         
