@@ -2,7 +2,7 @@
 title: 关于 one motion 和  two motion 投篮
 date: 2020-08-08
 categories:
-  - 篮球
+  - 随笔
 ---
 
 ## one motion 教学视频

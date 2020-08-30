@@ -2,7 +2,7 @@
 title: 安装 WordPress
 date: 2019-03-05
 categories:
-  - 技术
+  - 后端
 tags:
   - wordpress
 ---

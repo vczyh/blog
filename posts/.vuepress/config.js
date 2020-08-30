@@ -37,8 +37,13 @@ module.exports = {
         link: "/note/"
       },
       {
+        text: "留言板",
+        icon: "reco-suggestion",
+        link: "/other/leave/"
+      },
+      {
         text: "About",
-        link: "/about/"
+        link: "/other/about/"
       },
     ],
     sidebar: {

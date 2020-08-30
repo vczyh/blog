@@ -2,7 +2,7 @@
 title: Java SPI
 date: 2020-07-09
 categories:
-  - 技术
+  - 后端
 sidebar: auto
 tags:
   - Java

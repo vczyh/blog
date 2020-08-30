@@ -2,7 +2,7 @@
 title: Electron + Vue 开发桌面应用
 date: 2020-05-01
 categories:
-  - 技术
+  - 前端
 sidebar: auto
 tags:
   - Vue
