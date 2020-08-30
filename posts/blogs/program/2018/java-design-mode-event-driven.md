@@ -1,6 +1,6 @@
 ---
 title: Java 设计模式：事件驱动模式
-date: 2018-8-14
+date: 2018-08-14
 update: 2020-8-30 16:06:33
 categories:
   - 编程
