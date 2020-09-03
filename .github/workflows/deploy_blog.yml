@@ -47,7 +47,7 @@ jobs:
       - name: Deploy
         run: |
           cd public
-          echo "### Hi, here is my blog :grinning:​" > README.md
+          echo "### Hi here is my blog powered by [vuepress-theme-reco](https://vuepress-theme-reco.recoluan.com/) :grinning:​" > README.md
           git config --global user.email "zhangeek@qq.com"
           git config --global user.name "vczyh"
           git init
