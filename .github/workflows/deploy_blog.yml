@@ -47,6 +47,7 @@ jobs:
       - name: Deploy
         run: |
           cd public
+          echo "### Hi, here is my blog :grinning:​"
           git config --global user.email "zhangeek@qq.com"
           git config --global user.name "vczyh"
           git init
