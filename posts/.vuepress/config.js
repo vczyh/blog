@@ -93,7 +93,12 @@ module.exports = {
       //   "desc": "A simple and beautiful vuepress Blog & Doc theme.",
       //   "avatar": "https://vuepress-theme-reco.recoluan.com/icon_vuepress_reco.png",
       //   "link": "https://vuepress-theme-reco.recoluan.com"
-      // }
+      // },
+      {
+        "title": "OnlinePlayer",
+        "desc": "An online music player",
+        "link": "https://music.zhangeek.com"
+      }
     ],
     // logo: "/avatar.jpg",
     search: true,
