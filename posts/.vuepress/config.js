@@ -1,6 +1,6 @@
 module.exports = {
   title: "VCZYH",
-  description: "Just playing around.",
+  description: "虽不会写诗，但志在远方。",
   dest: "public",
   head: [
     // [
@@ -108,11 +108,11 @@ module.exports = {
     // logo: "/avatar.jpg",
     search: true,
     searchMaxSuggestions: 10,
-    lastUpdated: "Last Updated",
+    // lastUpdated: "Last Updated",
     author: "vczyh",
     // authorAvatar: "/avatar.jpg",
     record: "冀ICP备18009676号",
-    startYear: "2019"
+    startYear: "2018"
   },
   markdown: {
     lineNumbers: true
