@@ -1,8 +1,10 @@
 ---
-title: JAVA设计模式：原型模式与拷贝
-date: 2020-2-4 22:06:15
-updated: 2020-2-4 22:06:34
-tag: 
+title: Java 设计模式：原型模式与拷贝
+date: 2020-02-04
+categories:
+  - 编程
+sidebar: auto
+tags: 
   - Java
   - 设计模式
 ---
