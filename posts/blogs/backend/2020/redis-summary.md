@@ -2,7 +2,7 @@
 title: Redis 总结
 date: 2020-09-01
 categories:
-  - backend
+  - 后端
 tags:
   - Redis
   - Ubuntu
