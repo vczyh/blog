@@ -19,6 +19,11 @@ module.exports = {
     ]
   ],
   theme: "reco",
+  locales: {
+    '/': {
+      lang: 'zh-CN'
+    }
+  },
   themeConfig: {
     nav: [
       {

@@ -5,12 +5,13 @@ body
     display none
   .site-name
     letter-spacing 5px
-.iconfont
-  font-family 'iconfont' !important
-  font-size 16px !important
-  font-style normal
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
+@media (min-width $MQMobile)
+  .iconfont
+    font-family 'iconfont' !important
+    font-size 16px !important
+    font-style normal
+    -webkit-font-smoothing antialiased
+    -moz-osx-font-smoothing grayscale
 // 文章右侧边栏TOC
 .page
   padding-right 18rem !important
@@ -34,12 +35,11 @@ body
   .page
     padding-right 0 !important
 // 代码
-.content__default code {
-    font-size 0.8em !important
-}
+.content__default code
+  font-size 0.8em !important
 // pre[class*='language-']
-//   font-family Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace // default
-//   font-size 0.8em !important
+// font-family Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace // default
+// font-size 0.8em !important
 h2
   padding-left 0 !important
   &::before
