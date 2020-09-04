@@ -9,6 +9,6 @@ export default [
     title: 'VCZYH',
     desc: '虽不会写诗，但志在远方。',
     link: 'https://zhangeek.com/',
-    avatar: '//p.vczyh.com/blog/avatar.jpg'
+    avatar: 'http://p.vczyh.com/blog/avatar.jpg'
   },
 ]
