@@ -1,7 +1,7 @@
 ---
 title: About
 date: 2020-8-8
-sidebar: false
+sidebar: 'auto'
 ---
 
 ## 联系方式

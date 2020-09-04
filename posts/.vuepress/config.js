@@ -47,6 +47,10 @@ module.exports = {
         link: "/other/leave/"
       },
       {
+        text: "友链",
+        link: "/other/friend/"
+      },
+      {
         text: "About",
         link: "/other/about/"
       },
