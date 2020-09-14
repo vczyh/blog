@@ -2,7 +2,7 @@
   <div class="links">
     <div class="list">
       <div class="link-item card" v-for="(item, index) in currentPageData" :key="item.name">
-        <img class="avatar" :src="item.avatar" alt="头像" />
+        <img class="avatar" :src="item.avatar" @error="checkImg" />
         <div class="info">
           <h4 class="info-item title">{{item.title}}</h4>
           <p class="info-item desc">{{item.desc}}</p>
@@ -42,6 +42,11 @@ export default {
       setTimeout(() => {
         window.scrollTo(0, 0);
       }, 100);
+    },
+    checkImg() {
+      let img = event.srcElement;
+      img.src = "http://p.vczyh.com/blog/white.jpg";
+      img.onerror = null;
     },
   },
 };

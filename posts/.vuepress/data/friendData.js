@@ -2,8 +2,8 @@ export default [
   {
     title: '飞鸟和她',
     desc: '大佬',
-    link: 'https://pushyzheng.com/',
-    avatar: 'https://pushyzheng.com/images/avatar.png'
+    link: 'http://pushyzheng.com/',
+    avatar: 'http://pushyzheng.com/images/avatar.png'
   },
   {
     title: 'VCZYH',
