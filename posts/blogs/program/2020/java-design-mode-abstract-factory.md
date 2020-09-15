@@ -11,7 +11,7 @@ tags:
 
 ## 抽象工厂
 
-![](http://p.vczyh.com/blog/20200207150055.png)
+![](https://p.vczyh.com/blog/20200207150055.png)
 
 ::: tip 产品族
 一个产品族可以理解为同一个厂家的系列产品
