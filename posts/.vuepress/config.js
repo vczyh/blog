@@ -25,6 +25,7 @@ module.exports = {
     }
   },
   themeConfig: {
+    // codeTheme: 'coy', // default 'tomorrow'
     nav: [
       {
         text: "首页",

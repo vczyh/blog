@@ -1,6 +1,7 @@
 ---
 title: 虚拟机类加载机制
 date: 2020-02-18
+sidebar: auto
 tags: 
   - Java
   - JVM

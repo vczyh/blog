@@ -3,7 +3,7 @@ title: 阿里云容器镜像服务的基本使用
 date: 2020-07-27
 categories:
   - 后端
-sidebar: false
+sidebar: auto
 tags:
   - Docker
 ---

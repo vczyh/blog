@@ -1,6 +1,7 @@
 ---
 title: 虚拟机字节码执行引擎
 date: 2020-02-18
+sidebar: auto
 tags: 
   - Java
   - JVM

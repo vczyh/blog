@@ -1,6 +1,7 @@
 ---
 title: Java 设计模式：代理模式
 date: 2018-08-17
+sidebar: auto
 categories:
   - 编程
 tags: 

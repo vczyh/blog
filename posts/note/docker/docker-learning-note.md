@@ -1,6 +1,7 @@
 ---
 title: Docker 学习笔记
 date: 2019-03-04
+sidebar: auto
 tags:
   - Docker
   - Ubuntu

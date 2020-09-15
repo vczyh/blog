@@ -1,6 +1,7 @@
 ---
 title: Java内存区域与内存溢出异常
 date: 2020-02-18
+sidebar: auto
 tags: 
   - Java
   - JVM

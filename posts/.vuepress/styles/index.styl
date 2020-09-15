@@ -20,27 +20,27 @@ body
     -webkit-font-smoothing antialiased
     -moz-osx-font-smoothing grayscale
 // 文章右侧边栏TOC
-.page
-  padding-right 18rem !important
-  .side-bar
-    top 10rem
-    bottom 10rem
-    right 1rem !important
-    overflow-y scroll
-  .sub-sidebar-wrapper
-    font-size 13px !important
-    width 17rem !important
-@media (max-width 1100px)
-  .page
-    padding-right 13rem !important
-    .side-bar
-      right 1rem !important
-    .sub-sidebar-wrapper
-      font-size 12px !important
-      width 12rem !important
-@media (max-width $MQMobile)
-  .page
-    padding-right 0 !important
+// .page
+//   padding-right 18rem !important
+//   .side-bar
+//     top 10rem
+//     bottom 10rem
+//     right 1rem !important
+//     overflow-y scroll
+//   .sub-sidebar-wrapper
+//     font-size 13px !important
+//     width 17rem !important
+// @media (max-width 1100px)
+//   .page
+//     padding-right 13rem !important
+//     .side-bar
+//       right 1rem !important
+//     .sub-sidebar-wrapper
+//       font-size 12px !important
+//       width 12rem !important
+// @media (max-width $MQMobile)
+//   .page
+//     padding-right 0 !important
 // 文章样式
 h2
   padding-left 0 !important
@@ -52,9 +52,13 @@ h2
 .content__default 
   code
     font-size 0.85em !important
-    // color #24292e !important
+    background-color #1b1f230d !important
+    color #24292e !important
   pre
     padding 1rem !important
+    code
+      background transparent !important
+      color #fff !important
 div[class*="language-"]::before {
   // color #24292e !important
 }

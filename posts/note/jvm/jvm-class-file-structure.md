@@ -1,6 +1,7 @@
 ---
 title: 类文件结构
 date: 2020-02-18
+sidebar: auto
 tags: 
   - Java
   - JVM
