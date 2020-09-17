@@ -105,9 +105,14 @@ module.exports = {
       //   "link": "https://vuepress-theme-reco.recoluan.com"
       // },
       {
-        "title": "OnlinePlayer",
-        "desc": "An online music player",
+        "title": "在线听音乐",
+        "desc": "An online music player.",
         "link": "https://music.zhangeek.com"
+      },
+      {
+        "title": "图床与相册",
+        "desc": "Img and Album.",
+        "link": "https://image.zhangeek.com"
       }
     ],
     // logo: "/avatar.jpg",
