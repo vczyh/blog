@@ -6,14 +6,15 @@ tagline: null
 # heroImageStyle: {
 #   maxWidth: '600px',
 #   width: '100%',
+#   height: 300px,
 #   display: block,
 #   margin: '9rem auto 2rem',
 #   background: '#fff',
 #   borderRadius: '1rem',
 # }
-bgImage: /bg.jpg
+# bgImage: /bg.png
 bgImageStyle: {
-  height: 750px,
+  height: 0px,
   color: '#fff',
   font-weight: 500,
 }
