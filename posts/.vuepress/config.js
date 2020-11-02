@@ -115,12 +115,12 @@ module.exports = {
         "link": "https://image.zhangeek.com"
       }
     ],
-    // logo: "/avatar.jpg",
+    logo: "/avatar.jpg",
     search: true,
     searchMaxSuggestions: 10,
     // lastUpdated: "Last Updated",
     author: "vczyh",
-    // authorAvatar: "/avatar.jpg",
+    authorAvatar: "/avatar.jpg",
     record: "冀ICP备18009676号",
     startYear: "2018"
   },
