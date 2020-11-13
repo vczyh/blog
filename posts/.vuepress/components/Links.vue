@@ -45,7 +45,8 @@ export default {
     },
     checkImg() {
       let img = event.srcElement;
-      img.src = "https://p.vczyh.com/blog/white.jpg";
+      // img.src = "https://p.vczyh.com/blog/white.jpg";
+      img.src = "/white.jpg";
       img.onerror = null;
     },
   },
