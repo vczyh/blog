@@ -1,14 +1,12 @@
-+++
-
-author = "Hugo Authors"
-title = "Emoji Support"
-date = "2019-03-05"
-description = "Guide to emoji usage in Hugo"
-tags = [
-    "emoji",
-]
-
-+++
+---
+date: 2020-11-13
+title: Linux Logrotate 的简单使用
+categories:
+    - 后端
+sidebar: auto
+tags:
+  - Linux
+---
 
 `logrotate`可以管理日志文件，可以根据日期切割、根据日志文件大小切割、自动删除超过一定时间的归档日志。
 
@@ -86,8 +84,8 @@ total 4
 	create
 	dateext
 	postrotate
-        seq 10 > /var/log/logrotate-test/access.log
-    endscript
+		zseq 10 > /var/log/logrotate-test/access.log
+	endscript
 }
 ```
 
