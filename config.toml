@@ -3,7 +3,7 @@ theme = "hugo-theme-codex"
 
 title = "codex"
 languageCode = "en-us"
-baseURL = "https://example.org/"
+baseURL = "https://zhangeek.com/"
 copyright = "© {year}"
 
 # Add your Disqus shortname here.
