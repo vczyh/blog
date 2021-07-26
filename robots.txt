@@ -1,1 +1,2 @@
 User-agent: *
+Sitemap: https://vczyh.github.io/blog/sitemap.xml
