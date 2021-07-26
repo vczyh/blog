@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://zhangeek.com/sitemap.xml
+Sitemap: http://blog-github.zhangeek.com/sitemap.xml
