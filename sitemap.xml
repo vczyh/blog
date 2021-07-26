@@ -2,26 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/post/my-first-post/</loc>
+    <loc>https://vczyh.github.io/blog/post/my-first-post/</loc>
     <lastmod>2021-07-26T10:54:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/post/</loc>
+    <loc>https://vczyh.github.io/blog/post/</loc>
     <lastmod>2021-07-26T10:54:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>https://vczyh.github.io/blog/</loc>
     <lastmod>2021-07-26T10:54:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://vczyh.github.io/blog/categories/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>https://vczyh.github.io/blog/tags/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
