@@ -1,35 +1,35 @@
-<?xml-stylesheet type="text/xsl" href="https://vczyh.github.io/blog/sitemap.xsl"?>
+<?xml-stylesheet type="text/xsl" href="http://blog.zhangeek.com/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://vczyh.github.io/blog/post/my-first-post/</loc>
+    <loc>http://blog.zhangeek.com/post/my-first-post/</loc>
     <lastmod>2021-07-26T10:54:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://vczyh.github.io/blog/post/</loc>
+    <loc>http://blog.zhangeek.com/post/</loc>
     <lastmod>2021-07-26T10:54:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://vczyh.github.io/blog/</loc>
+    <loc>http://blog.zhangeek.com/</loc>
     <lastmod>2021-07-26T10:54:24+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://vczyh.github.io/blog/categories/</loc>
+    <loc>http://blog.zhangeek.com/categories/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://vczyh.github.io/blog/tags/</loc>
+    <loc>http://blog.zhangeek.com/tags/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

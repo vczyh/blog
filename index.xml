@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>vczyh</title>
-    <link>https://vczyh.github.io/blog/</link>
+    <link>http://blog.zhangeek.com/</link>
     <description>Recent content on vczyh</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 26 Jul 2021 10:54:24 +0800</lastBuildDate><atom:link href="https://vczyh.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 26 Jul 2021 10:54:24 +0800</lastBuildDate><atom:link href="http://blog.zhangeek.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My First Post</title>
-      <link>https://vczyh.github.io/blog/post/my-first-post/</link>
+      <link>http://blog.zhangeek.com/post/my-first-post/</link>
       <pubDate>Mon, 26 Jul 2021 10:54:24 +0800</pubDate>
       
-      <guid>https://vczyh.github.io/blog/post/my-first-post/</guid>
+      <guid>http://blog.zhangeek.com/post/my-first-post/</guid>
       <description>111 </description>
     </item>
     
