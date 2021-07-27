@@ -82,17 +82,55 @@
 <section id=posts class=posts>
 <article class=post>
 <header class=post-header>
-<h1 class=post-title><a class=post-link href=/post/my-first-post/>My First Post</a></h1>
+<h1 class=post-title><a class=post-link href=/post/logrotate/>使用Linux Logrotate切割日志</a></h1>
+<div class=post-meta>
+<span class=post-time> 2021-07-26 </span>
+<div class=post-category>
+<a href=/categories/linux/> linux </a>
+</div>
+</div>
+</header>
+<div class=post-content>
+<div class=post-summary>
+logrotate可以管理日志文件，可以根据日期切割、根据日志文件大小切割、自动删除超过一定时间的归档日志。 安装 测试环境为 。 1 CentOS Linux release 8.2.2004 (Core) 其他
+</div>
+<div class=read-more>
+<a href=/post/logrotate/ class=read-more-link>阅读更多</a>
+</div>
+</div>
+</article>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title><a class=post-link href=/post/syntax-testing/>语法支持测试</a></h1>
 <div class=post-meta>
 <span class=post-time> 2021-07-26 </span>
 </div>
 </header>
 <div class=post-content>
 <div class=post-summary>
-111
+Highlighting 1 2 3 function helloWorld () { alert("Hello, World!") } 1 2 3 4 5 public class HelloWorld { public static void main(String[] args) { System.out.println("Hello, World!"); } } 1 2 3 4 5 package hello fun main(args: Array&lt;String>) { println("Hello World!") } 1 2 3 4 5 6 7 #include &lt;stdio.h> /* Hello */ int main(void){ printf("Hello, World!"); return 0; } 1 2 3 4 5 6 7
 </div>
 <div class=read-more>
-<a href=/post/my-first-post/ class=read-more-link>阅读更多</a>
+<a href=/post/syntax-testing/ class=read-more-link>阅读更多</a>
+</div>
+</div>
+</article>
+<article class=post>
+<header class=post-header>
+<h1 class=post-title><a class=post-link href=/post/go-channel/>Go Channel</a></h1>
+<div class=post-meta>
+<span class=post-time> 2020-07-26 </span>
+<div class=post-category>
+<a href=/categories/%E5%90%8E%E7%AB%AF/> 后端 </a>
+</div>
+</div>
+</header>
+<div class=post-content>
+<div class=post-summary>
+无缓冲通道 1 2 3 4 5 6 7 8 9 10 11 12 func main() { c := make(chan int) go func() { time.Sleep(3 * time.Second) fmt.Println("receive") fmt.Println(&lt;-c) }() c &lt;- 1 fmt.Println("send") } 执行结果。 1 2 3 receive 1 send 对于无缓冲通道，必须得send gorout
+</div>
+<div class=read-more>
+<a href=/post/go-channel/ class=read-more-link>阅读更多</a>
 </div>
 </div>
 </article>
@@ -104,21 +142,8 @@
 </main>
 <footer id=footer class=footer>
 <div class=social-links>
-<a href=mailto:your@email.com class="iconfont icon-email" title=email></a>
-<a href=http://localhost:1313 class="iconfont icon-stack-overflow" title=stack-overflow></a>
-<a href=http://localhost:1313 class="iconfont icon-twitter" title=twitter></a>
-<a href=http://localhost:1313 class="iconfont icon-facebook" title=facebook></a>
-<a href=http://localhost:1313 class="iconfont icon-linkedin" title=linkedin></a>
-<a href=http://localhost:1313 class="iconfont icon-google" title=google></a>
-<a href=http://localhost:1313 class="iconfont icon-github" title=github></a>
-<a href=http://localhost:1313 class="iconfont icon-weibo" title=weibo></a>
-<a href=http://localhost:1313 class="iconfont icon-zhihu" title=zhihu></a>
-<a href=http://localhost:1313 class="iconfont icon-douban" title=douban></a>
-<a href=http://localhost:1313 class="iconfont icon-pocket" title=pocket></a>
-<a href=http://localhost:1313 class="iconfont icon-tumblr" title=tumblr></a>
-<a href=http://localhost:1313 class="iconfont icon-instagram" title=instagram></a>
-<a href=http://localhost:1313 class="iconfont icon-gitlab" title=gitlab></a>
-<a href=http://localhost:1313 class="iconfont icon-bilibili" title=bilibili></a>
+<a href=mailto:zhangeek@qq.com class="iconfont icon-email" title=email></a>
+<a href=http://github.com/vczyh class="iconfont icon-github" title=github></a>
 <a href=http://blog-github.zhangeek.com/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
 </div>
 <div class=copyright>
@@ -132,7 +157,7 @@
 </span>
 <span class=copyright-year>
 &copy;
-2017 -
+2020 -
 2021<span class=heart><i class="iconfont icon-heart"></i></span><span>vczyh</span>
 </span>
 </div>
@@ -143,7 +168,7 @@
 </div>
 <script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
-<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
+<script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin=anonymous></script> <script src=https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
 </body>
 </html>
