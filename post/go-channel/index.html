@@ -11,7 +11,7 @@
 <meta name=msapplication-navbutton-color content="#f8f5ec">
 <meta name=apple-mobile-web-app-capable content="yes">
 <meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
-<meta name=author content="vczyh"><meta name=description content="无缓冲通道 1 2 3 4 5 6 7 8 9 10 11 12 func main() { c := make(chan int) go func() { time.Sleep(3 * time.Second) fmt.Println(&amp;#34;receive&amp;#34;) fmt.Println(&amp;lt;-c) }() c &amp;lt;- 1 fmt.Println(&amp;#34;send&amp;#34;) } 执行结果。 1 2 3 receive 1 send 对于无缓冲通道，必须得send gorout"><meta name=keywords content="Hugo,theme,even">
+<meta name=author content="vczyh"><meta name=description content="无缓冲通道 1 2 3 4 5 6 7 8 9 10 11 12 func main() { c := make(chan int) go func() { time.Sleep(3 * time.Second) fmt.Println(&amp;#34;receive&amp;#34;) fmt.Println(&amp;lt;-c) }() c &amp;lt;- 1 fmt.Println(&amp;#34;send&amp;#34;) } 执行结果。 receive 1 send 对于无缓冲通道，必须得send goroutine"><meta name=keywords content="Hugo,theme,even">
 <meta name=generator content="Hugo 0.86.0 with theme even">
 <link rel=canonical href=http://blog-github.zhangeek.com/post/go-channel/>
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
@@ -22,24 +22,24 @@
 <link href=/sass/main.min.f92fd13721ddf72129410fd8250e73152cc6f2438082b6c0208dc24ee7c13fc4.css rel=stylesheet>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
 <meta property="og:title" content="Go Channel">
-<meta property="og:description" content="无缓冲通道 1 2 3 4 5 6 7 8 9 10 11 12 func main() { c := make(chan int) go func() { time.Sleep(3 * time.Second) fmt.Println(&#34;receive&#34;) fmt.Println(<-c) }() c <- 1 fmt.Println(&#34;send&#34;) } 执行结果。 1 2 3 receive 1 send 对于无缓冲通道，必须得send gorout">
+<meta property="og:description" content="无缓冲通道 1 2 3 4 5 6 7 8 9 10 11 12 func main() { c := make(chan int) go func() { time.Sleep(3 * time.Second) fmt.Println(&#34;receive&#34;) fmt.Println(<-c) }() c <- 1 fmt.Println(&#34;send&#34;) } 执行结果。 receive 1 send 对于无缓冲通道，必须得send goroutine">
 <meta property="og:type" content="article">
 <meta property="og:url" content="http://blog-github.zhangeek.com/post/go-channel/"><meta property="article:section" content="post">
 <meta property="article:published_time" content="2020-07-26T11:20:24+08:00">
 <meta property="article:modified_time" content="2020-07-26T11:20:24+08:00">
 <meta itemprop=name content="Go Channel">
-<meta itemprop=description content="无缓冲通道 1 2 3 4 5 6 7 8 9 10 11 12 func main() { c := make(chan int) go func() { time.Sleep(3 * time.Second) fmt.Println(&#34;receive&#34;) fmt.Println(<-c) }() c <- 1 fmt.Println(&#34;send&#34;) } 执行结果。 1 2 3 receive 1 send 对于无缓冲通道，必须得send gorout"><meta itemprop=datePublished content="2020-07-26T11:20:24+08:00">
+<meta itemprop=description content="无缓冲通道 1 2 3 4 5 6 7 8 9 10 11 12 func main() { c := make(chan int) go func() { time.Sleep(3 * time.Second) fmt.Println(&#34;receive&#34;) fmt.Println(<-c) }() c <- 1 fmt.Println(&#34;send&#34;) } 执行结果。 receive 1 send 对于无缓冲通道，必须得send goroutine"><meta itemprop=datePublished content="2020-07-26T11:20:24+08:00">
 <meta itemprop=dateModified content="2020-07-26T11:20:24+08:00">
-<meta itemprop=wordCount content="422">
+<meta itemprop=wordCount content="418">
 <meta itemprop=keywords content="Go,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Go Channel">
-<meta name=twitter:description content="无缓冲通道 1 2 3 4 5 6 7 8 9 10 11 12 func main() { c := make(chan int) go func() { time.Sleep(3 * time.Second) fmt.Println(&#34;receive&#34;) fmt.Println(<-c) }() c <- 1 fmt.Println(&#34;send&#34;) } 执行结果。 1 2 3 receive 1 send 对于无缓冲通道，必须得send gorout"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<meta name=twitter:description content="无缓冲通道 1 2 3 4 5 6 7 8 9 10 11 12 func main() { c := make(chan int) go func() { time.Sleep(3 * time.Second) fmt.Println(&#34;receive&#34;) fmt.Println(<-c) }() c <- 1 fmt.Println(&#34;send&#34;) } 执行结果。 receive 1 send 对于无缓冲通道，必须得send goroutine"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
 </head>
 <body>
 <div id=mobile-navbar class=mobile-navbar>
 <div class=mobile-header-logo>
-<a href=/ class=logo>vczyh</a>
+<a href=/ class=logo>zhang</a>
 </div>
 <div class=mobile-navbar-icon>
 <span></span>
@@ -63,7 +63,7 @@
 <div class=container id=mobile-panel>
 <header id=header class=header>
 <div class=logo-wrapper>
-<a href=/ class=logo>vczyh</a>
+<a href=/ class=logo>zhang</a>
 </div>
 <nav class=site-navbar>
 <ul id=menu class=menu>
@@ -140,19 +140,10 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>执行结果。</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>receive
+<pre><code>receive
 1
 send
-</code></pre></td></tr></table>
-</div>
-</div><p>对于无缓冲通道，必须得<code>send goroutine</code>和<code>receive goroutine</code>双方都得准备好，如果两个 <code>goroutine</code>没有同时准备好，通道会导致先执行<code>send</code>或<code>receive</code>操作的<code>goroutine</code>阻塞等待。</p>
+</code></pre><p>对于无缓冲通道，必须得<code>send goroutine</code>和<code>receive goroutine</code>双方都得准备好，如果两个 <code>goroutine</code>没有同时准备好，通道会导致先执行<code>send</code>或<code>receive</code>操作的<code>goroutine</code>阻塞等待。</p>
 <p>这意味着执行<code>c&lt;-1</code>时，发现没有<code>receive</code>方，于是阻塞等待，这就解释了为什么以上主程序执行到<code>c&lt;-1</code>，然后阻塞，同时另一个<code>goroutine</code>三秒后打印，从<code>channel</code>中取值，最后主程序结束。</p>
 <h2 id=有缓冲通道>有缓冲通道</h2>
 <p>有缓冲通道有一个缓冲区，这个大小在声明时指定。所以他不要求<code>goroutine</code>同时完成<code>send</code>和<code>receive</code>，只有缓冲区满的时候，<code>send</code>操作才会阻塞，只有缓冲区空的时候，<code>receive</code>操作才会阻塞，试着为上面程序的通道加上缓冲区。</p>
@@ -187,15 +178,20 @@ send
 </code></pre></td></tr></table>
 </div>
 </div><p>执行结果。</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>send
-</code></pre></td></tr></table>
+<pre><code>send
+</code></pre>
 </div>
-</div>
+<div class=post-copyright>
+<p class=copyright-item>
+<span class=item-title>文章作者</span>
+<span class=item-content>vczyh</span>
+</p>
+<p class=copyright-item>
+<span class=item-title>上次更新</span>
+<span class=item-content>
+2020-07-26
+</span>
+</p>
 </div>
 <footer class=post-footer>
 <div class=post-tags>
@@ -204,8 +200,13 @@ send
 <nav class=post-nav>
 <a class=prev href=/post/syntax-testing/>
 <i class="iconfont icon-left"></i>
-<span class="prev-text nav-default">语法支持测试</span>
+<span class="prev-text nav-default">语法测试</span>
 <span class="prev-text nav-mobile">上一篇</span>
+</a>
+<a class=next href=/post/java-spi/>
+<span class="next-text nav-default">Java SPI</span>
+<span class="next-text nav-mobile">下一篇</span>
+<i class="iconfont icon-right"></i>
 </a>
 </nav>
 </footer>
@@ -216,7 +217,7 @@ send
 <footer id=footer class=footer>
 <div class=social-links>
 <a href=mailto:zhangeek@qq.com class="iconfont icon-email" title=email></a>
-<a href=http://github.com/vczyh class="iconfont icon-github" title=github></a>
+<a href=https://github.com/vczyh class="iconfont icon-github" title=github></a>
 <a href=http://blog-github.zhangeek.com/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
 </div>
 <div class=copyright>
@@ -243,5 +244,7 @@ send
 <script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/raphael@2.2.7/raphael.min.js integrity="sha256-67By+NpOtm9ka1R6xpUefeGOY8kWWHHRAKlvaTJ7ONI=" crossorigin=anonymous></script> <script src=https://cdn.jsdelivr.net/npm/flowchart.js@1.8.0/release/flowchart.min.js integrity="sha256-zNGWjubXoY6rb5MnmpBNefO0RgoVYfle9p0tvOQM+6k=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+<script type=text/javascript>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']]}}</script>
+<script async src=https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js integrity="sha256-HGLuEfFcsUJGhvB8cQ8nr0gai9EucOOaIxFw7qxmd+w=" crossorigin=anonymous></script>
 </body>
 </html>
