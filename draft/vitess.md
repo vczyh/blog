@@ -64,4 +64,21 @@ vitess没有对MySQL进行任何源码级别的修改，安装时直接从MySQL�
 
 ## 逻辑概念
 
-keyspace
+### keyspace
+
+相当于`database`，只不过数据会分布到多个`shard`。
+
+### Shard
+
+每个`shard`包含多个`MySQL`实例，这些实例组成一个主从集群，数据同步使用`MySQL`本身提供的功能，比如`异步`,`半同步`。
+
+## 创建
+
+| 组件           |                                |      |
+| -------------- | ------------------------------ | ---- |
+| etcd           | etcd集群，存储整个集群的元数据 |      |
+| vtctld         | 处理命令，管理整个集群         |      |
+| vtorc          | failover takeover（手动切换）  |      |
+| mysql+vttablet | MySQL实例和代理                |      |
+| vtgate         | 接收客户端请求，比如JDBC       |      |
+
