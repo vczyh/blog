@@ -149,4 +149,3 @@ considering log /var/log/logrotate-test/access.log
 | sharedscripts        | prerotate 和 postrotate 只执行一次 |
 
 
-
