@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>logrotate on Vczyh's Blog</title><link>https://blog-github.zhangeek.com/tags/logrotate/</link><description>Recent content in logrotate on Vczyh's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 26 Jul 2021 23:00:00 +0800</lastBuildDate><atom:link href="https://blog-github.zhangeek.com/tags/logrotate/index.xml" rel="self" type="application/rss+xml"/><item><title>使用Linux Logrotate切割日志</title><link>https://blog-github.zhangeek.com/posts/logrotate/</link><pubDate>Mon, 26 Jul 2021 23:00:00 +0800</pubDate><guid>https://blog-github.zhangeek.com/posts/logrotate/</guid><description>logrotate可以管理日志文件，可以根据日期切割、根据日志文件大小切割、自动删除超过一定时间的归档日志。
-安装 测试环境为 。
-CentOS Linux release 8.2.2004 (Core) 其他系统类似，请先检查logrotate是否安装，一切以文档为准。
-man logrotate 使用 首先创建一个日志文件。
-mkdir /var/log/logrotate-test # 创建日志文件，并添加一些信息 seq 10 &amp;gt; /var/log/logrotate-test/access.log 创建logrotate配置文件，格式是这样的。
-日志文件绝对路径（可以使用通配符*） { 指令1 指令2 ... } logrotate全局配置文件位于/etc/logrotate.conf，自定义配置文件位于/etc/logrotate.d/。
-一个具体的例子，表示每天切割日志，并压缩存档，最多保存5份存档（按时间排序，较早的删除），切割日志后自动创建新的日志文件，存档日志以时间为后缀。
-&amp;gt; vim /etc/logrotate.d/logrotate-test /var/log/logrotate-test/access.log { daily compress rotate 5 create dateext } 由于定时任务未到，需要手动通知logrotate执行切割任务。
-logrotate -vf /etc/logrotate.d/logrotate-test &amp;gt; ll /var/log/logrotate-test total 4 -rw-r--r--. 1 root root 0 Nov 13 20:17 access.log -rw-r--r--. 1 root root 41 Nov 13 20:15 access.log-20201113.gz 基本使用就是这样，为了验证，你可以等待几天看看切割结果。除此之外，logrotate还有其他指令，比如可以在每次切割后执行命令，这里往日志文件添加新的记录。</description></item></channel></rss>
