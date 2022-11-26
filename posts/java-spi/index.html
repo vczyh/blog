@@ -1,291 +1,296 @@
-<!doctype html><html lang=en>
+<!doctype html><html lang=zh-cn>
 <head>
 <meta charset=utf-8>
-<meta name=generator content="Hugo 0.86.0">
-<meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=author content="vczyh">
-<meta property="og:url" content="https://blog-github.zhangeek.com/posts/java-spi/">
-<link rel=canonical href=https://blog-github.zhangeek.com/posts/java-spi/><link rel=alternate type=application/atom+xml href=https://blog-github.zhangeek.com/index.xml title="Vczyh's Blog">
-<script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/blog-github.zhangeek.com\/"},"articleSection":"posts","name":"Java SPI","headline":"Java SPI","description":"SPI 简介 SPI 全称为 Service Provider Interface，是一种服务发现机制。SPI的本质是将接口实现类（可以是一个或多个）配置在文件中，然后服务读取配置文件，加载指定接口的实现类。利用 SPI 机制很容易为程序提供拓展功能，使程序解耦。\nSPI 可以分为 Java SPI 和框架自定义的 SPI，例如 Spring、Dubbo。\nJava SPI 示例 本节通过一个示例演示 Java SPI 的使用方法，首先定义一个接口，名称为 Device。\npublic interface Device { void say(); } 接下来定义两个实现类，分别为 Computer 和 Phone。\npublic class Computer implements Device { @Override public void say() { System.out.println(\u0026#34;Hello, I am Computer\u0026#34;); } } public class Phone implements Device { @Override public void say() { System.out.println(\u0026#34;Hello, I am Phone\u0026#34;); } } 接下来在META-INF\/services文件夹下创建一个文件，名称为 Device 的全限定名 com.","inLanguage":"en-US","author":"vczyh","creator":"vczyh","publisher":"vczyh","accountablePerson":"vczyh","copyrightHolder":"vczyh","copyrightYear":"2020","datePublished":"2020-03-26 11:20:24 \u002b0800 \u002b0800","dateModified":"2020-03-26 11:20:24 \u002b0800 \u002b0800","url":"https:\/\/blog-github.zhangeek.com\/posts\/java-spi\/","keywords":["Java"]}</script>
-<title>Java SPI</title>
-<meta property="og:title" content="Java SPI">
+<meta name=robots content="noodp">
+<title>Java SPI - 我的全新 Hugo 网站</title><meta name=Description content="This is my cool site"><meta property="og:title" content="Java SPI">
+<meta property="og:description" content="SPI 简介 SPI 全称为 Service Provider Interface，是一种服务发现机制。SPI的本质是将接口实现类（可以是一个或多个）配置在文件中，然后服务读取配置文件，">
 <meta property="og:type" content="article">
-<meta property="og:description" content="SPI 简介 SPI 全称为 Service Provider Interface，是一种服务发现机制。SPI的本质是将接口实现类（可以是一个或多个）配置在文件中，然后服务读取配置文件，加载指定接口的实现类。利用 SPI 机制很容易为程序提供拓展功能，使程序解耦。
-SPI 可以分为 Java SPI 和框架自定义的 SPI，例如 Spring、Dubbo。
-Java SPI 示例 本节通过一个示例演示 Java SPI 的使用方法，首先定义一个接口，名称为 Device。
-public interface Device { void say(); } 接下来定义两个实现类，分别为 Computer 和 Phone。
-public class Computer implements Device { @Override public void say() { System.out.println(&amp;#34;Hello, I am Computer&amp;#34;); } } public class Phone implements Device { @Override public void say() { System.out.println(&amp;#34;Hello, I am Phone&amp;#34;); } } 接下来在META-INF/services文件夹下创建一个文件，名称为 Device 的全限定名 com.">
-<meta name=description content="SPI 简介 SPI 全称为 Service Provider Interface，是一种服务发现机制。SPI的本质是将接口实现类（可以是一个或多个）配置在文件中，然后服务读取配置文件，加载指定接口的实现类。利用 SPI 机制很容易为程序提供拓展功能，使程序解耦。
-SPI 可以分为 Java SPI 和框架自定义的 SPI，例如 Spring、Dubbo。
-Java SPI 示例 本节通过一个示例演示 Java SPI 的使用方法，首先定义一个接口，名称为 Device。
-public interface Device { void say(); } 接下来定义两个实现类，分别为 Computer 和 Phone。
-public class Computer implements Device { @Override public void say() { System.out.println(&amp;#34;Hello, I am Computer&amp;#34;); } } public class Phone implements Device { @Override public void say() { System.out.println(&amp;#34;Hello, I am Phone&amp;#34;); } } 接下来在META-INF/services文件夹下创建一个文件，名称为 Device 的全限定名 com.">
-<meta property="og:locale" content="zh-cn">
-<style>body{font-family:bree serif,sans-serif;-webkit-font-smoothing:antialiased;margin:0 20px}article{max-width:800px;margin-left:auto;margin-right:auto}a{color:#000;text-decoration:none}a:hover{font-weight:600;text-decoration:underline}.post-ads{margin:50px 0}/*!* reset code *!*/.Chinese .markdown-body{line-height:200%}.site-date-catalog{font-size:2rem}.header-title{font-size:2rem;font-weight:700;margin-top:32px;font-family:bungee shade,sans-serif}.header-title a{text-decoration:none}.header-subtitle{color:#666}.header-items{margin:10px 0}.header-item{margin:0 5px}.header-line{width:100%;border-width:2px;border-color:#482936;border-style:solid none none none}.lang-switch{font-weight:600}#posts-list{min-height:600px}.posts-line{font-size:1.2rem;margin:12px 0}.posts-categories{font-size:.8rem;margin:auto;text-align:center}.posts-category{padding:3px 0;border:#000 2px solid;border-radius:5px}.site-footer{margin-top:50px;margin-bottom:80px;display:flex;justify-content:center;flex-wrap:wrap;padding:12px 0}.site-footer-item{margin-right:12px}.post-content img{max-width:100%;display:block;margin-right:auto;margin-top:12px}.post-header{margin-bottom:50px}.post-title{font-size:2rem;font-weight:600}.post-tags{display:inline;font-weight:600;padding:2px 5px;margin-right:6px;border:#000 2px solid;border-radius:5px}.post-date{font-weight:800;font-style:italic}.post-author{float:right;font-weight:600}.page-content{min-height:60%}.post-content{margin-bottom:50px}.post-content p{hyphens:auto;line-height:1.8;text-justify:ideographic;margin-bottom:1em}.related-content{border-width:3px;border-style:solid;border-color:#000;padding:0 10px;margin-bottom:50px;margin-top:100px}.related-content li{margin:5px 0}.taxonomy-term{font-size:3rem}.gallery-img{text-align:center}.gallery-img span{text-align:center}.gallery-img-desc{font-size:.8em;font-weight:800}#disqus_thread{position:relative}#disqus_thread:after{content:"";display:block;height:55px;width:100%;position:absolute;bottom:0;background:#fff}@media screen and (max-width:600px){.header-title,.header-subtitle,.header-items{text-align:center}.posts-line{font-size:16px}.post-title{font-size:2rem}.post-content p{letter-spacing:.05em}}@media screen and (max-width:48em){.posts-category{display:none}}</style>
-<style>.container,.container-fluid{margin-right:auto;margin-left:auto}.container-fluid{padding-right:2rem;padding-left:2rem}.row{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-flex:0;-ms-flex:0 1 auto;flex:initial;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-.5rem;margin-left:-.5rem}.row.reverse{-webkit-box-orient:horizontal;-webkit-box-direction:reverse;-ms-flex-direction:row-reverse;flex-direction:row-reverse}.col.reverse{-webkit-box-orient:vertical;-webkit-box-direction:reverse;-ms-flex-direction:column-reverse;flex-direction:column-reverse}.col-xs,.col-xs-1,.col-xs-10,.col-xs-11,.col-xs-12,.col-xs-2,.col-xs-3,.col-xs-4,.col-xs-5,.col-xs-6,.col-xs-7,.col-xs-8,.col-xs-9,.col-xs-offset-0,.col-xs-offset-1,.col-xs-offset-10,.col-xs-offset-11,.col-xs-offset-12,.col-xs-offset-2,.col-xs-offset-3,.col-xs-offset-4,.col-xs-offset-5,.col-xs-offset-6,.col-xs-offset-7,.col-xs-offset-8,.col-xs-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-xs{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-xs-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-xs-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-xs-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-xs-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-xs-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-xs-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-xs-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-xs-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-xs-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-xs-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-xs-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-xs-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-xs-offset-0{margin-left:0}.col-xs-offset-1{margin-left:8.33333333%}.col-xs-offset-2{margin-left:16.66666667%}.col-xs-offset-3{margin-left:25%}.col-xs-offset-4{margin-left:33.33333333%}.col-xs-offset-5{margin-left:41.66666667%}.col-xs-offset-6{margin-left:50%}.col-xs-offset-7{margin-left:58.33333333%}.col-xs-offset-8{margin-left:66.66666667%}.col-xs-offset-9{margin-left:75%}.col-xs-offset-10{margin-left:83.33333333%}.col-xs-offset-11{margin-left:91.66666667%}.start-xs{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-xs{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-xs{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-xs{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-xs{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-xs{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-xs{-ms-flex-pack:distribute;justify-content:space-around}.between-xs{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-xs{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-xs{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}@media only screen and (min-width:48em){.container{width:49rem}.col-sm,.col-sm-1,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-offset-0,.col-sm-offset-1,.col-sm-offset-10,.col-sm-offset-11,.col-sm-offset-12,.col-sm-offset-2,.col-sm-offset-3,.col-sm-offset-4,.col-sm-offset-5,.col-sm-offset-6,.col-sm-offset-7,.col-sm-offset-8,.col-sm-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-sm{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-sm-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-sm-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-sm-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-sm-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-sm-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-sm-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-sm-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-sm-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-sm-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-sm-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-sm-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-sm-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-sm-offset-0{margin-left:0}.col-sm-offset-1{margin-left:8.33333333%}.col-sm-offset-2{margin-left:16.66666667%}.col-sm-offset-3{margin-left:25%}.col-sm-offset-4{margin-left:33.33333333%}.col-sm-offset-5{margin-left:41.66666667%}.col-sm-offset-6{margin-left:50%}.col-sm-offset-7{margin-left:58.33333333%}.col-sm-offset-8{margin-left:66.66666667%}.col-sm-offset-9{margin-left:75%}.col-sm-offset-10{margin-left:83.33333333%}.col-sm-offset-11{margin-left:91.66666667%}.start-sm{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-sm{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-sm{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-sm{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-sm{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-sm{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-sm{-ms-flex-pack:distribute;justify-content:space-around}.between-sm{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-sm{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-sm{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:64em){.container{width:65rem}.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-offset-0,.col-md-offset-1,.col-md-offset-10,.col-md-offset-11,.col-md-offset-12,.col-md-offset-2,.col-md-offset-3,.col-md-offset-4,.col-md-offset-5,.col-md-offset-6,.col-md-offset-7,.col-md-offset-8,.col-md-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-md{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-md-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-md-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-md-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-md-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-md-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-md-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-md-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-md-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-md-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-md-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-md-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-md-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-md-offset-0{margin-left:0}.col-md-offset-1{margin-left:8.33333333%}.col-md-offset-2{margin-left:16.66666667%}.col-md-offset-3{margin-left:25%}.col-md-offset-4{margin-left:33.33333333%}.col-md-offset-5{margin-left:41.66666667%}.col-md-offset-6{margin-left:50%}.col-md-offset-7{margin-left:58.33333333%}.col-md-offset-8{margin-left:66.66666667%}.col-md-offset-9{margin-left:75%}.col-md-offset-10{margin-left:83.33333333%}.col-md-offset-11{margin-left:91.66666667%}.start-md{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-md{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-md{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-md{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-md{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-md{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-md{-ms-flex-pack:distribute;justify-content:space-around}.between-md{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-md{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-md{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}@media only screen and (min-width:75em){.container{width:76rem}.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-offset-0,.col-lg-offset-1,.col-lg-offset-10,.col-lg-offset-11,.col-lg-offset-12,.col-lg-offset-2,.col-lg-offset-3,.col-lg-offset-4,.col-lg-offset-5,.col-lg-offset-6,.col-lg-offset-7,.col-lg-offset-8,.col-lg-offset-9{box-sizing:border-box;-webkit-box-flex:0;-ms-flex:0 0 auto;flex:none;padding-right:.5rem;padding-left:.5rem}.col-lg{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;-ms-flex-preferred-size:0;flex-basis:0;max-width:100%}.col-lg-1{-ms-flex-preferred-size:8.33333333%;flex-basis:8.33333333%;max-width:8.33333333%}.col-lg-2{-ms-flex-preferred-size:16.66666667%;flex-basis:16.66666667%;max-width:16.66666667%}.col-lg-3{-ms-flex-preferred-size:25%;flex-basis:25%;max-width:25%}.col-lg-4{-ms-flex-preferred-size:33.33333333%;flex-basis:33.33333333%;max-width:33.33333333%}.col-lg-5{-ms-flex-preferred-size:41.66666667%;flex-basis:41.66666667%;max-width:41.66666667%}.col-lg-6{-ms-flex-preferred-size:50%;flex-basis:50%;max-width:50%}.col-lg-7{-ms-flex-preferred-size:58.33333333%;flex-basis:58.33333333%;max-width:58.33333333%}.col-lg-8{-ms-flex-preferred-size:66.66666667%;flex-basis:66.66666667%;max-width:66.66666667%}.col-lg-9{-ms-flex-preferred-size:75%;flex-basis:75%;max-width:75%}.col-lg-10{-ms-flex-preferred-size:83.33333333%;flex-basis:83.33333333%;max-width:83.33333333%}.col-lg-11{-ms-flex-preferred-size:91.66666667%;flex-basis:91.66666667%;max-width:91.66666667%}.col-lg-12{-ms-flex-preferred-size:100%;flex-basis:100%;max-width:100%}.col-lg-offset-0{margin-left:0}.col-lg-offset-1{margin-left:8.33333333%}.col-lg-offset-2{margin-left:16.66666667%}.col-lg-offset-3{margin-left:25%}.col-lg-offset-4{margin-left:33.33333333%}.col-lg-offset-5{margin-left:41.66666667%}.col-lg-offset-6{margin-left:50%}.col-lg-offset-7{margin-left:58.33333333%}.col-lg-offset-8{margin-left:66.66666667%}.col-lg-offset-9{margin-left:75%}.col-lg-offset-10{margin-left:83.33333333%}.col-lg-offset-11{margin-left:91.66666667%}.start-lg{-webkit-box-pack:start;-ms-flex-pack:start;justify-content:flex-start;text-align:start}.center-lg{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;text-align:center}.end-lg{-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;text-align:end}.top-lg{-webkit-box-align:start;-ms-flex-align:start;align-items:flex-start}.middle-lg{-webkit-box-align:center;-ms-flex-align:center;align-items:center}.bottom-lg{-webkit-box-align:end;-ms-flex-align:end;align-items:flex-end}.around-lg{-ms-flex-pack:distribute;justify-content:space-around}.between-lg{-webkit-box-pack:justify;-ms-flex-pack:justify;justify-content:space-between}.first-lg{-webkit-box-ordinal-group:0;-ms-flex-order:-1;order:-1}.last-lg{-webkit-box-ordinal-group:2;-ms-flex-order:1;order:1}}</style>
-<style>.markdown-body{-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;margin:0;color:#24292f;background-color:#fff;font-family:-apple-system,BlinkMacSystemFont,segoe ui,Helvetica,Arial,sans-serif,apple color emoji,segoe ui emoji;font-size:16px;line-height:1.5;word-wrap:break-word}.markdown-body .octicon{display:inline-block;fill:currentColor;vertical-align:text-bottom}.markdown-body h1:hover .anchor .octicon-link:before,.markdown-body h2:hover .anchor .octicon-link:before,.markdown-body h3:hover .anchor .octicon-link:before,.markdown-body h4:hover .anchor .octicon-link:before,.markdown-body h5:hover .anchor .octicon-link:before,.markdown-body h6:hover .anchor .octicon-link:before{width:16px;height:16px;content:' ';display:inline-block;background-color:currentColor;-webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22 aria-hidden=%22true%22%3E%3Cpath fill-rule=%22evenodd%22 d=%22M7.775 3.275a.75.75.0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83.0.75.75.0 00-1.06 1.06 3.5 3.5.0 004.95.0l2.5-2.5a3.5 3.5.0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83.0.75.75.0 001.06-1.06 3.5 3.5.0 00-4.95.0l-2.5 2.5a3.5 3.5.0 004.95 4.95l1.25-1.25a.75.75.0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83.0z%22/%3E%3C/svg%3E");mask-image:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22 aria-hidden=%22true%22%3E%3Cpath fill-rule=%22evenodd%22 d=%22M7.775 3.275a.75.75.0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83.0.75.75.0 00-1.06 1.06 3.5 3.5.0 004.95.0l2.5-2.5a3.5 3.5.0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83.0.75.75.0 001.06-1.06 3.5 3.5.0 00-4.95.0l-2.5 2.5a3.5 3.5.0 004.95 4.95l1.25-1.25a.75.75.0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83.0z%22/%3E%3C/svg%3E")}.markdown-body details,.markdown-body figcaption,.markdown-body figure{display:block}.markdown-body summary{display:list-item}.markdown-body [hidden]{display:none!important}.markdown-body a{background-color:transparent;color:#0969da;text-decoration:none}.markdown-body a:active,.markdown-body a:hover{outline-width:0}.markdown-body abbr[title]{border-bottom:none;text-decoration:underline dotted}.markdown-body b,.markdown-body strong{font-weight:600}.markdown-body dfn{font-style:italic}.markdown-body h1{margin:.67em 0;font-weight:600;padding-bottom:.3em;font-size:2em;border-bottom:1px solid #d8dee4}.markdown-body mark{background-color:#fff8c5;color:#24292f}.markdown-body small{font-size:90%}.markdown-body sub,.markdown-body sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}.markdown-body sub{bottom:-.25em}.markdown-body sup{top:-.5em}.markdown-body img{border-style:none;max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body code,.markdown-body kbd,.markdown-body pre,.markdown-body samp{font-family:monospace,monospace;font-size:1em}.markdown-body figure{margin:1em 40px}.markdown-body hr{box-sizing:content-box;overflow:hidden;background:0 0;border-bottom:1px solid #d8dee4;height:.25em;padding:0;margin:24px 0;background-color:#d0d7de;border:0}.markdown-body input{font:inherit;margin:0;overflow:visible;font-family:inherit;font-size:inherit;line-height:inherit}.markdown-body [type=button],.markdown-body [type=reset],.markdown-body [type=submit]{-webkit-appearance:button}.markdown-body [type=button]::-moz-focus-inner,.markdown-body [type=reset]::-moz-focus-inner,.markdown-body [type=submit]::-moz-focus-inner{border-style:none;padding:0}.markdown-body [type=button]:-moz-focusring,.markdown-body [type=reset]:-moz-focusring,.markdown-body [type=submit]:-moz-focusring{outline:1px dotted ButtonText}.markdown-body [type=checkbox],.markdown-body [type=radio]{box-sizing:border-box;padding:0}.markdown-body [type=number]::-webkit-inner-spin-button,.markdown-body [type=number]::-webkit-outer-spin-button{height:auto}.markdown-body [type=search]{-webkit-appearance:textfield;outline-offset:-2px}.markdown-body [type=search]::-webkit-search-cancel-button,.markdown-body [type=search]::-webkit-search-decoration{-webkit-appearance:none}.markdown-body ::-webkit-input-placeholder{color:inherit;opacity:.54}.markdown-body ::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}.markdown-body a:hover{text-decoration:underline}.markdown-body hr::before{display:table;content:""}.markdown-body hr::after{display:table;clear:both;content:""}.markdown-body table{border-spacing:0;border-collapse:collapse;display:block;width:max-content;max-width:100%;overflow:auto}.markdown-body td,.markdown-body th{padding:0}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>*:not(summary){display:none!important}.markdown-body kbd{display:inline-block;padding:3px 5px;font:11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;line-height:10px;color:#24292f;vertical-align:middle;background-color:#f6f8fa;border:solid 1px rgba(175,184,193,.2);border-bottom-color:rgba(175,184,193,.2);border-radius:6px;box-shadow:inset 0 -1px rgba(175,184,193,.2)}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h2{font-weight:600;padding-bottom:.3em;font-size:1.5em;border-bottom:1px solid #d8dee4}.markdown-body h3{font-weight:600;font-size:1.25em}.markdown-body h4{font-weight:600;font-size:1em}.markdown-body h5{font-weight:600;font-size:.875em}.markdown-body h6{font-weight:600;font-size:.85em;color:#57606a}.markdown-body p{margin-top:0;margin-bottom:10px}.markdown-body blockquote{margin:0;padding:0 1em;color:#57606a;border-left:.25em solid #d0d7de}.markdown-body ul,.markdown-body ol{margin-top:0;margin-bottom:0;padding-left:2em}.markdown-body ol ol,.markdown-body ul ol{list-style-type:lower-roman}.markdown-body ul ul ol,.markdown-body ul ol ol,.markdown-body ol ul ol,.markdown-body ol ol ol{list-style-type:lower-alpha}.markdown-body dd{margin-left:0}.markdown-body tt,.markdown-body code{font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;font-size:12px}.markdown-body pre{margin-top:0;margin-bottom:0;font-family:ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;font-size:12px;word-wrap:normal}.markdown-body .octicon{display:inline-block;overflow:visible!important;vertical-align:text-bottom;fill:currentColor}.markdown-body ::placeholder{color:#6e7781;opacity:1}.markdown-body input::-webkit-outer-spin-button,.markdown-body input::-webkit-inner-spin-button{margin:0;-webkit-appearance:none;appearance:none}.markdown-body .pl-c{color:#6e7781}.markdown-body .pl-c1,.markdown-body .pl-s .pl-v{color:#0550ae}.markdown-body .pl-e,.markdown-body .pl-en{color:#8250df}.markdown-body .pl-smi,.markdown-body .pl-s .pl-s1{color:#24292f}.markdown-body .pl-ent{color:#116329}.markdown-body .pl-k{color:#cf222e}.markdown-body .pl-s,.markdown-body .pl-pds,.markdown-body .pl-s .pl-pse .pl-s1,.markdown-body .pl-sr,.markdown-body .pl-sr .pl-cce,.markdown-body .pl-sr .pl-sre,.markdown-body .pl-sr .pl-sra{color:#0a3069}.markdown-body .pl-v,.markdown-body .pl-smw{color:#953800}.markdown-body .pl-bu{color:#82071e}.markdown-body .pl-ii{color:#f6f8fa;background-color:#82071e}.markdown-body .pl-c2{color:#f6f8fa;background-color:#cf222e}.markdown-body .pl-sr .pl-cce{font-weight:700;color:#116329}.markdown-body .pl-ml{color:#3b2300}.markdown-body .pl-mh,.markdown-body .pl-mh .pl-en,.markdown-body .pl-ms{font-weight:700;color:#0550ae}.markdown-body .pl-mi{font-style:italic;color:#24292f}.markdown-body .pl-mb{font-weight:700;color:#24292f}.markdown-body .pl-md{color:#82071e;background-color:#ffebe9}.markdown-body .pl-mi1{color:#116329;background-color:#dafbe1}.markdown-body .pl-mc{color:#953800;background-color:#ffd8b5}.markdown-body .pl-mi2{color:#eaeef2;background-color:#0550ae}.markdown-body .pl-mdr{font-weight:700;color:#8250df}.markdown-body .pl-ba{color:#57606a}.markdown-body .pl-sg{color:#8c959f}.markdown-body .pl-corl{text-decoration:underline;color:#0a3069}.markdown-body [data-catalyst]{display:block}.markdown-body g-emoji{font-family:apple color emoji,segoe ui emoji,segoe ui symbol;font-size:1em;font-style:normal!important;font-weight:400;line-height:1;vertical-align:-.075em}.markdown-body g-emoji img{width:1em;height:1em}.markdown-body::before{display:table;content:""}.markdown-body::after{display:table;clear:both;content:""}.markdown-body>*:first-child{margin-top:0!important}.markdown-body>*:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#cf222e}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre,.markdown-body details{margin-top:0;margin-bottom:16px}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body sup>a::before{content:"["}.markdown-body sup>a::after{content:"]"}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#24292f;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{padding:0 .2em;font-size:inherit}.markdown-body ul.no-list,.markdown-body ol.no-list{padding:0;list-style-type:none}.markdown-body ol[type="1"]{list-style-type:decimal}.markdown-body ol[type=a]{list-style-type:lower-alpha}.markdown-body ol[type= i]{list-style-type:lower-roman}.markdown-body div>ol:not([type]){list-style-type:decimal}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{margin-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:600}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table th{font-weight:600}.markdown-body table th,.markdown-body table td{padding:6px 13px;border:1px solid #d0d7de}.markdown-body table tr{background-color:#fff;border-top:1px solid #d8dee4}.markdown-body table tr:nth-child(2n){background-color:#f6f8fa}.markdown-body table img{background-color:transparent}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:transparent}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{display:block;float:left;width:auto;padding:7px;margin:13px 0 0;overflow:hidden;border:1px solid #d0d7de}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{display:block;padding:5px 0 0;clear:both;color:#24292f}.markdown-body span.align-center{display:block;overflow:hidden;clear:both}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{display:block;overflow:hidden;clear:both}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{padding:.2em .4em;margin:0;font-size:85%;background-color:rgba(175,184,193,.2);border-radius:6px}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre code{font-size:100%}.markdown-body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f6f8fa;border-radius:6px}.markdown-body pre code,.markdown-body pre tt{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body .csv-data td,.markdown-body .csv-data th{padding:5px;overflow:hidden;font-size:12px;line-height:1;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-num{padding:10px 8px 9px;text-align:right;background:#fff;border:0}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{font-weight:600;background:#f6f8fa;border-top:0}.markdown-body .footnotes{font-size:12px;color:#57606a;border-top:1px solid #d0d7de}.markdown-body .footnotes ol{padding-left:16px}.markdown-body .footnotes li{position:relative}.markdown-body .footnotes li:target::before{position:absolute;top:-8px;right:-8px;bottom:-8px;left:-24px;pointer-events:none;content:"";border:2px solid #0969da;border-radius:6px}.markdown-body .footnotes li:target{color:#24292f}.markdown-body .footnotes .data-footnote-backref g-emoji{font-family:monospace}.markdown-body .task-list-item{list-style-type:none}.markdown-body .task-list-item label{font-weight:400}.markdown-body .task-list-item.enabled label{cursor:pointer}.markdown-body .task-list-item+.task-list-item{margin-top:3px}.markdown-body .task-list-item .handle{display:none}.markdown-body .task-list-item-checkbox{margin:0 .2em .25em -1.6em;vertical-align:middle}.markdown-body .contains-task-list:dir(rtl) .task-list-item-checkbox{margin:0 -1.6em .25em .2em}.markdown-body ::-webkit-calendar-picker-indicator{filter:invert(50%)}</style>
-<link href=/index.xml rel=alternate type=application/rss+xml title="Vczyh's Blog">
-<link rel=preconnect href=https://fonts.gstatic.com>
-<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Shade" rel=stylesheet>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-xxx"></script>
-</head>
-<body>
-<article class="post Chinese" id=article>
-<div class=row>
-<div class=col-xs-12>
-<div class=site-header>
-<header>
+<meta property="og:url" content="https://blog-github.zhangeek.com/posts/java-spi/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-03-26T11:20:24+08:00">
+<meta property="article:modified_time" content="2020-03-26T11:20:24+08:00"><meta property="og:site_name" content="My cool site">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Java SPI">
+<meta name=twitter:description content="SPI 简介 SPI 全称为 Service Provider Interface，是一种服务发现机制。SPI的本质是将接口实现类（可以是一个或多个）配置在文件中，然后服务读取配置文件，">
+<meta name=application-name content="My cool site">
+<meta name=apple-mobile-web-app-title content="My cool site"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://blog-github.zhangeek.com/posts/java-spi/><link rel=next href=https://blog-github.zhangeek.com/posts/go-channel/><link rel=stylesheet href=/css/style.min.css><link rel=preload href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css></noscript><link rel=preload href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css as=style onload="this.onload=null,this.rel='stylesheet'">
+<noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css></noscript><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Java SPI","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/blog-github.zhangeek.com\/posts\/java-spi\/"},"genre":"posts","keywords":"Java","wordcount":3119,"url":"https:\/\/blog-github.zhangeek.com\/posts\/java-spi\/","datePublished":"2020-03-26T11:20:24+08:00","dateModified":"2020-03-26T11:20:24+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"xxxx"},"description":""}</script></head>
+<body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
 <div class=header-title>
-<a href=/>vczyh</a>
+<a href=/ title="我的全新 Hugo 网站">My cool site</a>
 </div>
-<div class=header-subtitle></div>
-</header>
-<div class="row end-md center-xs header-items">
-<div class=header-item>
-<a href=https://github.com/vczyh target=_blank>About Me</a>
-</div>
-<div class=header-item>
-<a href=https://github.com/vczyh target=_blank>Github</a>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> 文章 </a><a class=menu-item href=/tags/> 标签 </a><a class=menu-item href=/categories/> 分类 </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
+</a></div>
 </div>
 </div>
-<div class="row end-xs">
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="我的全新 Hugo 网站">My cool site</a>
 </div>
-<div class=header-line></div>
-</div>
-<header class=post-header>
-<h1 class=post-title>Java SPI</h1>
-<div class="row post-desc">
-<div class=col-xs-6>
-<time class=post-date datetime="2020-03-26 11:20:24 +0800">
-26 Mar 2020
-</time>
-</div>
-<div class=col-xs-6>
-<div class=post-author>
-<a target=_blank href=https://zhangeek.com/>@vczyh</a>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
 </div>
 </div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>文章</a><a class=menu-item href=/tags/ title>标签</a><a class=menu-item href=/categories/ title>分类</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i>
+</a></div>
 </div>
-</header>
-<div class="post-content markdown-body">
-<h2 id=spi-简介>SPI 简介</h2>
+</header><main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Java SPI</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>xxxx</a></span>&nbsp;<span class=post-category>included in <a href=/categories/%E5%90%8E%E7%AB%AF/><i class="far fa-folder fa-fw" aria-hidden=true></i>后端</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2020-03-26>2020-03-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;3119 words&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;7 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static data-kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#spi-简介>SPI 简介</a></li>
+<li><a href=#java-spi-示例>Java SPI 示例</a>
+<ul>
+<li><a href=#serviceloader-源码>ServiceLoader 源码</a></li>
+<li><a href=#serviceloader-流程>ServiceLoader 流程</a></li>
+<li><a href=#java-spi-在-jdbc-中的应用>Java SPI 在 JDBC 中的应用</a></li>
+</ul>
+</li>
+<li><a href=#spring-spi>Spring SPI</a>
+<ul>
+<li><a href=#优点>优点</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=spi-简介>SPI 简介</h2>
 <p><strong>SPI</strong> 全称为 <strong>Service Provider Interface</strong>，是一种服务发现机制。SPI的本质是将接口实现类（可以是一个或多个）配置在文件中，然后服务读取配置文件，加载指定接口的实现类。利用 SPI 机制很容易为程序提供拓展功能，使程序解耦。</p>
 <p>SPI 可以分为 Java SPI 和框架自定义的 SPI，例如 Spring、Dubbo。</p>
 <h2 id=java-spi-示例>Java SPI 示例</h2>
 <p>本节通过一个示例演示 Java SPI 的使用方法，首先定义一个接口，名称为 <code>Device</code>。</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>interface</span> <span style=color:#000>Device</span> <span style=color:#ce5c00;font-weight:700>{</span>
-    <span style=color:#204a87;font-weight:700>void</span> <span style=color:#000>say</span><span style=color:#ce5c00;font-weight:700>();</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>interface</span> <span class=nc>Device</span> <span class=o>{</span>
+    <span class=kt>void</span> <span class=nf>say</span><span class=o>();</span>
+<span class=o>}</span>
 </code></pre></div><p>接下来定义两个实现类，分别为 <code>Computer</code> 和 <code>Phone</code>。</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>class</span> <span style=color:#000>Computer</span> <span style=color:#204a87;font-weight:700>implements</span> <span style=color:#000>Device</span> <span style=color:#ce5c00;font-weight:700>{</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Computer</span> <span class=kd>implements</span> <span class=n>Device</span> <span class=o>{</span>
 
-    <span style=color:#5c35cc;font-weight:700>@Override</span>
-    <span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>void</span> <span style=color:#000>say</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#000>System</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>out</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>println</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;Hello, I am Computer&#34;</span><span style=color:#ce5c00;font-weight:700>);</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
+    <span class=nd>@Override</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>say</span><span class=o>()</span> <span class=o>{</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;Hello, I am Computer&#34;</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
 
-<span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>class</span> <span style=color:#000>Phone</span> <span style=color:#204a87;font-weight:700>implements</span> <span style=color:#000>Device</span> <span style=color:#ce5c00;font-weight:700>{</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>Phone</span> <span class=kd>implements</span> <span class=n>Device</span> <span class=o>{</span>
 
-    <span style=color:#5c35cc;font-weight:700>@Override</span>
-    <span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>void</span> <span style=color:#000>say</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#000>System</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>out</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>println</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;Hello, I am Phone&#34;</span><span style=color:#ce5c00;font-weight:700>);</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
+    <span class=nd>@Override</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>say</span><span class=o>()</span> <span class=o>{</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;Hello, I am Phone&#34;</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
 </code></pre></div><p>接下来在<code>META-INF/services</code>文件夹下创建一个文件，名称为 <code>Device</code> 的全限定名 <code>com.vczyh.spi.Device</code>，文件内容为实现类的全限定名，如下：</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback>com.vczyh.spi.Computer
+<pre><code>com.vczyh.spi.Computer
 com.vczyh.spi.Phone
-</code></pre></div><p>接下来编写代码进行测试。</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>class</span> <span style=color:#000>App</span> <span style=color:#ce5c00;font-weight:700>{</span>
-    <span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>static</span> <span style=color:#204a87;font-weight:700>void</span> <span style=color:#000>main</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>String</span><span style=color:#ce5c00;font-weight:700>[]</span> <span style=color:#000>args</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#000>ServiceLoader</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>Device</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>loader</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>ServiceLoader</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>load</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>Device</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>class</span><span style=color:#ce5c00;font-weight:700>);</span>
-        <span style=color:#000>Iterator</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>Device</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>iterator</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>loader</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>iterator</span><span style=color:#ce5c00;font-weight:700>();</span>
-        <span style=color:#204a87;font-weight:700>while</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>iterator</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>hasNext</span><span style=color:#ce5c00;font-weight:700>())</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#000>Device</span> <span style=color:#000>device</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>iterator</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>next</span><span style=color:#ce5c00;font-weight:700>();</span>
-            <span style=color:#000>device</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>say</span><span style=color:#ce5c00;font-weight:700>();</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
-<span style=color:#8f5902;font-style:italic>// 运行结果
-</span><span style=color:#8f5902;font-style:italic></span><span style=color:#000>Hello</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>I</span> <span style=color:#000>am</span> <span style=color:#000>Computer</span>
-<span style=color:#000>Hello</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>I</span> <span style=color:#000>am</span> <span style=color:#000>Phone</span>
+</code></pre><p>接下来编写代码进行测试。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>App</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>ServiceLoader</span><span class=o>&lt;</span><span class=n>Device</span><span class=o>&gt;</span> <span class=n>loader</span> <span class=o>=</span> <span class=n>ServiceLoader</span><span class=o>.</span><span class=na>load</span><span class=o>(</span><span class=n>Device</span><span class=o>.</span><span class=na>class</span><span class=o>);</span>
+        <span class=n>Iterator</span><span class=o>&lt;</span><span class=n>Device</span><span class=o>&gt;</span> <span class=n>iterator</span> <span class=o>=</span> <span class=n>loader</span><span class=o>.</span><span class=na>iterator</span><span class=o>();</span>
+        <span class=k>while</span> <span class=o>(</span><span class=n>iterator</span><span class=o>.</span><span class=na>hasNext</span><span class=o>())</span> <span class=o>{</span>
+            <span class=n>Device</span> <span class=n>device</span> <span class=o>=</span> <span class=n>iterator</span><span class=o>.</span><span class=na>next</span><span class=o>();</span>
+            <span class=n>device</span><span class=o>.</span><span class=na>say</span><span class=o>();</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+<span class=c1>// 运行结果
+</span><span class=c1></span><span class=n>Hello</span><span class=o>,</span> <span class=n>I</span> <span class=n>am</span> <span class=n>Computer</span>
+<span class=n>Hello</span><span class=o>,</span> <span class=n>I</span> <span class=n>am</span> <span class=n>Phone</span>
 </code></pre></div><p>从运行结果可以看出，成功加载了接口的两个实现类，并创建了两个实现类的实例。需要注意的是在这个过程中，我们并没有显式创建实例，接下来剖析 <code>java.util.ServiceLoader</code> 做了哪些工作。</p>
 <hr>
 <h3 id=serviceloader-源码>ServiceLoader 源码</h3>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#8f5902;font-style:italic>// 扫描路径
-</span><span style=color:#8f5902;font-style:italic></span><span style=color:#204a87;font-weight:700>private</span> <span style=color:#204a87;font-weight:700>static</span> <span style=color:#204a87;font-weight:700>final</span> <span style=color:#000>String</span> <span style=color:#000>PREFIX</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#4e9a06>&#34;META-INF/services/&#34;</span><span style=color:#ce5c00;font-weight:700>;</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=c1>// 扫描路径
+</span><span class=c1></span><span class=kd>private</span> <span class=kd>static</span> <span class=kd>final</span> <span class=n>String</span> <span class=n>PREFIX</span> <span class=o>=</span> <span class=s>&#34;META-INF/services/&#34;</span><span class=o>;</span>
 
-<span style=color:#8f5902;font-style:italic>// 被加载类的接口或者抽象类
-</span><span style=color:#8f5902;font-style:italic></span><span style=color:#204a87;font-weight:700>private</span> <span style=color:#204a87;font-weight:700>final</span> <span style=color:#000>Class</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>S</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>service</span><span style=color:#ce5c00;font-weight:700>;</span>
+<span class=c1>// 被加载类的接口或者抽象类
+</span><span class=c1></span><span class=kd>private</span> <span class=kd>final</span> <span class=n>Class</span><span class=o>&lt;</span><span class=n>S</span><span class=o>&gt;</span> <span class=n>service</span><span class=o>;</span>
 
-<span style=color:#8f5902;font-style:italic>// 类加载器
-</span><span style=color:#8f5902;font-style:italic></span><span style=color:#204a87;font-weight:700>private</span> <span style=color:#204a87;font-weight:700>final</span> <span style=color:#000>ClassLoader</span> <span style=color:#000>loader</span><span style=color:#ce5c00;font-weight:700>;</span>
+<span class=c1>// 类加载器
+</span><span class=c1></span><span class=kd>private</span> <span class=kd>final</span> <span class=n>ClassLoader</span> <span class=n>loader</span><span class=o>;</span>
 
-<span style=color:#8f5902;font-style:italic>// 文件访问上下文，例如判断权限
-</span><span style=color:#8f5902;font-style:italic></span><span style=color:#204a87;font-weight:700>private</span> <span style=color:#204a87;font-weight:700>final</span> <span style=color:#000>AccessControlContext</span> <span style=color:#000>acc</span><span style=color:#ce5c00;font-weight:700>;</span>
+<span class=c1>// 文件访问上下文，例如判断权限
+</span><span class=c1></span><span class=kd>private</span> <span class=kd>final</span> <span class=n>AccessControlContext</span> <span class=n>acc</span><span class=o>;</span>
 
-<span style=color:#8f5902;font-style:italic>// 存放加载类的实例，key为实现类的全限定名，value为实现类的实例
-</span><span style=color:#8f5902;font-style:italic></span><span style=color:#204a87;font-weight:700>private</span> <span style=color:#000>LinkedHashMap</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>String</span><span style=color:#ce5c00;font-weight:700>,</span><span style=color:#000>S</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>providers</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>LinkedHashMap</span><span style=color:#ce5c00;font-weight:700>&lt;&gt;();</span>
+<span class=c1>// 存放加载类的实例，key为实现类的全限定名，value为实现类的实例
+</span><span class=c1></span><span class=kd>private</span> <span class=n>LinkedHashMap</span><span class=o>&lt;</span><span class=n>String</span><span class=o>,</span><span class=n>S</span><span class=o>&gt;</span> <span class=n>providers</span> <span class=o>=</span> <span class=k>new</span> <span class=n>LinkedHashMap</span><span class=o>&lt;&gt;();</span>
 
-<span style=color:#8f5902;font-style:italic>// 懒查找迭代器
-</span><span style=color:#8f5902;font-style:italic></span><span style=color:#204a87;font-weight:700>private</span> <span style=color:#000>LazyIterator</span> <span style=color:#000>lookupIterator</span><span style=color:#ce5c00;font-weight:700>;</span>
-</code></pre></div><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>static</span> <span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>S</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>ServiceLoader</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>S</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>load</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>Class</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>S</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>service</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-    <span style=color:#8f5902;font-style:italic>// 如不指定 ClassLoader，指定默认 ClassLoader
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#000>ClassLoader</span> <span style=color:#000>cl</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>Thread</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>currentThread</span><span style=color:#ce5c00;font-weight:700>().</span><span style=color:#c4a000>getContextClassLoader</span><span style=color:#ce5c00;font-weight:700>();</span>
-    <span style=color:#8f5902;font-style:italic>// 创建 ServiceLoader 实例
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>ServiceLoader</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>load</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>service</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>cl</span><span style=color:#ce5c00;font-weight:700>);</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
-</code></pre></div><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#204a87;font-weight:700>private</span> <span style=color:#000>ServiceLoader</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>Class</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>S</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>svc</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>ClassLoader</span> <span style=color:#000>cl</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-    <span style=color:#000>service</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>Objects</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>requireNonNull</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>svc</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#4e9a06>&#34;Service interface cannot be null&#34;</span><span style=color:#ce5c00;font-weight:700>);</span>
-    <span style=color:#000>loader</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>cl</span> <span style=color:#ce5c00;font-weight:700>==</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>?</span> <span style=color:#000>ClassLoader</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getSystemClassLoader</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#000>cl</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#000>acc</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>System</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getSecurityManager</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>!=</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>?</span> <span style=color:#000>AccessController</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getContext</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#000>reload</span><span style=color:#ce5c00;font-weight:700>();</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
-</code></pre></div><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>void</span> <span style=color:#000>reload</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-	<span style=color:#8f5902;font-style:italic>// 清空 providers
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#000>providers</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>clear</span><span style=color:#ce5c00;font-weight:700>();</span>
-    <span style=color:#8f5902;font-style:italic>// 创建新的迭代器
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#000>lookupIterator</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>LazyIterator</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>service</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>loader</span><span style=color:#ce5c00;font-weight:700>);</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
-</code></pre></div><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#204a87;font-weight:700>private</span> <span style=color:#204a87;font-weight:700>class</span> <span style=color:#000>LazyIterator</span> <span style=color:#204a87;font-weight:700>implements</span> <span style=color:#000>Iterator</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>S</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#ce5c00;font-weight:700>{</span>
-	<span style=color:#8f5902;font-style:italic>// 被加载类的接口或者抽象类
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#000>Class</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>S</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>service</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#8f5902;font-style:italic>// 类加载器
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#000>ClassLoader</span> <span style=color:#000>loader</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#8f5902;font-style:italic>// 路径为 PREFIX + service.getName() 的文件URL
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#000>Enumeration</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>URL</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>configs</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#8f5902;font-style:italic>// 当前configs的URL对应文件中的所有实现类的全限定名
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#000>Iterator</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>String</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>pending</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#000>String</span> <span style=color:#000>nextName</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>;</span>
+<span class=c1>// 懒查找迭代器
+</span><span class=c1></span><span class=kd>private</span> <span class=n>LazyIterator</span> <span class=n>lookupIterator</span><span class=o>;</span>
+</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=o>&lt;</span><span class=n>S</span><span class=o>&gt;</span> <span class=n>ServiceLoader</span><span class=o>&lt;</span><span class=n>S</span><span class=o>&gt;</span> <span class=nf>load</span><span class=o>(</span><span class=n>Class</span><span class=o>&lt;</span><span class=n>S</span><span class=o>&gt;</span> <span class=n>service</span><span class=o>)</span> <span class=o>{</span>
+    <span class=c1>// 如不指定 ClassLoader，指定默认 ClassLoader
+</span><span class=c1></span>    <span class=n>ClassLoader</span> <span class=n>cl</span> <span class=o>=</span> <span class=n>Thread</span><span class=o>.</span><span class=na>currentThread</span><span class=o>().</span><span class=na>getContextClassLoader</span><span class=o>();</span>
+    <span class=c1>// 创建 ServiceLoader 实例
+</span><span class=c1></span>    <span class=k>return</span> <span class=n>ServiceLoader</span><span class=o>.</span><span class=na>load</span><span class=o>(</span><span class=n>service</span><span class=o>,</span> <span class=n>cl</span><span class=o>);</span>
+<span class=o>}</span>
+</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>private</span> <span class=nf>ServiceLoader</span><span class=o>(</span><span class=n>Class</span><span class=o>&lt;</span><span class=n>S</span><span class=o>&gt;</span> <span class=n>svc</span><span class=o>,</span> <span class=n>ClassLoader</span> <span class=n>cl</span><span class=o>)</span> <span class=o>{</span>
+    <span class=n>service</span> <span class=o>=</span> <span class=n>Objects</span><span class=o>.</span><span class=na>requireNonNull</span><span class=o>(</span><span class=n>svc</span><span class=o>,</span> <span class=s>&#34;Service interface cannot be null&#34;</span><span class=o>);</span>
+    <span class=n>loader</span> <span class=o>=</span> <span class=o>(</span><span class=n>cl</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span> <span class=o>?</span> <span class=n>ClassLoader</span><span class=o>.</span><span class=na>getSystemClassLoader</span><span class=o>()</span> <span class=o>:</span> <span class=n>cl</span><span class=o>;</span>
+    <span class=n>acc</span> <span class=o>=</span> <span class=o>(</span><span class=n>System</span><span class=o>.</span><span class=na>getSecurityManager</span><span class=o>()</span> <span class=o>!=</span> <span class=kc>null</span><span class=o>)</span> <span class=o>?</span> <span class=n>AccessController</span><span class=o>.</span><span class=na>getContext</span><span class=o>()</span> <span class=o>:</span> <span class=kc>null</span><span class=o>;</span>
+    <span class=n>reload</span><span class=o>();</span>
+<span class=o>}</span>
+</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kt>void</span> <span class=nf>reload</span><span class=o>()</span> <span class=o>{</span>
+	<span class=c1>// 清空 providers
+</span><span class=c1></span>    <span class=n>providers</span><span class=o>.</span><span class=na>clear</span><span class=o>();</span>
+    <span class=c1>// 创建新的迭代器
+</span><span class=c1></span>    <span class=n>lookupIterator</span> <span class=o>=</span> <span class=k>new</span> <span class=n>LazyIterator</span><span class=o>(</span><span class=n>service</span><span class=o>,</span> <span class=n>loader</span><span class=o>);</span>
+<span class=o>}</span>
+</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>private</span> <span class=kd>class</span> <span class=nc>LazyIterator</span> <span class=kd>implements</span> <span class=n>Iterator</span><span class=o>&lt;</span><span class=n>S</span><span class=o>&gt;</span> <span class=o>{</span>
+	<span class=c1>// 被加载类的接口或者抽象类
+</span><span class=c1></span>    <span class=n>Class</span><span class=o>&lt;</span><span class=n>S</span><span class=o>&gt;</span> <span class=n>service</span><span class=o>;</span>
+    <span class=c1>// 类加载器
+</span><span class=c1></span>    <span class=n>ClassLoader</span> <span class=n>loader</span><span class=o>;</span>
+    <span class=c1>// 路径为 PREFIX + service.getName() 的文件URL
+</span><span class=c1></span>    <span class=n>Enumeration</span><span class=o>&lt;</span><span class=n>URL</span><span class=o>&gt;</span> <span class=n>configs</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
+    <span class=c1>// 当前configs的URL对应文件中的所有实现类的全限定名
+</span><span class=c1></span>    <span class=n>Iterator</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=n>pending</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
+    <span class=n>String</span> <span class=n>nextName</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
 
-    <span style=color:#204a87;font-weight:700>private</span> <span style=color:#000>LazyIterator</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>Class</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>S</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>service</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>ClassLoader</span> <span style=color:#000>loader</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#204a87;font-weight:700>this</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>service</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>service</span><span style=color:#ce5c00;font-weight:700>;</span>
-        <span style=color:#204a87;font-weight:700>this</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>loader</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>loader</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
+    <span class=kd>private</span> <span class=nf>LazyIterator</span><span class=o>(</span><span class=n>Class</span><span class=o>&lt;</span><span class=n>S</span><span class=o>&gt;</span> <span class=n>service</span><span class=o>,</span> <span class=n>ClassLoader</span> <span class=n>loader</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>service</span> <span class=o>=</span> <span class=n>service</span><span class=o>;</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>loader</span> <span class=o>=</span> <span class=n>loader</span><span class=o>;</span>
+    <span class=o>}</span>
 
-    <span style=color:#204a87;font-weight:700>private</span> <span style=color:#204a87;font-weight:700>boolean</span> <span style=color:#000>hasNextService</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>nextName</span> <span style=color:#ce5c00;font-weight:700>!=</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#204a87;font-weight:700>return</span> <span style=color:#204a87;font-weight:700>true</span><span style=color:#ce5c00;font-weight:700>;</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
-        <span style=color:#8f5902;font-style:italic>// 第一次调用（延迟加载）
-</span><span style=color:#8f5902;font-style:italic></span>        <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>configs</span> <span style=color:#ce5c00;font-weight:700>==</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#204a87;font-weight:700>try</span> <span style=color:#ce5c00;font-weight:700>{</span>
-                <span style=color:#8f5902;font-style:italic>// 文件路径
-</span><span style=color:#8f5902;font-style:italic></span>                <span style=color:#000>String</span> <span style=color:#000>fullName</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>PREFIX</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#000>service</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getName</span><span style=color:#ce5c00;font-weight:700>();</span>
-                <span style=color:#8f5902;font-style:italic>// 获取文件URL
-</span><span style=color:#8f5902;font-style:italic></span>                <span style=color:#8f5902;font-style:italic>// 这里会查找classpath下所有jar包里的fullName文件，因此可能有多个重名文件，所以configs可能有多个URL
-</span><span style=color:#8f5902;font-style:italic></span>                <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>loader</span> <span style=color:#ce5c00;font-weight:700>==</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>)</span>
-                    <span style=color:#000>configs</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>ClassLoader</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getSystemResources</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>fullName</span><span style=color:#ce5c00;font-weight:700>);</span>
-                <span style=color:#204a87;font-weight:700>else</span>
-                    <span style=color:#000>configs</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>loader</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getResources</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>fullName</span><span style=color:#ce5c00;font-weight:700>);</span>
-            <span style=color:#ce5c00;font-weight:700>}</span> <span style=color:#204a87;font-weight:700>catch</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>IOException</span> <span style=color:#000>x</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-                <span style=color:#000>fail</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>service</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#4e9a06>&#34;Error locating configuration files&#34;</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>x</span><span style=color:#ce5c00;font-weight:700>);</span>
-            <span style=color:#ce5c00;font-weight:700>}</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
-        <span style=color:#8f5902;font-style:italic>// 第一次调用，或者当前文件中的所有实现类已遍历完
-</span><span style=color:#8f5902;font-style:italic></span>        <span style=color:#204a87;font-weight:700>while</span> <span style=color:#ce5c00;font-weight:700>((</span><span style=color:#000>pending</span> <span style=color:#ce5c00;font-weight:700>==</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>||</span> <span style=color:#ce5c00;font-weight:700>!</span><span style=color:#000>pending</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>hasNext</span><span style=color:#ce5c00;font-weight:700>())</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#8f5902;font-style:italic>// 所有URL已遍历完
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(!</span><span style=color:#000>configs</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>hasMoreElements</span><span style=color:#ce5c00;font-weight:700>())</span> <span style=color:#ce5c00;font-weight:700>{</span>
-                <span style=color:#204a87;font-weight:700>return</span> <span style=color:#204a87;font-weight:700>false</span><span style=color:#ce5c00;font-weight:700>;</span>
-            <span style=color:#ce5c00;font-weight:700>}</span>
-            <span style=color:#8f5902;font-style:italic>// 还有URL没有遍历，继续解析下一个URL对应的文件，以获取该文件中的所有实现类
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#8f5902;font-style:italic>// 而且会对文件中相同的实现类进行去重
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#000>pending</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>parse</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>service</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>configs</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>nextElement</span><span style=color:#ce5c00;font-weight:700>());</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
-        <span style=color:#8f5902;font-style:italic>// 当前文件中的下一个实现类
-</span><span style=color:#8f5902;font-style:italic></span>        <span style=color:#000>nextName</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>pending</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>next</span><span style=color:#ce5c00;font-weight:700>();</span>
-        <span style=color:#204a87;font-weight:700>return</span> <span style=color:#204a87;font-weight:700>true</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
+    <span class=kd>private</span> <span class=kt>boolean</span> <span class=nf>hasNextService</span><span class=o>()</span> <span class=o>{</span>
+        <span class=k>if</span> <span class=o>(</span><span class=n>nextName</span> <span class=o>!=</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>return</span> <span class=kc>true</span><span class=o>;</span>
+        <span class=o>}</span>
+        <span class=c1>// 第一次调用（延迟加载）
+</span><span class=c1></span>        <span class=k>if</span> <span class=o>(</span><span class=n>configs</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>try</span> <span class=o>{</span>
+                <span class=c1>// 文件路径
+</span><span class=c1></span>                <span class=n>String</span> <span class=n>fullName</span> <span class=o>=</span> <span class=n>PREFIX</span> <span class=o>+</span> <span class=n>service</span><span class=o>.</span><span class=na>getName</span><span class=o>();</span>
+                <span class=c1>// 获取文件URL
+</span><span class=c1></span>                <span class=c1>// 这里会查找classpath下所有jar包里的fullName文件，因此可能有多个重名文件，所以configs可能有多个URL
+</span><span class=c1></span>                <span class=k>if</span> <span class=o>(</span><span class=n>loader</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span>
+                    <span class=n>configs</span> <span class=o>=</span> <span class=n>ClassLoader</span><span class=o>.</span><span class=na>getSystemResources</span><span class=o>(</span><span class=n>fullName</span><span class=o>);</span>
+                <span class=k>else</span>
+                    <span class=n>configs</span> <span class=o>=</span> <span class=n>loader</span><span class=o>.</span><span class=na>getResources</span><span class=o>(</span><span class=n>fullName</span><span class=o>);</span>
+            <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>IOException</span> <span class=n>x</span><span class=o>)</span> <span class=o>{</span>
+                <span class=n>fail</span><span class=o>(</span><span class=n>service</span><span class=o>,</span> <span class=s>&#34;Error locating configuration files&#34;</span><span class=o>,</span> <span class=n>x</span><span class=o>);</span>
+            <span class=o>}</span>
+        <span class=o>}</span>
+        <span class=c1>// 第一次调用，或者当前文件中的所有实现类已遍历完
+</span><span class=c1></span>        <span class=k>while</span> <span class=o>((</span><span class=n>pending</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span> <span class=o>||</span> <span class=o>!</span><span class=n>pending</span><span class=o>.</span><span class=na>hasNext</span><span class=o>())</span> <span class=o>{</span>
+            <span class=c1>// 所有URL已遍历完
+</span><span class=c1></span>            <span class=k>if</span> <span class=o>(!</span><span class=n>configs</span><span class=o>.</span><span class=na>hasMoreElements</span><span class=o>())</span> <span class=o>{</span>
+                <span class=k>return</span> <span class=kc>false</span><span class=o>;</span>
+            <span class=o>}</span>
+            <span class=c1>// 还有URL没有遍历，继续解析下一个URL对应的文件，以获取该文件中的所有实现类
+</span><span class=c1></span>            <span class=c1>// 而且会对文件中相同的实现类进行去重
+</span><span class=c1></span>            <span class=n>pending</span> <span class=o>=</span> <span class=n>parse</span><span class=o>(</span><span class=n>service</span><span class=o>,</span> <span class=n>configs</span><span class=o>.</span><span class=na>nextElement</span><span class=o>());</span>
+        <span class=o>}</span>
+        <span class=c1>// 当前文件中的下一个实现类
+</span><span class=c1></span>        <span class=n>nextName</span> <span class=o>=</span> <span class=n>pending</span><span class=o>.</span><span class=na>next</span><span class=o>();</span>
+        <span class=k>return</span> <span class=kc>true</span><span class=o>;</span>
+    <span class=o>}</span>
 
-    <span style=color:#204a87;font-weight:700>private</span> <span style=color:#000>S</span> <span style=color:#000>nextService</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(!</span><span style=color:#000>hasNextService</span><span style=color:#ce5c00;font-weight:700>())</span>
-            <span style=color:#204a87;font-weight:700>throw</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>NoSuchElementException</span><span style=color:#ce5c00;font-weight:700>();</span>
-        <span style=color:#000>String</span> <span style=color:#000>cn</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>nextName</span><span style=color:#ce5c00;font-weight:700>;</span>
-        <span style=color:#000>nextName</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>;</span>
-        <span style=color:#000>Class</span><span style=color:#ce5c00;font-weight:700>&lt;?&gt;</span> <span style=color:#000>c</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>;</span>
-        <span style=color:#204a87;font-weight:700>try</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#8f5902;font-style:italic>// 加载实现类，第二个参数为false表示不进行初始化（执行static代码），初始化会放在实例化步骤进行
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#000>c</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>Class</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>forName</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>cn</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#204a87;font-weight:700>false</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>loader</span><span style=color:#ce5c00;font-weight:700>);</span>
-        <span style=color:#ce5c00;font-weight:700>}</span> <span style=color:#204a87;font-weight:700>catch</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>ClassNotFoundException</span> <span style=color:#000>x</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#000>fail</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>service</span><span style=color:#ce5c00;font-weight:700>,</span>
-                 <span style=color:#4e9a06>&#34;Provider &#34;</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#000>cn</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#4e9a06>&#34; not found&#34;</span><span style=color:#ce5c00;font-weight:700>);</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
-        <span style=color:#8f5902;font-style:italic>// c不是service的子类型
-</span><span style=color:#8f5902;font-style:italic></span>        <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(!</span><span style=color:#000>service</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>isAssignableFrom</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>c</span><span style=color:#ce5c00;font-weight:700>))</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#000>fail</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>service</span><span style=color:#ce5c00;font-weight:700>,</span>
-                 <span style=color:#4e9a06>&#34;Provider &#34;</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#000>cn</span>  <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#4e9a06>&#34; not a subtype&#34;</span><span style=color:#ce5c00;font-weight:700>);</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
-        <span style=color:#204a87;font-weight:700>try</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#8f5902;font-style:italic>// 初始化，实例化c，并将实例转换为service类型
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#000>S</span> <span style=color:#000>p</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>service</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>cast</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>c</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>newInstance</span><span style=color:#ce5c00;font-weight:700>());</span>
-            <span style=color:#8f5902;font-style:italic>// 添加到providers中
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#000>providers</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>put</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>cn</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>p</span><span style=color:#ce5c00;font-weight:700>);</span>
-            <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>p</span><span style=color:#ce5c00;font-weight:700>;</span>
-        <span style=color:#ce5c00;font-weight:700>}</span> <span style=color:#204a87;font-weight:700>catch</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>Throwable</span> <span style=color:#000>x</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#000>fail</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>service</span><span style=color:#ce5c00;font-weight:700>,</span>
-                 <span style=color:#4e9a06>&#34;Provider &#34;</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#000>cn</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#4e9a06>&#34; could not be instantiated&#34;</span><span style=color:#ce5c00;font-weight:700>,</span>
-                 <span style=color:#000>x</span><span style=color:#ce5c00;font-weight:700>);</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
-        <span style=color:#204a87;font-weight:700>throw</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>Error</span><span style=color:#ce5c00;font-weight:700>();</span>          <span style=color:#8f5902;font-style:italic>// This cannot happen
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#ce5c00;font-weight:700>}</span>
+    <span class=kd>private</span> <span class=n>S</span> <span class=nf>nextService</span><span class=o>()</span> <span class=o>{</span>
+        <span class=k>if</span> <span class=o>(!</span><span class=n>hasNextService</span><span class=o>())</span>
+            <span class=k>throw</span> <span class=k>new</span> <span class=n>NoSuchElementException</span><span class=o>();</span>
+        <span class=n>String</span> <span class=n>cn</span> <span class=o>=</span> <span class=n>nextName</span><span class=o>;</span>
+        <span class=n>nextName</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
+        <span class=n>Class</span><span class=o>&lt;?&gt;</span> <span class=n>c</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=c1>// 加载实现类，第二个参数为false表示不进行初始化（执行static代码），初始化会放在实例化步骤进行
+</span><span class=c1></span>            <span class=n>c</span> <span class=o>=</span> <span class=n>Class</span><span class=o>.</span><span class=na>forName</span><span class=o>(</span><span class=n>cn</span><span class=o>,</span> <span class=kc>false</span><span class=o>,</span> <span class=n>loader</span><span class=o>);</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>ClassNotFoundException</span> <span class=n>x</span><span class=o>)</span> <span class=o>{</span>
+            <span class=n>fail</span><span class=o>(</span><span class=n>service</span><span class=o>,</span>
+                 <span class=s>&#34;Provider &#34;</span> <span class=o>+</span> <span class=n>cn</span> <span class=o>+</span> <span class=s>&#34; not found&#34;</span><span class=o>);</span>
+        <span class=o>}</span>
+        <span class=c1>// c不是service的子类型
+</span><span class=c1></span>        <span class=k>if</span> <span class=o>(!</span><span class=n>service</span><span class=o>.</span><span class=na>isAssignableFrom</span><span class=o>(</span><span class=n>c</span><span class=o>))</span> <span class=o>{</span>
+            <span class=n>fail</span><span class=o>(</span><span class=n>service</span><span class=o>,</span>
+                 <span class=s>&#34;Provider &#34;</span> <span class=o>+</span> <span class=n>cn</span>  <span class=o>+</span> <span class=s>&#34; not a subtype&#34;</span><span class=o>);</span>
+        <span class=o>}</span>
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=c1>// 初始化，实例化c，并将实例转换为service类型
+</span><span class=c1></span>            <span class=n>S</span> <span class=n>p</span> <span class=o>=</span> <span class=n>service</span><span class=o>.</span><span class=na>cast</span><span class=o>(</span><span class=n>c</span><span class=o>.</span><span class=na>newInstance</span><span class=o>());</span>
+            <span class=c1>// 添加到providers中
+</span><span class=c1></span>            <span class=n>providers</span><span class=o>.</span><span class=na>put</span><span class=o>(</span><span class=n>cn</span><span class=o>,</span> <span class=n>p</span><span class=o>);</span>
+            <span class=k>return</span> <span class=n>p</span><span class=o>;</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>Throwable</span> <span class=n>x</span><span class=o>)</span> <span class=o>{</span>
+            <span class=n>fail</span><span class=o>(</span><span class=n>service</span><span class=o>,</span>
+                 <span class=s>&#34;Provider &#34;</span> <span class=o>+</span> <span class=n>cn</span> <span class=o>+</span> <span class=s>&#34; could not be instantiated&#34;</span><span class=o>,</span>
+                 <span class=n>x</span><span class=o>);</span>
+        <span class=o>}</span>
+        <span class=k>throw</span> <span class=k>new</span> <span class=n>Error</span><span class=o>();</span>          <span class=c1>// This cannot happen
+</span><span class=c1></span>    <span class=o>}</span>
 
-    <span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>boolean</span> <span style=color:#000>hasNext</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>acc</span> <span style=color:#ce5c00;font-weight:700>==</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>hasNextService</span><span style=color:#ce5c00;font-weight:700>();</span>
-        <span style=color:#ce5c00;font-weight:700>}</span> <span style=color:#204a87;font-weight:700>else</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#8f5902;font-style:italic>// 具有特权
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#000>PrivilegedAction</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>Boolean</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>action</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>PrivilegedAction</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>Boolean</span><span style=color:#ce5c00;font-weight:700>&gt;()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-                <span style=color:#204a87;font-weight:700>public</span> <span style=color:#000>Boolean</span> <span style=color:#000>run</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span> <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>hasNextService</span><span style=color:#ce5c00;font-weight:700>();</span> <span style=color:#ce5c00;font-weight:700>}</span>
-            <span style=color:#ce5c00;font-weight:700>};</span>
-            <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>AccessController</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>doPrivileged</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>action</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>acc</span><span style=color:#ce5c00;font-weight:700>);</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
+    <span class=kd>public</span> <span class=kt>boolean</span> <span class=nf>hasNext</span><span class=o>()</span> <span class=o>{</span>
+        <span class=k>if</span> <span class=o>(</span><span class=n>acc</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>return</span> <span class=n>hasNextService</span><span class=o>();</span>
+        <span class=o>}</span> <span class=k>else</span> <span class=o>{</span>
+            <span class=c1>// 具有特权
+</span><span class=c1></span>            <span class=n>PrivilegedAction</span><span class=o>&lt;</span><span class=n>Boolean</span><span class=o>&gt;</span> <span class=n>action</span> <span class=o>=</span> <span class=k>new</span> <span class=n>PrivilegedAction</span><span class=o>&lt;</span><span class=n>Boolean</span><span class=o>&gt;()</span> <span class=o>{</span>
+                <span class=kd>public</span> <span class=n>Boolean</span> <span class=nf>run</span><span class=o>()</span> <span class=o>{</span> <span class=k>return</span> <span class=n>hasNextService</span><span class=o>();</span> <span class=o>}</span>
+            <span class=o>};</span>
+            <span class=k>return</span> <span class=n>AccessController</span><span class=o>.</span><span class=na>doPrivileged</span><span class=o>(</span><span class=n>action</span><span class=o>,</span> <span class=n>acc</span><span class=o>);</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
 
-    <span style=color:#204a87;font-weight:700>public</span> <span style=color:#000>S</span> <span style=color:#000>next</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>acc</span> <span style=color:#ce5c00;font-weight:700>==</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>nextService</span><span style=color:#ce5c00;font-weight:700>();</span>
-        <span style=color:#ce5c00;font-weight:700>}</span> <span style=color:#204a87;font-weight:700>else</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#000>PrivilegedAction</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>S</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>action</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>PrivilegedAction</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>S</span><span style=color:#ce5c00;font-weight:700>&gt;()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-                <span style=color:#204a87;font-weight:700>public</span> <span style=color:#000>S</span> <span style=color:#000>run</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span> <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>nextService</span><span style=color:#ce5c00;font-weight:700>();</span> <span style=color:#ce5c00;font-weight:700>}</span>
-            <span style=color:#ce5c00;font-weight:700>};</span>
-            <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>AccessController</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>doPrivileged</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>action</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>acc</span><span style=color:#ce5c00;font-weight:700>);</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
+    <span class=kd>public</span> <span class=n>S</span> <span class=nf>next</span><span class=o>()</span> <span class=o>{</span>
+        <span class=k>if</span> <span class=o>(</span><span class=n>acc</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>return</span> <span class=n>nextService</span><span class=o>();</span>
+        <span class=o>}</span> <span class=k>else</span> <span class=o>{</span>
+            <span class=n>PrivilegedAction</span><span class=o>&lt;</span><span class=n>S</span><span class=o>&gt;</span> <span class=n>action</span> <span class=o>=</span> <span class=k>new</span> <span class=n>PrivilegedAction</span><span class=o>&lt;</span><span class=n>S</span><span class=o>&gt;()</span> <span class=o>{</span>
+                <span class=kd>public</span> <span class=n>S</span> <span class=nf>run</span><span class=o>()</span> <span class=o>{</span> <span class=k>return</span> <span class=n>nextService</span><span class=o>();</span> <span class=o>}</span>
+            <span class=o>};</span>
+            <span class=k>return</span> <span class=n>AccessController</span><span class=o>.</span><span class=na>doPrivileged</span><span class=o>(</span><span class=n>action</span><span class=o>,</span> <span class=n>acc</span><span class=o>);</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
 
-    <span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>void</span> <span style=color:#000>remove</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#8f5902;font-style:italic>// 不支持 remove 操作
-</span><span style=color:#8f5902;font-style:italic></span>        <span style=color:#204a87;font-weight:700>throw</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>UnsupportedOperationException</span><span style=color:#ce5c00;font-weight:700>();</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>remove</span><span class=o>()</span> <span class=o>{</span>
+        <span class=c1>// 不支持 remove 操作
+</span><span class=c1></span>        <span class=k>throw</span> <span class=k>new</span> <span class=n>UnsupportedOperationException</span><span class=o>();</span>
+    <span class=o>}</span>
 
-<span style=color:#ce5c00;font-weight:700>}</span>
-</code></pre></div><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#204a87;font-weight:700>public</span> <span style=color:#000>Iterator</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>S</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>iterator</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-    <span style=color:#204a87;font-weight:700>return</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>Iterator</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>S</span><span style=color:#ce5c00;font-weight:700>&gt;()</span> <span style=color:#ce5c00;font-weight:700>{</span>
+<span class=o>}</span>
+</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=n>Iterator</span><span class=o>&lt;</span><span class=n>S</span><span class=o>&gt;</span> <span class=nf>iterator</span><span class=o>()</span> <span class=o>{</span>
+    <span class=k>return</span> <span class=k>new</span> <span class=n>Iterator</span><span class=o>&lt;</span><span class=n>S</span><span class=o>&gt;()</span> <span class=o>{</span>
 		
-        <span style=color:#000>Iterator</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>Map</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>Entry</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>String</span><span style=color:#ce5c00;font-weight:700>,</span><span style=color:#000>S</span><span style=color:#ce5c00;font-weight:700>&gt;&gt;</span> <span style=color:#000>knownProviders</span>
-            <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>providers</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>entrySet</span><span style=color:#ce5c00;font-weight:700>().</span><span style=color:#c4a000>iterator</span><span style=color:#ce5c00;font-weight:700>();</span>
+        <span class=n>Iterator</span><span class=o>&lt;</span><span class=n>Map</span><span class=o>.</span><span class=na>Entry</span><span class=o>&lt;</span><span class=n>String</span><span class=o>,</span><span class=n>S</span><span class=o>&gt;&gt;</span> <span class=n>knownProviders</span>
+            <span class=o>=</span> <span class=n>providers</span><span class=o>.</span><span class=na>entrySet</span><span class=o>().</span><span class=na>iterator</span><span class=o>();</span>
 
-        <span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>boolean</span> <span style=color:#000>hasNext</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#8f5902;font-style:italic>// 先遍历providers，再懒加载
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>knownProviders</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>hasNext</span><span style=color:#ce5c00;font-weight:700>())</span>
-                <span style=color:#204a87;font-weight:700>return</span> <span style=color:#204a87;font-weight:700>true</span><span style=color:#ce5c00;font-weight:700>;</span>
-            <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>lookupIterator</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>hasNext</span><span style=color:#ce5c00;font-weight:700>();</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
+        <span class=kd>public</span> <span class=kt>boolean</span> <span class=nf>hasNext</span><span class=o>()</span> <span class=o>{</span>
+            <span class=c1>// 先遍历providers，再懒加载
+</span><span class=c1></span>            <span class=k>if</span> <span class=o>(</span><span class=n>knownProviders</span><span class=o>.</span><span class=na>hasNext</span><span class=o>())</span>
+                <span class=k>return</span> <span class=kc>true</span><span class=o>;</span>
+            <span class=k>return</span> <span class=n>lookupIterator</span><span class=o>.</span><span class=na>hasNext</span><span class=o>();</span>
+        <span class=o>}</span>
 
-        <span style=color:#204a87;font-weight:700>public</span> <span style=color:#000>S</span> <span style=color:#000>next</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#8f5902;font-style:italic>// 先遍历providers，再懒加载
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>knownProviders</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>hasNext</span><span style=color:#ce5c00;font-weight:700>())</span>
-                <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>knownProviders</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>next</span><span style=color:#ce5c00;font-weight:700>().</span><span style=color:#c4a000>getValue</span><span style=color:#ce5c00;font-weight:700>();</span>
-            <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>lookupIterator</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>next</span><span style=color:#ce5c00;font-weight:700>();</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
+        <span class=kd>public</span> <span class=n>S</span> <span class=nf>next</span><span class=o>()</span> <span class=o>{</span>
+            <span class=c1>// 先遍历providers，再懒加载
+</span><span class=c1></span>            <span class=k>if</span> <span class=o>(</span><span class=n>knownProviders</span><span class=o>.</span><span class=na>hasNext</span><span class=o>())</span>
+                <span class=k>return</span> <span class=n>knownProviders</span><span class=o>.</span><span class=na>next</span><span class=o>().</span><span class=na>getValue</span><span class=o>();</span>
+            <span class=k>return</span> <span class=n>lookupIterator</span><span class=o>.</span><span class=na>next</span><span class=o>();</span>
+        <span class=o>}</span>
 
-        <span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>void</span> <span style=color:#000>remove</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#8f5902;font-style:italic>// 不支持remove操作
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#204a87;font-weight:700>throw</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>UnsupportedOperationException</span><span style=color:#ce5c00;font-weight:700>();</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
+        <span class=kd>public</span> <span class=kt>void</span> <span class=nf>remove</span><span class=o>()</span> <span class=o>{</span>
+            <span class=c1>// 不支持remove操作
+</span><span class=c1></span>            <span class=k>throw</span> <span class=k>new</span> <span class=n>UnsupportedOperationException</span><span class=o>();</span>
+        <span class=o>}</span>
 
-    <span style=color:#ce5c00;font-weight:700>};</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
+    <span class=o>};</span>
+<span class=o>}</span>
 </code></pre></div><hr>
 <h3 id=serviceloader-流程>ServiceLoader 流程</h3>
 <ol>
@@ -298,151 +303,151 @@ com.vczyh.spi.Phone
 <hr>
 <h3 id=java-spi-在-jdbc-中的应用>Java SPI 在 JDBC 中的应用</h3>
 <p>Java 提供了驱动标准接口 <code>java.sql.Driver</code>，驱动的具体实现的一个例子如下：</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>class</span> <span style=color:#000>CustomDriver</span> <span style=color:#204a87;font-weight:700>implements</span> <span style=color:#000>Driver</span> <span style=color:#ce5c00;font-weight:700>{</span>
-    <span style=color:#5c35cc;font-weight:700>@Override</span>
-    <span style=color:#204a87;font-weight:700>public</span> <span style=color:#000>Connection</span> <span style=color:#000>connect</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>String</span> <span style=color:#000>url</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>Properties</span> <span style=color:#000>info</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#204a87;font-weight:700>throws</span> <span style=color:#000>SQLException</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#8f5902;font-style:italic>// implement
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#ce5c00;font-weight:700>}</span>
-	<span style=color:#8f5902;font-style:italic>// other methods
-</span><span style=color:#8f5902;font-style:italic></span><span style=color:#ce5c00;font-weight:700>}</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>CustomDriver</span> <span class=kd>implements</span> <span class=n>Driver</span> <span class=o>{</span>
+    <span class=nd>@Override</span>
+    <span class=kd>public</span> <span class=n>Connection</span> <span class=nf>connect</span><span class=o>(</span><span class=n>String</span> <span class=n>url</span><span class=o>,</span> <span class=n>Properties</span> <span class=n>info</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>SQLException</span> <span class=o>{</span>
+        <span class=c1>// implement
+</span><span class=c1></span>    <span class=o>}</span>
+	<span class=c1>// other methods
+</span><span class=c1></span><span class=o>}</span>
 </code></pre></div><p>可以这样使用驱动。</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#000>CustomDriver</span> <span style=color:#000>driver</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>CustomDriver</span><span style=color:#ce5c00;font-weight:700>();</span>
-<span style=color:#000>Properties</span> <span style=color:#000>props</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>Properties</span><span style=color:#ce5c00;font-weight:700>();</span>
-<span style=color:#000>props</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>setProperty</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;username&#34;</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#4e9a06>&#34;root&#34;</span><span style=color:#ce5c00;font-weight:700>);</span>
-<span style=color:#000>props</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>setProperty</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;password&#34;</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#4e9a06>&#34;root&#34;</span><span style=color:#ce5c00;font-weight:700>);</span>
-<span style=color:#000>Connection</span> <span style=color:#000>con</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>driver</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>connect</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;jdbc:mysql://localhost:3306/test&#34;</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>props</span><span style=color:#ce5c00;font-weight:700>);</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>CustomDriver</span> <span class=n>driver</span> <span class=o>=</span> <span class=k>new</span> <span class=n>CustomDriver</span><span class=o>();</span>
+<span class=n>Properties</span> <span class=n>props</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Properties</span><span class=o>();</span>
+<span class=n>props</span><span class=o>.</span><span class=na>setProperty</span><span class=o>(</span><span class=s>&#34;username&#34;</span><span class=o>,</span> <span class=s>&#34;root&#34;</span><span class=o>);</span>
+<span class=n>props</span><span class=o>.</span><span class=na>setProperty</span><span class=o>(</span><span class=s>&#34;password&#34;</span><span class=o>,</span> <span class=s>&#34;root&#34;</span><span class=o>);</span>
+<span class=n>Connection</span> <span class=n>con</span> <span class=o>=</span> <span class=n>driver</span><span class=o>.</span><span class=na>connect</span><span class=o>(</span><span class=s>&#34;jdbc:mysql://localhost:3306/test&#34;</span><span class=o>,</span> <span class=n>props</span><span class=o>);</span>
 </code></pre></div><p>如果我们想实现驱动具体实现和代码解耦，可以通过Java SPI，首先编写SPI配置文件 <code>META-INF/services/java.sql.Driver</code>：</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback>com.vczyh.spi.CustomDriver
-</code></pre></div><p>接下来使用该驱动。</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#000>ServiceLoader</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>Driver</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>loader</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>ServiceLoader</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>load</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>Driver</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>class</span><span style=color:#ce5c00;font-weight:700>);</span>
-<span style=color:#000>Iterator</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>Driver</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>iterator</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>loader</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>iterator</span><span style=color:#ce5c00;font-weight:700>();</span>
-<span style=color:#204a87;font-weight:700>while</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>iterator</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>hasNext</span><span style=color:#ce5c00;font-weight:700>())</span> <span style=color:#ce5c00;font-weight:700>{</span>
-    <span style=color:#000>Driver</span> <span style=color:#000>driver</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>iterator</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>next</span><span style=color:#ce5c00;font-weight:700>();</span>
-    <span style=color:#000>Properties</span> <span style=color:#000>props</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>Properties</span><span style=color:#ce5c00;font-weight:700>();</span>
-    <span style=color:#000>props</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>setProperty</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;username&#34;</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#4e9a06>&#34;root&#34;</span><span style=color:#ce5c00;font-weight:700>);</span>
-    <span style=color:#000>props</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>setProperty</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;password&#34;</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#4e9a06>&#34;root&#34;</span><span style=color:#ce5c00;font-weight:700>);</span>
-    <span style=color:#000>Connection</span> <span style=color:#000>con</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>driver</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>connect</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;jdbc:mysql://localhost:3306/test&#34;</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>props</span><span style=color:#ce5c00;font-weight:700>);</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
+<pre><code>com.vczyh.spi.CustomDriver
+</code></pre><p>接下来使用该驱动。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>ServiceLoader</span><span class=o>&lt;</span><span class=n>Driver</span><span class=o>&gt;</span> <span class=n>loader</span> <span class=o>=</span> <span class=n>ServiceLoader</span><span class=o>.</span><span class=na>load</span><span class=o>(</span><span class=n>Driver</span><span class=o>.</span><span class=na>class</span><span class=o>);</span>
+<span class=n>Iterator</span><span class=o>&lt;</span><span class=n>Driver</span><span class=o>&gt;</span> <span class=n>iterator</span> <span class=o>=</span> <span class=n>loader</span><span class=o>.</span><span class=na>iterator</span><span class=o>();</span>
+<span class=k>while</span> <span class=o>(</span><span class=n>iterator</span><span class=o>.</span><span class=na>hasNext</span><span class=o>())</span> <span class=o>{</span>
+    <span class=n>Driver</span> <span class=n>driver</span> <span class=o>=</span> <span class=n>iterator</span><span class=o>.</span><span class=na>next</span><span class=o>();</span>
+    <span class=n>Properties</span> <span class=n>props</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Properties</span><span class=o>();</span>
+    <span class=n>props</span><span class=o>.</span><span class=na>setProperty</span><span class=o>(</span><span class=s>&#34;username&#34;</span><span class=o>,</span> <span class=s>&#34;root&#34;</span><span class=o>);</span>
+    <span class=n>props</span><span class=o>.</span><span class=na>setProperty</span><span class=o>(</span><span class=s>&#34;password&#34;</span><span class=o>,</span> <span class=s>&#34;root&#34;</span><span class=o>);</span>
+    <span class=n>Connection</span> <span class=n>con</span> <span class=o>=</span> <span class=n>driver</span><span class=o>.</span><span class=na>connect</span><span class=o>(</span><span class=s>&#34;jdbc:mysql://localhost:3306/test&#34;</span><span class=o>,</span> <span class=n>props</span><span class=o>);</span>
+<span class=o>}</span>
 </code></pre></div><p>这样就实现了通过修改配置文件达到加载不同驱动的目的，下面再看看平时我们如何连接数据库的。</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#5c35cc;font-weight:700>@Test</span>
-<span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>void</span> <span style=color:#000>connect</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#204a87;font-weight:700>throws</span> <span style=color:#000>SQLException</span> <span style=color:#ce5c00;font-weight:700>{</span>
-    <span style=color:#000>String</span> <span style=color:#000>url</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#4e9a06>&#34;jdbc:mysql://192.168.22.130:3306/test&#34;</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#000>String</span> <span style=color:#000>username</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#4e9a06>&#34;vczyh&#34;</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#000>String</span> <span style=color:#000>password</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#4e9a06>&#34;vczyh&#34;</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#000>Connection</span> <span style=color:#000>con</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>DriverManager</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getConnection</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>url</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>username</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>password</span><span style=color:#ce5c00;font-weight:700>);</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Test</span>
+<span class=kd>public</span> <span class=kt>void</span> <span class=nf>connect</span><span class=o>()</span> <span class=kd>throws</span> <span class=n>SQLException</span> <span class=o>{</span>
+    <span class=n>String</span> <span class=n>url</span> <span class=o>=</span> <span class=s>&#34;jdbc:mysql://192.168.22.130:3306/test&#34;</span><span class=o>;</span>
+    <span class=n>String</span> <span class=n>username</span> <span class=o>=</span> <span class=s>&#34;vczyh&#34;</span><span class=o>;</span>
+    <span class=n>String</span> <span class=n>password</span> <span class=o>=</span> <span class=s>&#34;vczyh&#34;</span><span class=o>;</span>
+    <span class=n>Connection</span> <span class=n>con</span> <span class=o>=</span> <span class=n>DriverManager</span><span class=o>.</span><span class=na>getConnection</span><span class=o>(</span><span class=n>url</span><span class=o>,</span> <span class=n>username</span><span class=o>,</span> <span class=n>password</span><span class=o>);</span>
+<span class=o>}</span>
 </code></pre></div><p><code>DriverManager</code> 做了以下工作：</p>
 <ol>
 <li>获取所有驱动。</li>
 <li>依次调用驱动的 <code>connect()</code>方法，获取连接成功的驱动。</li>
 </ol>
 <p>加载 <code>DriverManager</code> 时会执行 static 代码块：</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#204a87;font-weight:700>static</span> <span style=color:#ce5c00;font-weight:700>{</span>
-    <span style=color:#000>loadInitialDrivers</span><span style=color:#ce5c00;font-weight:700>();</span>
-    <span style=color:#000>println</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;JDBC DriverManager initialized&#34;</span><span style=color:#ce5c00;font-weight:700>);</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
-</code></pre></div><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#204a87;font-weight:700>private</span> <span style=color:#204a87;font-weight:700>static</span> <span style=color:#204a87;font-weight:700>void</span> <span style=color:#000>loadInitialDrivers</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-    <span style=color:#000>String</span> <span style=color:#000>drivers</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#204a87;font-weight:700>try</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#000>drivers</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>AccessController</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>doPrivileged</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>PrivilegedAction</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>String</span><span style=color:#ce5c00;font-weight:700>&gt;()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#204a87;font-weight:700>public</span> <span style=color:#000>String</span> <span style=color:#000>run</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-                <span style=color:#8f5902;font-style:italic>// 获取通过环境变量设置的驱动
-</span><span style=color:#8f5902;font-style:italic></span>                <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>System</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getProperty</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;jdbc.drivers&#34;</span><span style=color:#ce5c00;font-weight:700>);</span>
-            <span style=color:#ce5c00;font-weight:700>}</span>
-        <span style=color:#ce5c00;font-weight:700>});</span>
-    <span style=color:#ce5c00;font-weight:700>}</span> <span style=color:#204a87;font-weight:700>catch</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>Exception</span> <span style=color:#000>ex</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#000>drivers</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
-	<span style=color:#8f5902;font-style:italic>// 获取并实例化通过SPI设置的驱动
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#000>AccessController</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>doPrivileged</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>PrivilegedAction</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>Void</span><span style=color:#ce5c00;font-weight:700>&gt;()</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#204a87;font-weight:700>public</span> <span style=color:#000>Void</span> <span style=color:#000>run</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>{</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>static</span> <span class=o>{</span>
+    <span class=n>loadInitialDrivers</span><span class=o>();</span>
+    <span class=n>println</span><span class=o>(</span><span class=s>&#34;JDBC DriverManager initialized&#34;</span><span class=o>);</span>
+<span class=o>}</span>
+</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>private</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>loadInitialDrivers</span><span class=o>()</span> <span class=o>{</span>
+    <span class=n>String</span> <span class=n>drivers</span><span class=o>;</span>
+    <span class=k>try</span> <span class=o>{</span>
+        <span class=n>drivers</span> <span class=o>=</span> <span class=n>AccessController</span><span class=o>.</span><span class=na>doPrivileged</span><span class=o>(</span><span class=k>new</span> <span class=n>PrivilegedAction</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;()</span> <span class=o>{</span>
+            <span class=kd>public</span> <span class=n>String</span> <span class=nf>run</span><span class=o>()</span> <span class=o>{</span>
+                <span class=c1>// 获取通过环境变量设置的驱动
+</span><span class=c1></span>                <span class=k>return</span> <span class=n>System</span><span class=o>.</span><span class=na>getProperty</span><span class=o>(</span><span class=s>&#34;jdbc.drivers&#34;</span><span class=o>);</span>
+            <span class=o>}</span>
+        <span class=o>});</span>
+    <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>Exception</span> <span class=n>ex</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>drivers</span> <span class=o>=</span> <span class=kc>null</span><span class=o>;</span>
+    <span class=o>}</span>
+	<span class=c1>// 获取并实例化通过SPI设置的驱动
+</span><span class=c1></span>    <span class=n>AccessController</span><span class=o>.</span><span class=na>doPrivileged</span><span class=o>(</span><span class=k>new</span> <span class=n>PrivilegedAction</span><span class=o>&lt;</span><span class=n>Void</span><span class=o>&gt;()</span> <span class=o>{</span>
+        <span class=kd>public</span> <span class=n>Void</span> <span class=nf>run</span><span class=o>()</span> <span class=o>{</span>
 
-            <span style=color:#000>ServiceLoader</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>Driver</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>loadedDrivers</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>ServiceLoader</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>load</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>Driver</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>class</span><span style=color:#ce5c00;font-weight:700>);</span>
-            <span style=color:#000>Iterator</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>Driver</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>driversIterator</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>loadedDrivers</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>iterator</span><span style=color:#ce5c00;font-weight:700>();</span>
-            <span style=color:#204a87;font-weight:700>try</span><span style=color:#ce5c00;font-weight:700>{</span>
-                <span style=color:#204a87;font-weight:700>while</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>driversIterator</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>hasNext</span><span style=color:#ce5c00;font-weight:700>())</span> <span style=color:#ce5c00;font-weight:700>{</span>
-                    <span style=color:#000>driversIterator</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>next</span><span style=color:#ce5c00;font-weight:700>();</span>
-                <span style=color:#ce5c00;font-weight:700>}</span>
-            <span style=color:#ce5c00;font-weight:700>}</span> <span style=color:#204a87;font-weight:700>catch</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>Throwable</span> <span style=color:#000>t</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#8f5902;font-style:italic>// Do nothing
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#ce5c00;font-weight:700>}</span>
-            <span style=color:#204a87;font-weight:700>return</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>;</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
-    <span style=color:#ce5c00;font-weight:700>});</span>
+            <span class=n>ServiceLoader</span><span class=o>&lt;</span><span class=n>Driver</span><span class=o>&gt;</span> <span class=n>loadedDrivers</span> <span class=o>=</span> <span class=n>ServiceLoader</span><span class=o>.</span><span class=na>load</span><span class=o>(</span><span class=n>Driver</span><span class=o>.</span><span class=na>class</span><span class=o>);</span>
+            <span class=n>Iterator</span><span class=o>&lt;</span><span class=n>Driver</span><span class=o>&gt;</span> <span class=n>driversIterator</span> <span class=o>=</span> <span class=n>loadedDrivers</span><span class=o>.</span><span class=na>iterator</span><span class=o>();</span>
+            <span class=k>try</span><span class=o>{</span>
+                <span class=k>while</span><span class=o>(</span><span class=n>driversIterator</span><span class=o>.</span><span class=na>hasNext</span><span class=o>())</span> <span class=o>{</span>
+                    <span class=n>driversIterator</span><span class=o>.</span><span class=na>next</span><span class=o>();</span>
+                <span class=o>}</span>
+            <span class=o>}</span> <span class=k>catch</span><span class=o>(</span><span class=n>Throwable</span> <span class=n>t</span><span class=o>)</span> <span class=o>{</span>
+            <span class=c1>// Do nothing
+</span><span class=c1></span>            <span class=o>}</span>
+            <span class=k>return</span> <span class=kc>null</span><span class=o>;</span>
+        <span class=o>}</span>
+    <span class=o>});</span>
 
-    <span style=color:#000>println</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;DriverManager.initialize: jdbc.drivers = &#34;</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#000>drivers</span><span style=color:#ce5c00;font-weight:700>);</span>
+    <span class=n>println</span><span class=o>(</span><span class=s>&#34;DriverManager.initialize: jdbc.drivers = &#34;</span> <span class=o>+</span> <span class=n>drivers</span><span class=o>);</span>
 
-    <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>drivers</span> <span style=color:#ce5c00;font-weight:700>==</span> <span style=color:#204a87;font-weight:700>null</span> <span style=color:#ce5c00;font-weight:700>||</span> <span style=color:#000>drivers</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>equals</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;&#34;</span><span style=color:#ce5c00;font-weight:700>))</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#204a87;font-weight:700>return</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
-    <span style=color:#8f5902;font-style:italic>// 通过环境变量设置的多个驱动通过:分割
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#000>String</span><span style=color:#ce5c00;font-weight:700>[]</span> <span style=color:#000>driversList</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>drivers</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>split</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;:&#34;</span><span style=color:#ce5c00;font-weight:700>);</span>
-    <span style=color:#000>println</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;number of Drivers:&#34;</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#000>driversList</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>length</span><span style=color:#ce5c00;font-weight:700>);</span>
-    <span style=color:#204a87;font-weight:700>for</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>String</span> <span style=color:#000>aDriver</span> <span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#000>driversList</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#204a87;font-weight:700>try</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#000>println</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;DriverManager.Initialize: loading &#34;</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#000>aDriver</span><span style=color:#ce5c00;font-weight:700>);</span>
-            <span style=color:#8f5902;font-style:italic>// 加载驱动，并初始化（执行static代码）
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#000>Class</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>forName</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>aDriver</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#204a87;font-weight:700>true</span><span style=color:#ce5c00;font-weight:700>,</span>
-                    <span style=color:#000>ClassLoader</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getSystemClassLoader</span><span style=color:#ce5c00;font-weight:700>());</span>
-        <span style=color:#ce5c00;font-weight:700>}</span> <span style=color:#204a87;font-weight:700>catch</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>Exception</span> <span style=color:#000>ex</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#000>println</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;DriverManager.Initialize: load failed: &#34;</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#000>ex</span><span style=color:#ce5c00;font-weight:700>);</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>drivers</span> <span class=o>==</span> <span class=kc>null</span> <span class=o>||</span> <span class=n>drivers</span><span class=o>.</span><span class=na>equals</span><span class=o>(</span><span class=s>&#34;&#34;</span><span class=o>))</span> <span class=o>{</span>
+        <span class=k>return</span><span class=o>;</span>
+    <span class=o>}</span>
+    <span class=c1>// 通过环境变量设置的多个驱动通过:分割
+</span><span class=c1></span>    <span class=n>String</span><span class=o>[]</span> <span class=n>driversList</span> <span class=o>=</span> <span class=n>drivers</span><span class=o>.</span><span class=na>split</span><span class=o>(</span><span class=s>&#34;:&#34;</span><span class=o>);</span>
+    <span class=n>println</span><span class=o>(</span><span class=s>&#34;number of Drivers:&#34;</span> <span class=o>+</span> <span class=n>driversList</span><span class=o>.</span><span class=na>length</span><span class=o>);</span>
+    <span class=k>for</span> <span class=o>(</span><span class=n>String</span> <span class=n>aDriver</span> <span class=o>:</span> <span class=n>driversList</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=n>println</span><span class=o>(</span><span class=s>&#34;DriverManager.Initialize: loading &#34;</span> <span class=o>+</span> <span class=n>aDriver</span><span class=o>);</span>
+            <span class=c1>// 加载驱动，并初始化（执行static代码）
+</span><span class=c1></span>            <span class=n>Class</span><span class=o>.</span><span class=na>forName</span><span class=o>(</span><span class=n>aDriver</span><span class=o>,</span> <span class=kc>true</span><span class=o>,</span>
+                    <span class=n>ClassLoader</span><span class=o>.</span><span class=na>getSystemClassLoader</span><span class=o>());</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>Exception</span> <span class=n>ex</span><span class=o>)</span> <span class=o>{</span>
+            <span class=n>println</span><span class=o>(</span><span class=s>&#34;DriverManager.Initialize: load failed: &#34;</span> <span class=o>+</span> <span class=n>ex</span><span class=o>);</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+<span class=o>}</span>
 </code></pre></div><p><code>loadInitialDrivers()</code> 方法执行完后，通过环境变量设置的驱动全部初始化，通过SPI设置的驱动全部实例化（当然，在实例化之前已经初始化）。再来看看 <code>DriverManager.getConnection()</code> 方法，这里只截取了关键代码。</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#8f5902;font-style:italic>// private final static CopyOnWriteArrayList&lt;DriverInfo&gt; registeredDrivers = new CopyOnWriteArrayList&lt;&gt;();
-</span><span style=color:#8f5902;font-style:italic>// registeredDrivers 存放驱动实例
-</span><span style=color:#8f5902;font-style:italic></span><span style=color:#204a87;font-weight:700>for</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>DriverInfo</span> <span style=color:#000>aDriver</span> <span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#000>registeredDrivers</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-    <span style=color:#8f5902;font-style:italic>// If the caller does not have permission to load the driver then
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#8f5902;font-style:italic>// skip it.
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#204a87;font-weight:700>if</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>isDriverAllowed</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>aDriver</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>driver</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>callerCL</span><span style=color:#ce5c00;font-weight:700>))</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#204a87;font-weight:700>try</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#000>println</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;    trying &#34;</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#000>aDriver</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>driver</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getClass</span><span style=color:#ce5c00;font-weight:700>().</span><span style=color:#c4a000>getName</span><span style=color:#ce5c00;font-weight:700>());</span>
-            <span style=color:#8f5902;font-style:italic>// 尝试建立连接
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#000>Connection</span> <span style=color:#000>con</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>aDriver</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>driver</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>connect</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>url</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>info</span><span style=color:#ce5c00;font-weight:700>);</span>
-            <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>con</span> <span style=color:#ce5c00;font-weight:700>!=</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-                <span style=color:#8f5902;font-style:italic>// 连接成功
-</span><span style=color:#8f5902;font-style:italic></span>                <span style=color:#000>println</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;getConnection returning &#34;</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#000>aDriver</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>driver</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getClass</span><span style=color:#ce5c00;font-weight:700>().</span><span style=color:#c4a000>getName</span><span style=color:#ce5c00;font-weight:700>());</span>
-                <span style=color:#204a87;font-weight:700>return</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>con</span><span style=color:#ce5c00;font-weight:700>);</span>
-            <span style=color:#ce5c00;font-weight:700>}</span>
-        <span style=color:#ce5c00;font-weight:700>}</span> <span style=color:#204a87;font-weight:700>catch</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>SQLException</span> <span style=color:#000>ex</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#8f5902;font-style:italic>// 连接失败
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>reason</span> <span style=color:#ce5c00;font-weight:700>==</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-                <span style=color:#000>reason</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>ex</span><span style=color:#ce5c00;font-weight:700>;</span>
-            <span style=color:#ce5c00;font-weight:700>}</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=c1>// private final static CopyOnWriteArrayList&lt;DriverInfo&gt; registeredDrivers = new CopyOnWriteArrayList&lt;&gt;();
+</span><span class=c1>// registeredDrivers 存放驱动实例
+</span><span class=c1></span><span class=k>for</span><span class=o>(</span><span class=n>DriverInfo</span> <span class=n>aDriver</span> <span class=o>:</span> <span class=n>registeredDrivers</span><span class=o>)</span> <span class=o>{</span>
+    <span class=c1>// If the caller does not have permission to load the driver then
+</span><span class=c1></span>    <span class=c1>// skip it.
+</span><span class=c1></span>    <span class=k>if</span><span class=o>(</span><span class=n>isDriverAllowed</span><span class=o>(</span><span class=n>aDriver</span><span class=o>.</span><span class=na>driver</span><span class=o>,</span> <span class=n>callerCL</span><span class=o>))</span> <span class=o>{</span>
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=n>println</span><span class=o>(</span><span class=s>&#34;    trying &#34;</span> <span class=o>+</span> <span class=n>aDriver</span><span class=o>.</span><span class=na>driver</span><span class=o>.</span><span class=na>getClass</span><span class=o>().</span><span class=na>getName</span><span class=o>());</span>
+            <span class=c1>// 尝试建立连接
+</span><span class=c1></span>            <span class=n>Connection</span> <span class=n>con</span> <span class=o>=</span> <span class=n>aDriver</span><span class=o>.</span><span class=na>driver</span><span class=o>.</span><span class=na>connect</span><span class=o>(</span><span class=n>url</span><span class=o>,</span> <span class=n>info</span><span class=o>);</span>
+            <span class=k>if</span> <span class=o>(</span><span class=n>con</span> <span class=o>!=</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+                <span class=c1>// 连接成功
+</span><span class=c1></span>                <span class=n>println</span><span class=o>(</span><span class=s>&#34;getConnection returning &#34;</span> <span class=o>+</span> <span class=n>aDriver</span><span class=o>.</span><span class=na>driver</span><span class=o>.</span><span class=na>getClass</span><span class=o>().</span><span class=na>getName</span><span class=o>());</span>
+                <span class=k>return</span> <span class=o>(</span><span class=n>con</span><span class=o>);</span>
+            <span class=o>}</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>SQLException</span> <span class=n>ex</span><span class=o>)</span> <span class=o>{</span>
+            <span class=c1>// 连接失败
+</span><span class=c1></span>            <span class=k>if</span> <span class=o>(</span><span class=n>reason</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+                <span class=n>reason</span> <span class=o>=</span> <span class=n>ex</span><span class=o>;</span>
+            <span class=o>}</span>
+        <span class=o>}</span>
 
-    <span style=color:#ce5c00;font-weight:700>}</span> <span style=color:#204a87;font-weight:700>else</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#000>println</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;    skipping: &#34;</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#000>aDriver</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getClass</span><span style=color:#ce5c00;font-weight:700>().</span><span style=color:#c4a000>getName</span><span style=color:#ce5c00;font-weight:700>());</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
+    <span class=o>}</span> <span class=k>else</span> <span class=o>{</span>
+        <span class=n>println</span><span class=o>(</span><span class=s>&#34;    skipping: &#34;</span> <span class=o>+</span> <span class=n>aDriver</span><span class=o>.</span><span class=na>getClass</span><span class=o>().</span><span class=na>getName</span><span class=o>());</span>
+    <span class=o>}</span>
 
-<span style=color:#ce5c00;font-weight:700>}</span>
+<span class=o>}</span>
 </code></pre></div><p><code>registeredDrivers</code> 中的驱动实例什么时候添加进去的，谁添加进去的。打开 <code>java.sql.Driver</code>，有这么一段注释：</p>
 <blockquote>
 <p>When a Driver class is loaded, it should create an instance of itself and register it with the DriverManager.</p>
 </blockquote>
 <p>要求驱动实现类被加载的时候，实现类应该创建一个自身的实例，并且注册到 <code>DriverManager</code> 中。接下来看看 MySQL 驱动具体代码：</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>class</span> <span style=color:#000>Driver</span> <span style=color:#204a87;font-weight:700>extends</span> <span style=color:#000>NonRegisteringDriver</span> <span style=color:#204a87;font-weight:700>implements</span> <span style=color:#000>java</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>sql</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>Driver</span> <span style=color:#ce5c00;font-weight:700>{</span>
-    <span style=color:#204a87;font-weight:700>static</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#204a87;font-weight:700>try</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#8f5902;font-style:italic>// 关键
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#8f5902;font-style:italic>// 初始化时主动将自身注册到DriverManager中
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#000>java</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>sql</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>DriverManager</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>registerDriver</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>Driver</span><span style=color:#ce5c00;font-weight:700>());</span>
-        <span style=color:#ce5c00;font-weight:700>}</span> <span style=color:#204a87;font-weight:700>catch</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>SQLException</span> <span style=color:#000>E</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#204a87;font-weight:700>throw</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>RuntimeException</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;Can&#39;t register driver!&#34;</span><span style=color:#ce5c00;font-weight:700>);</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Driver</span> <span class=kd>extends</span> <span class=n>NonRegisteringDriver</span> <span class=kd>implements</span> <span class=n>java</span><span class=o>.</span><span class=na>sql</span><span class=o>.</span><span class=na>Driver</span> <span class=o>{</span>
+    <span class=kd>static</span> <span class=o>{</span>
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=c1>// 关键
+</span><span class=c1></span>            <span class=c1>// 初始化时主动将自身注册到DriverManager中
+</span><span class=c1></span>            <span class=n>java</span><span class=o>.</span><span class=na>sql</span><span class=o>.</span><span class=na>DriverManager</span><span class=o>.</span><span class=na>registerDriver</span><span class=o>(</span><span class=k>new</span> <span class=n>Driver</span><span class=o>());</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>SQLException</span> <span class=n>E</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>throw</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=s>&#34;Can&#39;t register driver!&#34;</span><span class=o>);</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
 
-    <span style=color:#8f5902;font-style:italic>/**
-</span><span style=color:#8f5902;font-style:italic>     * Construct a new driver and register it with DriverManager
-</span><span style=color:#8f5902;font-style:italic>     * 
-</span><span style=color:#8f5902;font-style:italic>     * @throws SQLException
-</span><span style=color:#8f5902;font-style:italic>     *             if a database error occurs.
-</span><span style=color:#8f5902;font-style:italic>     */</span>
-    <span style=color:#204a87;font-weight:700>public</span> <span style=color:#000>Driver</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#204a87;font-weight:700>throws</span> <span style=color:#000>SQLException</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#8f5902;font-style:italic>// Required for Class.forName().newInstance()
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#ce5c00;font-weight:700>}</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
+    <span class=cm>/**
+</span><span class=cm>     * Construct a new driver and register it with DriverManager
+</span><span class=cm>     * 
+</span><span class=cm>     * @throws SQLException
+</span><span class=cm>     *             if a database error occurs.
+</span><span class=cm>     */</span>
+    <span class=kd>public</span> <span class=nf>Driver</span><span class=o>()</span> <span class=kd>throws</span> <span class=n>SQLException</span> <span class=o>{</span>
+        <span class=c1>// Required for Class.forName().newInstance()
+</span><span class=c1></span>    <span class=o>}</span>
+<span class=o>}</span>
 </code></pre></div><p>JDBC整个过程：</p>
 <ol>
 <li><code>DriverManager</code> 初始化时执行 <code>loadInitialDrivers()</code> 方法，通过两种方式获取驱动（环境变量和SPI），最终获取的驱动都会初始化。</li>
@@ -451,7 +456,7 @@ com.vczyh.spi.Phone
 </ol>
 <h2 id=spring-spi>Spring SPI</h2>
 <p>Spring SPI 的配置文件为 <code>META-INF/spring.factories</code>，内容为 Properties 格式，例如在 <code>spring-boot-2.3.1.RELEASE.jar</code> 中，部分配置如下：</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-fallback data-lang=fallback># PropertySource Loaders
+<pre><code class=language-properties data-lang=properties># PropertySource Loaders
 org.springframework.boot.env.PropertySourceLoader=\
 org.springframework.boot.env.PropertiesPropertySourceLoader,\
 org.springframework.boot.env.YamlPropertySourceLoader
@@ -471,73 +476,73 @@ org.springframework.boot.context.ContextIdApplicationContextInitializer,\
 org.springframework.boot.context.config.DelegatingApplicationContextInitializer,\
 org.springframework.boot.rsocket.context.RSocketPortInfoApplicationContextInitializer,\
 org.springframework.boot.web.context.ServerPortInfoApplicationContextInitializer
-</code></pre></div><p>Spring Boot 通过 SPI 灵活控制实例，减少了对框架的入侵 。接下来看看实现 SPI 的关键类 <code>org.springframework.core.io.support.SpringFactoriesLoader</code> 。</p>
-<div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#8f5902;font-style:italic>// 获取指定类型的所有实例
-</span><span style=color:#8f5902;font-style:italic></span><span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>static</span> <span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>T</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>List</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>T</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>loadFactories</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>Class</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>T</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>factoryType</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#5c35cc;font-weight:700>@Nullable</span> <span style=color:#000>ClassLoader</span> <span style=color:#000>classLoader</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-    <span style=color:#000>Assert</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>notNull</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>factoryType</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#4e9a06>&#34;&#39;factoryType&#39; must not be null&#34;</span><span style=color:#ce5c00;font-weight:700>);</span>
-    <span style=color:#8f5902;font-style:italic>// 获取ClassLoader
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#000>ClassLoader</span> <span style=color:#000>classLoaderToUse</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>classLoader</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>classLoaderToUse</span> <span style=color:#ce5c00;font-weight:700>==</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#000>classLoaderToUse</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>SpringFactoriesLoader</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>class</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getClassLoader</span><span style=color:#ce5c00;font-weight:700>();</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
-    <span style=color:#8f5902;font-style:italic>// 往下看
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#000>List</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>String</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>factoryImplementationNames</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>loadFactoryNames</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>factoryType</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>classLoaderToUse</span><span style=color:#ce5c00;font-weight:700>);</span>
-    <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>logger</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>isTraceEnabled</span><span style=color:#ce5c00;font-weight:700>())</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#000>logger</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>trace</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;Loaded [&#34;</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#000>factoryType</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getName</span><span style=color:#ce5c00;font-weight:700>()</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#4e9a06>&#34;] names: &#34;</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#000>factoryImplementationNames</span><span style=color:#ce5c00;font-weight:700>);</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
-    <span style=color:#000>List</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>T</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>result</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>ArrayList</span><span style=color:#ce5c00;font-weight:700>&lt;&gt;(</span><span style=color:#000>factoryImplementationNames</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>size</span><span style=color:#ce5c00;font-weight:700>());</span>
-    <span style=color:#204a87;font-weight:700>for</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>String</span> <span style=color:#000>factoryImplementationName</span> <span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#000>factoryImplementationNames</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#8f5902;font-style:italic>// 实例化，然后将实例添加到集合中
-</span><span style=color:#8f5902;font-style:italic></span>        <span style=color:#000>result</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>add</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>instantiateFactory</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>factoryImplementationName</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>factoryType</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>classLoaderToUse</span><span style=color:#ce5c00;font-weight:700>));</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
-    <span style=color:#8f5902;font-style:italic>// 根据优先级排序
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#000>AnnotationAwareOrderComparator</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>sort</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>result</span><span style=color:#ce5c00;font-weight:700>);</span>
-    <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>result</span><span style=color:#ce5c00;font-weight:700>;</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
-</code></pre></div><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#204a87;font-weight:700>public</span> <span style=color:#204a87;font-weight:700>static</span> <span style=color:#000>List</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>String</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>loadFactoryNames</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>Class</span><span style=color:#ce5c00;font-weight:700>&lt;?&gt;</span> <span style=color:#000>factoryType</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#5c35cc;font-weight:700>@Nullable</span> <span style=color:#000>ClassLoader</span> <span style=color:#000>classLoader</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-    <span style=color:#000>String</span> <span style=color:#000>factoryTypeName</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>factoryType</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getName</span><span style=color:#ce5c00;font-weight:700>();</span>
-    <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>loadSpringFactories</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>classLoader</span><span style=color:#ce5c00;font-weight:700>).</span><span style=color:#c4a000>getOrDefault</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>factoryTypeName</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>Collections</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>emptyList</span><span style=color:#ce5c00;font-weight:700>());</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
-</code></pre></div><div class=highlight><pre tabindex=0 style=background-color:#f8f8f8;-moz-tab-size:2;-o-tab-size:2;tab-size:2><code class=language-java data-lang=java><span style=color:#8f5902;font-style:italic>// 获取所有配置
-</span><span style=color:#8f5902;font-style:italic></span><span style=color:#204a87;font-weight:700>private</span> <span style=color:#204a87;font-weight:700>static</span> <span style=color:#000>Map</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>String</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>List</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>String</span><span style=color:#ce5c00;font-weight:700>&gt;&gt;</span> <span style=color:#000>loadSpringFactories</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#5c35cc;font-weight:700>@Nullable</span> <span style=color:#000>ClassLoader</span> <span style=color:#000>classLoader</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-    <span style=color:#8f5902;font-style:italic>// 从缓存中获取
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#000>MultiValueMap</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>String</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>String</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>result</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>cache</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>get</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>classLoader</span><span style=color:#ce5c00;font-weight:700>);</span>
-    <span style=color:#8f5902;font-style:italic>// 当前的ClassLoader扫描过配置文件，直接返回缓存中的数据
-</span><span style=color:#8f5902;font-style:italic></span>    <span style=color:#204a87;font-weight:700>if</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>result</span> <span style=color:#ce5c00;font-weight:700>!=</span> <span style=color:#204a87;font-weight:700>null</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>result</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
+</code></pre><p>Spring Boot 通过 SPI 灵活控制实例，减少了对框架的入侵 。接下来看看实现 SPI 的关键类 <code>org.springframework.core.io.support.SpringFactoriesLoader</code> 。</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=c1>// 获取指定类型的所有实例
+</span><span class=c1></span><span class=kd>public</span> <span class=kd>static</span> <span class=o>&lt;</span><span class=n>T</span><span class=o>&gt;</span> <span class=n>List</span><span class=o>&lt;</span><span class=n>T</span><span class=o>&gt;</span> <span class=nf>loadFactories</span><span class=o>(</span><span class=n>Class</span><span class=o>&lt;</span><span class=n>T</span><span class=o>&gt;</span> <span class=n>factoryType</span><span class=o>,</span> <span class=nd>@Nullable</span> <span class=n>ClassLoader</span> <span class=n>classLoader</span><span class=o>)</span> <span class=o>{</span>
+    <span class=n>Assert</span><span class=o>.</span><span class=na>notNull</span><span class=o>(</span><span class=n>factoryType</span><span class=o>,</span> <span class=s>&#34;&#39;factoryType&#39; must not be null&#34;</span><span class=o>);</span>
+    <span class=c1>// 获取ClassLoader
+</span><span class=c1></span>    <span class=n>ClassLoader</span> <span class=n>classLoaderToUse</span> <span class=o>=</span> <span class=n>classLoader</span><span class=o>;</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>classLoaderToUse</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>classLoaderToUse</span> <span class=o>=</span> <span class=n>SpringFactoriesLoader</span><span class=o>.</span><span class=na>class</span><span class=o>.</span><span class=na>getClassLoader</span><span class=o>();</span>
+    <span class=o>}</span>
+    <span class=c1>// 往下看
+</span><span class=c1></span>    <span class=n>List</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=n>factoryImplementationNames</span> <span class=o>=</span> <span class=n>loadFactoryNames</span><span class=o>(</span><span class=n>factoryType</span><span class=o>,</span> <span class=n>classLoaderToUse</span><span class=o>);</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>logger</span><span class=o>.</span><span class=na>isTraceEnabled</span><span class=o>())</span> <span class=o>{</span>
+        <span class=n>logger</span><span class=o>.</span><span class=na>trace</span><span class=o>(</span><span class=s>&#34;Loaded [&#34;</span> <span class=o>+</span> <span class=n>factoryType</span><span class=o>.</span><span class=na>getName</span><span class=o>()</span> <span class=o>+</span> <span class=s>&#34;] names: &#34;</span> <span class=o>+</span> <span class=n>factoryImplementationNames</span><span class=o>);</span>
+    <span class=o>}</span>
+    <span class=n>List</span><span class=o>&lt;</span><span class=n>T</span><span class=o>&gt;</span> <span class=n>result</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ArrayList</span><span class=o>&lt;&gt;(</span><span class=n>factoryImplementationNames</span><span class=o>.</span><span class=na>size</span><span class=o>());</span>
+    <span class=k>for</span> <span class=o>(</span><span class=n>String</span> <span class=n>factoryImplementationName</span> <span class=o>:</span> <span class=n>factoryImplementationNames</span><span class=o>)</span> <span class=o>{</span>
+        <span class=c1>// 实例化，然后将实例添加到集合中
+</span><span class=c1></span>        <span class=n>result</span><span class=o>.</span><span class=na>add</span><span class=o>(</span><span class=n>instantiateFactory</span><span class=o>(</span><span class=n>factoryImplementationName</span><span class=o>,</span> <span class=n>factoryType</span><span class=o>,</span> <span class=n>classLoaderToUse</span><span class=o>));</span>
+    <span class=o>}</span>
+    <span class=c1>// 根据优先级排序
+</span><span class=c1></span>    <span class=n>AnnotationAwareOrderComparator</span><span class=o>.</span><span class=na>sort</span><span class=o>(</span><span class=n>result</span><span class=o>);</span>
+    <span class=k>return</span> <span class=n>result</span><span class=o>;</span>
+<span class=o>}</span>
+</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=n>List</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;</span> <span class=nf>loadFactoryNames</span><span class=o>(</span><span class=n>Class</span><span class=o>&lt;?&gt;</span> <span class=n>factoryType</span><span class=o>,</span> <span class=nd>@Nullable</span> <span class=n>ClassLoader</span> <span class=n>classLoader</span><span class=o>)</span> <span class=o>{</span>
+    <span class=n>String</span> <span class=n>factoryTypeName</span> <span class=o>=</span> <span class=n>factoryType</span><span class=o>.</span><span class=na>getName</span><span class=o>();</span>
+    <span class=k>return</span> <span class=n>loadSpringFactories</span><span class=o>(</span><span class=n>classLoader</span><span class=o>).</span><span class=na>getOrDefault</span><span class=o>(</span><span class=n>factoryTypeName</span><span class=o>,</span> <span class=n>Collections</span><span class=o>.</span><span class=na>emptyList</span><span class=o>());</span>
+<span class=o>}</span>
+</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=c1>// 获取所有配置
+</span><span class=c1></span><span class=kd>private</span> <span class=kd>static</span> <span class=n>Map</span><span class=o>&lt;</span><span class=n>String</span><span class=o>,</span> <span class=n>List</span><span class=o>&lt;</span><span class=n>String</span><span class=o>&gt;&gt;</span> <span class=nf>loadSpringFactories</span><span class=o>(</span><span class=nd>@Nullable</span> <span class=n>ClassLoader</span> <span class=n>classLoader</span><span class=o>)</span> <span class=o>{</span>
+    <span class=c1>// 从缓存中获取
+</span><span class=c1></span>    <span class=n>MultiValueMap</span><span class=o>&lt;</span><span class=n>String</span><span class=o>,</span> <span class=n>String</span><span class=o>&gt;</span> <span class=n>result</span> <span class=o>=</span> <span class=n>cache</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=n>classLoader</span><span class=o>);</span>
+    <span class=c1>// 当前的ClassLoader扫描过配置文件，直接返回缓存中的数据
+</span><span class=c1></span>    <span class=k>if</span> <span class=o>(</span><span class=n>result</span> <span class=o>!=</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>return</span> <span class=n>result</span><span class=o>;</span>
+    <span class=o>}</span>
 
-    <span style=color:#204a87;font-weight:700>try</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#8f5902;font-style:italic>// 获取所有配置文件
-</span><span style=color:#8f5902;font-style:italic></span>        <span style=color:#000>Enumeration</span><span style=color:#ce5c00;font-weight:700>&lt;</span><span style=color:#000>URL</span><span style=color:#ce5c00;font-weight:700>&gt;</span> <span style=color:#000>urls</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>classLoader</span> <span style=color:#ce5c00;font-weight:700>!=</span> <span style=color:#204a87;font-weight:700>null</span> <span style=color:#ce5c00;font-weight:700>?</span>
-                <span style=color:#000>classLoader</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getResources</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>FACTORIES_RESOURCE_LOCATION</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>:</span>
-                <span style=color:#000>ClassLoader</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getSystemResources</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>FACTORIES_RESOURCE_LOCATION</span><span style=color:#ce5c00;font-weight:700>));</span>
-        <span style=color:#000>result</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>LinkedMultiValueMap</span><span style=color:#ce5c00;font-weight:700>&lt;&gt;();</span>
-        <span style=color:#8f5902;font-style:italic>// 遍历所有配置文件
-</span><span style=color:#8f5902;font-style:italic></span>        <span style=color:#204a87;font-weight:700>while</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>urls</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>hasMoreElements</span><span style=color:#ce5c00;font-weight:700>())</span> <span style=color:#ce5c00;font-weight:700>{</span>
-            <span style=color:#000>URL</span> <span style=color:#000>url</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>urls</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>nextElement</span><span style=color:#ce5c00;font-weight:700>();</span>
-            <span style=color:#000>UrlResource</span> <span style=color:#000>resource</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>UrlResource</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>url</span><span style=color:#ce5c00;font-weight:700>);</span>
-            <span style=color:#8f5902;font-style:italic>// 将配置文件转换为Properties对象，方便操作
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#000>Properties</span> <span style=color:#000>properties</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#000>PropertiesLoaderUtils</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>loadProperties</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>resource</span><span style=color:#ce5c00;font-weight:700>);</span>
-            <span style=color:#8f5902;font-style:italic>// 遍历配置文件中所有的数据
-</span><span style=color:#8f5902;font-style:italic></span>            <span style=color:#204a87;font-weight:700>for</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>Map</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>Entry</span><span style=color:#ce5c00;font-weight:700>&lt;?,</span> <span style=color:#ce5c00;font-weight:700>?&gt;</span> <span style=color:#000>entry</span> <span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#000>properties</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>entrySet</span><span style=color:#ce5c00;font-weight:700>())</span> <span style=color:#ce5c00;font-weight:700>{</span>
-                <span style=color:#8f5902;font-style:italic>// 配置文件中key为接口全限定名，value为一个或多个实现类全限定名（用逗号分隔）
-</span><span style=color:#8f5902;font-style:italic></span>                <span style=color:#000>String</span> <span style=color:#000>factoryTypeName</span> <span style=color:#ce5c00;font-weight:700>=</span> <span style=color:#ce5c00;font-weight:700>((</span><span style=color:#000>String</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#000>entry</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getKey</span><span style=color:#ce5c00;font-weight:700>()).</span><span style=color:#c4a000>trim</span><span style=color:#ce5c00;font-weight:700>();</span>
-                <span style=color:#204a87;font-weight:700>for</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>String</span> <span style=color:#000>factoryImplementationName</span> <span style=color:#ce5c00;font-weight:700>:</span> <span style=color:#000>StringUtils</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>commaDelimitedListToStringArray</span><span style=color:#ce5c00;font-weight:700>((</span><span style=color:#000>String</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#000>entry</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>getValue</span><span style=color:#ce5c00;font-weight:700>()))</span> <span style=color:#ce5c00;font-weight:700>{</span>
-                    <span style=color:#8f5902;font-style:italic>// 一个key对应多个value
-</span><span style=color:#8f5902;font-style:italic></span>                    <span style=color:#000>result</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>add</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>factoryTypeName</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>factoryImplementationName</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>trim</span><span style=color:#ce5c00;font-weight:700>());</span>
-                <span style=color:#ce5c00;font-weight:700>}</span>
-            <span style=color:#ce5c00;font-weight:700>}</span>
-        <span style=color:#ce5c00;font-weight:700>}</span>
-        <span style=color:#8f5902;font-style:italic>// 放入缓存
-</span><span style=color:#8f5902;font-style:italic></span>        <span style=color:#000>cache</span><span style=color:#ce5c00;font-weight:700>.</span><span style=color:#c4a000>put</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>classLoader</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>result</span><span style=color:#ce5c00;font-weight:700>);</span>
-        <span style=color:#204a87;font-weight:700>return</span> <span style=color:#000>result</span><span style=color:#ce5c00;font-weight:700>;</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
-    <span style=color:#204a87;font-weight:700>catch</span> <span style=color:#ce5c00;font-weight:700>(</span><span style=color:#000>IOException</span> <span style=color:#000>ex</span><span style=color:#ce5c00;font-weight:700>)</span> <span style=color:#ce5c00;font-weight:700>{</span>
-        <span style=color:#204a87;font-weight:700>throw</span> <span style=color:#204a87;font-weight:700>new</span> <span style=color:#000>IllegalArgumentException</span><span style=color:#ce5c00;font-weight:700>(</span><span style=color:#4e9a06>&#34;Unable to load factories from location [&#34;</span> <span style=color:#ce5c00;font-weight:700>+</span>
-                <span style=color:#000>FACTORIES_RESOURCE_LOCATION</span> <span style=color:#ce5c00;font-weight:700>+</span> <span style=color:#4e9a06>&#34;]&#34;</span><span style=color:#ce5c00;font-weight:700>,</span> <span style=color:#000>ex</span><span style=color:#ce5c00;font-weight:700>);</span>
-    <span style=color:#ce5c00;font-weight:700>}</span>
-<span style=color:#ce5c00;font-weight:700>}</span>
+    <span class=k>try</span> <span class=o>{</span>
+        <span class=c1>// 获取所有配置文件
+</span><span class=c1></span>        <span class=n>Enumeration</span><span class=o>&lt;</span><span class=n>URL</span><span class=o>&gt;</span> <span class=n>urls</span> <span class=o>=</span> <span class=o>(</span><span class=n>classLoader</span> <span class=o>!=</span> <span class=kc>null</span> <span class=o>?</span>
+                <span class=n>classLoader</span><span class=o>.</span><span class=na>getResources</span><span class=o>(</span><span class=n>FACTORIES_RESOURCE_LOCATION</span><span class=o>)</span> <span class=o>:</span>
+                <span class=n>ClassLoader</span><span class=o>.</span><span class=na>getSystemResources</span><span class=o>(</span><span class=n>FACTORIES_RESOURCE_LOCATION</span><span class=o>));</span>
+        <span class=n>result</span> <span class=o>=</span> <span class=k>new</span> <span class=n>LinkedMultiValueMap</span><span class=o>&lt;&gt;();</span>
+        <span class=c1>// 遍历所有配置文件
+</span><span class=c1></span>        <span class=k>while</span> <span class=o>(</span><span class=n>urls</span><span class=o>.</span><span class=na>hasMoreElements</span><span class=o>())</span> <span class=o>{</span>
+            <span class=n>URL</span> <span class=n>url</span> <span class=o>=</span> <span class=n>urls</span><span class=o>.</span><span class=na>nextElement</span><span class=o>();</span>
+            <span class=n>UrlResource</span> <span class=n>resource</span> <span class=o>=</span> <span class=k>new</span> <span class=n>UrlResource</span><span class=o>(</span><span class=n>url</span><span class=o>);</span>
+            <span class=c1>// 将配置文件转换为Properties对象，方便操作
+</span><span class=c1></span>            <span class=n>Properties</span> <span class=n>properties</span> <span class=o>=</span> <span class=n>PropertiesLoaderUtils</span><span class=o>.</span><span class=na>loadProperties</span><span class=o>(</span><span class=n>resource</span><span class=o>);</span>
+            <span class=c1>// 遍历配置文件中所有的数据
+</span><span class=c1></span>            <span class=k>for</span> <span class=o>(</span><span class=n>Map</span><span class=o>.</span><span class=na>Entry</span><span class=o>&lt;?,</span> <span class=o>?&gt;</span> <span class=n>entry</span> <span class=o>:</span> <span class=n>properties</span><span class=o>.</span><span class=na>entrySet</span><span class=o>())</span> <span class=o>{</span>
+                <span class=c1>// 配置文件中key为接口全限定名，value为一个或多个实现类全限定名（用逗号分隔）
+</span><span class=c1></span>                <span class=n>String</span> <span class=n>factoryTypeName</span> <span class=o>=</span> <span class=o>((</span><span class=n>String</span><span class=o>)</span> <span class=n>entry</span><span class=o>.</span><span class=na>getKey</span><span class=o>()).</span><span class=na>trim</span><span class=o>();</span>
+                <span class=k>for</span> <span class=o>(</span><span class=n>String</span> <span class=n>factoryImplementationName</span> <span class=o>:</span> <span class=n>StringUtils</span><span class=o>.</span><span class=na>commaDelimitedListToStringArray</span><span class=o>((</span><span class=n>String</span><span class=o>)</span> <span class=n>entry</span><span class=o>.</span><span class=na>getValue</span><span class=o>()))</span> <span class=o>{</span>
+                    <span class=c1>// 一个key对应多个value
+</span><span class=c1></span>                    <span class=n>result</span><span class=o>.</span><span class=na>add</span><span class=o>(</span><span class=n>factoryTypeName</span><span class=o>,</span> <span class=n>factoryImplementationName</span><span class=o>.</span><span class=na>trim</span><span class=o>());</span>
+                <span class=o>}</span>
+            <span class=o>}</span>
+        <span class=o>}</span>
+        <span class=c1>// 放入缓存
+</span><span class=c1></span>        <span class=n>cache</span><span class=o>.</span><span class=na>put</span><span class=o>(</span><span class=n>classLoader</span><span class=o>,</span> <span class=n>result</span><span class=o>);</span>
+        <span class=k>return</span> <span class=n>result</span><span class=o>;</span>
+    <span class=o>}</span>
+    <span class=k>catch</span> <span class=o>(</span><span class=n>IOException</span> <span class=n>ex</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>throw</span> <span class=k>new</span> <span class=n>IllegalArgumentException</span><span class=o>(</span><span class=s>&#34;Unable to load factories from location [&#34;</span> <span class=o>+</span>
+                <span class=n>FACTORIES_RESOURCE_LOCATION</span> <span class=o>+</span> <span class=s>&#34;]&#34;</span><span class=o>,</span> <span class=n>ex</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
 </code></pre></div><hr>
 <h3 id=优点>优点</h3>
 <p>对比 Java SPI，Spring SPI 有以下优点：</p>
@@ -545,38 +550,38 @@ org.springframework.boot.web.context.ServerPortInfoApplicationContextInitializer
 <li>相同的 ClassLoader 多次调用只扫描一次配置文件。</li>
 <li>当配置文件有多个实现类时，可以使用 Spring 提供的<code>Order</code> 注解标记优先级。</li>
 </ul>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2020-03-26</span>
+</div></div>
+<div class=post-info-line>
+<div class=post-info-md></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://blog-github.zhangeek.com/posts/java-spi/ data-title="Java SPI" data-hashtags=Java><i class="fab fa-twitter fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://blog-github.zhangeek.com/posts/java-spi/ data-hashtag=Java><i class="fab fa-facebook-square fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://blog-github.zhangeek.com/posts/java-spi/ data-title="Java SPI"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://blog-github.zhangeek.com/posts/java-spi/ data-title="Java SPI"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://blog-github.zhangeek.com/posts/java-spi/ data-title="Java SPI"><i class="fab fa-weibo fa-fw" aria-hidden=true></i></a></span>
 </div>
-<div class="row middle-xs">
-<div class=col-xs-12>
-<div class=post-tags>
-<a href=/tags/java/>
-Java
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/java/>Java</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav>
+<a href=/posts/go-channel/ class=next rel=next title="Go Channel">Go Channel<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div>
+</div>
+</article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.86.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden=true></i> LoveIt</a>
+</div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>xxxx</a></span></div>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw" aria-hidden=true></i>
 </a>
-</div>
-</div>
-</div>
-<div class=row>
-<div class=col-xs-12>
-</div>
-</div>
-<div style=height:50px></div>
-<div class=post-comments>
-<div id=disqus_thread></div>
-<script>window.addEventListener("load",()=>{(function(){var a=document,b=a.createElement("script");b.src="https://vczyh.disqus.com/embed.js",b.setAttribute("data-timestamp",+new Date),(a.head||a.body).appendChild(b)})()})</script>
-<noscript>Please enable JavaScript to view the
-<a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript>
-</div>
-<div class=site-footer>
-<div class=site-footer-item>
-<a href=http://beian.miit.gov.cn/ target=_blank>冀ICP备18009676号-4</a>
-</div>
-<div class=site-footer-item>
-@vczyh
-</div>
-</div>
-</div>
-</div>
-</article>
-<script></script>
-</body>
+</div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:50},comment:{}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
 </html>
