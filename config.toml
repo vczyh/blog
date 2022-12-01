@@ -4,7 +4,7 @@ baseURL = "https://blog-github.zhangeek.com/"
 theme = "LoveIt"
 
 # 网站标题
-title = "我的全新 Hugo 网站"
+title = "Zhangyuheng"
 
 # 网站语言, 仅在这里 CN 大写 ["en", "zh-CN", "fr", "pl", ...]
 languageCode = "zh-CN"
@@ -15,7 +15,7 @@ hasCJKLanguage = true
 
 # 作者配置
 [author]
-email = ""
+email = "zhangeek@qq.com"
 link = ""
 name = "xxxx"
 
@@ -48,6 +48,11 @@ pre = ""
 title = ""
 url = "/categories/"
 weight = 3
+
+[params.footer]
+enable = true
+icp = '<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备18009676号-4</a>'
+
 
 # Hugo 解析文档的配置
 [markup]
