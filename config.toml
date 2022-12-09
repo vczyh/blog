@@ -4,7 +4,7 @@ baseURL = "https://blog-github.zhangeek.com/"
 theme = "LoveIt"
 
 # 网站标题
-title = "Zhangyuheng"
+title = "vczyh"
 
 # 网站语言, 仅在这里 CN 大写 ["en", "zh-CN", "fr", "pl", ...]
 languageCode = "zh-CN"
@@ -17,7 +17,7 @@ hasCJKLanguage = true
 [author]
 email = "zhangeek@qq.com"
 link = ""
-name = "xxxx"
+name = "vczyh"
 
 # 菜单配置
 [menu]
@@ -49,9 +49,36 @@ title = ""
 url = "/categories/"
 weight = 3
 
+[params]
+defaultTheme = "auto"
+
+[params.header.title]
+name = "vczyh"
+typeit = false
+
+
+[params.home.profile]
+subtitle = ""
+typeit = false
+social = true
+
+[params.social]
+GitHub = "vczyh"
+
+
+
+
+
+
+
+
 [params.footer]
+hugo = false
 enable = true
+author = false
 icp = '<a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备18009676号-4</a>'
+since = 2020
+
 
 
 # Hugo 解析文档的配置
